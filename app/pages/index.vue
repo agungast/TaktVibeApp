@@ -88,7 +88,7 @@
             :to="authStore.isAuthenticated ? '/dashboard' : '/register'"
             class="btn-primary btn-large"
           >
-            <span>{{ authStore.isAuthenticated ? 'Buka Dashboard' : 'Mulai Sekarang — Gratis' }}</span>
+            <span>{{ authStore.isAuthenticated ? 'Buka Dashboard' : 'Mulai Sekarang' }}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
@@ -219,13 +219,13 @@
       <!-- Story 1: Tiga Sudut Pandang -->
       <div class="story-item reveal">
         <div class="story-narrative">
-          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 01 — Tiga Sudut Pandang</span>
+          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 01 Tiga Sudut Pandang</span>
           <h2 class="story-title">Tiga cara melihat pekerjaan Anda.</h2>
           <p class="story-desc">
             Kadang Anda memerlukan papan Kanban visual saat memproses alur kerja harian. Di hari lain, Anda memerlukan kalender bulanan untuk mengantisipasi tenggat waktu, atau tabel ringkas untuk melihat puluhan tugas sekaligus.
           </p>
           <p class="story-desc">
-            TaktVibe menyediakan ketiganya dalam satu data terpadu — tanpa perlu menduplikasi catatan Anda.
+            TaktVibe menyediakan ketiganya dalam satu data terpadu tanpa perlu menduplikasi catatan Anda.
           </p>
         </div>
 
@@ -311,7 +311,7 @@
       <!-- Story 2: Lampiran Dokumen & Media -->
       <div class="story-item reverse reveal">
         <div class="story-narrative">
-          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 02 — Lampiran Terstruktur</span>
+          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 02 Lampiran Terstruktur</span>
           <h2 class="story-title">Lampiran dan dokumen di tempat yang tepat.</h2>
           <p class="story-desc">
             Sematkan tangkapan layar, bukti pengerjaan, atau file pendukung langsung di dalam kartu tugas. Tidak perlu mencari tautan terpisah di aplikasi perpesanan.
@@ -342,7 +342,7 @@
       <!-- Story 3: Kedaulatan & Keamanan Data -->
       <div id="kedaulatan" class="story-item reveal">
         <div class="story-narrative">
-          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 03 — Kedaulatan Data</span>
+          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 03 Kedaulatan Data</span>
           <h2 class="story-title">Data Anda sepenuhnya milik Anda.</h2>
           <p class="story-desc">
             Tanpa keterikatan platform (*zero vendor lock-in*). Ekspor seluruh riwayat tugas Anda ke format CSV atau JSON kapan pun Anda inginkan.
@@ -579,11 +579,12 @@ onMounted(() => {
   if (import.meta.client) {
     window.addEventListener('scroll', handleScroll, { passive: true })
     setupReveal()
-    // Bersihkan parameter error OAuth agar tidak terus muncul (flow_state_already_used)
+    // Bersihkan parameter error OAuth agar tidak terus muncul
     const url = new URL(window.location.href)
-    if (url.searchParams.has('error') || url.searchParams.has('code')) {
+    if (url.searchParams.has('error') || url.searchParams.has('code') || url.searchParams.has('access_token') || url.searchParams.has('refresh_token') || url.hash.includes('access_token')) {
       url.search = ''
-      window.history.replaceState({}, '', url.toString())
+      if (url.hash) history.replaceState(null, '', url.pathname)
+      else window.history.replaceState({}, '', url.toString())
     }
     // Jika sudah login dan kembali dari OAuth, arahkan ke dashboard
     const supabase = useSupabaseClient()
@@ -591,7 +592,7 @@ onMounted(() => {
       if (data.session && window.location.pathname === '/') {
         navigateTo('/dashboard', { replace: true })
       }
-    })
+    }).catch(() => {})
   }
 })
 

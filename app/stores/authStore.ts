@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { useToastStore } from '~/stores/toastStore'
 import type { LoginCredentials, RegisterCredentials } from '~/types/auth'
+import { nextTick } from 'vue'
 
 export const useAuthStore = defineStore('auth', () => {
   const supabase = useSupabaseClient()
@@ -17,10 +18,78 @@ export const useAuthStore = defineStore('auth', () => {
   const successMessage = ref<string | null>(null)
   const showLogoutModal = ref<boolean>(false)
   const localAvatarUrl = ref<string | null>(null)
+  try {
+    const saved = localStorage.getItem('avatar_url')
+    if (saved === 'null') localAvatarUrl.value = null
+    else if (saved === '') localAvatarUrl.value = ''
+    else if (saved !== null) localAvatarUrl.value = saved || null
+  } catch {}
+  watch(localAvatarUrl, (v) => {
+    try { localStorage.setItem('avatar_url', v === null ? 'null' : (v ?? '')) } catch {}
+  })
   const localFullName = ref<string | null>(null)
+  const avatarDeleted = ref<boolean>(false)
+  try {
+    const saved = localStorage.getItem('avatar_deleted')
+    if (saved === '1') avatarDeleted.value = true
+  } catch {}
+  watch(avatarDeleted, (v) => {
+    try { localStorage.setItem('avatar_deleted', v ? '1' : '0') } catch {}
+  })
 
   // ─── Getters ──────────────────────────────────────────────────────────────────
   const isAuthenticated = computed<boolean>(() => !!user.value)
+
+  watch(user, async (newUser, oldUser) => {
+    // Hanya reset saat user benar-benar berganti (bukan saat inisialisasi pertama)
+    if (oldUser && newUser?.id !== oldUser?.id) {
+      // User berganti (login/logout) — coba sync dari tabel profiles berdasarkan email
+      // agar foto konsisten antara manual dan Google
+      const email = newUser?.email
+      if (email) {
+        try {
+          await syncFromProfiles()
+          const { data: profileData } = await supabase.from('profiles').select('full_name').eq('email', email).maybeSingle()
+          if (profileData?.full_name) {
+            localFullName.value = profileData.full_name
+          }
+        } catch {
+          if (!localAvatarUrl.value) {
+            localAvatarUrl.value = null
+            localFullName.value = null
+          }
+        }
+      } else {
+        if (!localAvatarUrl.value) {
+          localAvatarUrl.value = null
+          localFullName.value = null
+        }
+      }
+    }
+
+    // Hydrate local state dari user_metadata saat session restore (hard refresh)
+    // Hanya sinkronkan jika localAvatarUrl masih null (belum di-set di sesi ini)
+    if (newUser && localAvatarUrl.value === null) {
+      syncAvatarFromSession(newUser)
+    }
+  })
+
+  async function syncFromProfiles(force = false): Promise<void> {
+    const email = user.value?.email
+    if (!email) return
+    try {
+      const { data: profileData } = await supabase.from('profiles').select('avatar_url').eq('email', email).maybeSingle()
+      if (profileData?.avatar_url) {
+        localAvatarUrl.value = profileData.avatar_url
+        avatarDeleted.value = false
+        try { sessionStorage.setItem(`profile_avatar_${email}`, profileData.avatar_url) } catch {}
+      } else {
+        avatarDeleted.value = true
+        localAvatarUrl.value = ''
+        try { sessionStorage.setItem(`profile_avatar_${email}`, '__deleted__') } catch {}
+      }
+    } catch {}
+  }
 
   const userEmail = computed<string>(() => user.value?.email ?? '')
 
@@ -60,6 +129,39 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   /**
+   * Helper: deteksi apakah URL adalah URL dari OAuth provider (bukan Supabase Storage kita)
+   */
+  function isOAuthProviderAvatarUrl(url: string): boolean {
+    return (
+      url.includes('googleusercontent.com') ||
+      url.includes('githubusercontent.com') ||
+      url.includes('graph.facebook.com') ||
+      url.includes('avatars.githubusercontent.com')
+    )
+  }
+
+  /**
+   * Sinkronisasi avatar dari OAuth provider setelah login/session restore.
+   * Dipanggil untuk memastikan identity_data di-hydrate ke localAvatarUrl
+   * hanya jika user belum memiliki custom uploaded avatar.
+   */
+  function syncAvatarFromSession(currentUser: typeof user.value): void {
+    if (!currentUser) return
+    // Jangan override jika user sudah sengaja menghapus avatar (lokal maupun persisten)
+    if (localAvatarUrl.value === '' || avatarDeleted.value) return
+
+    const meta = currentUser.user_metadata as any
+    const storedAvatar: string | undefined = meta?.avatar_url
+
+    // Jika ada custom upload di Supabase Storage, hydrate ke localAvatarUrl
+    if (storedAvatar && !isOAuthProviderAvatarUrl(storedAvatar)) {
+      localAvatarUrl.value = storedAvatar
+    }
+    // Jika tidak ada custom upload, biarkan localAvatarUrl null
+    // agar computed avatarUrl mengambil langsung dari identity_data
+  }
+
+  /**
    * Masuk menggunakan Email dan Password
    */
   async function signIn(credentials: LoginCredentials): Promise<boolean> {
@@ -81,6 +183,7 @@ export const useAuthStore = defineStore('auth', () => {
 
       if (data?.user) {
         ;(user as any).value = data.user
+        hydrateAvatarFromMeta()
         return true
       }
 
@@ -156,8 +259,8 @@ export const useAuthStore = defineStore('auth', () => {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: `${window.location.origin}/dashboard`,
-        skipBrowserRedirect: false
+          redirectTo: `${window.location.origin}/auth/callback`,
+          skipBrowserRedirect: false
         }
       })
       if (error) {
@@ -165,6 +268,27 @@ export const useAuthStore = defineStore('auth', () => {
         toast.error(authError.value || 'Gagal masuk dengan OAuth.')
         return false
       }
+      // Setelah OAuth callback berhasil, sinkron avatar dari metadata
+      await nextTick()
+      try {
+        const { data } = await supabase.auth.getUser()
+        if (data?.user) {
+          (user as any).value = data.user
+          const email = data.user.email
+          // Prioritaskan data dari tabel profiles berdasarkan email
+          if (email) {
+            try {
+              await syncFromProfiles()
+              const { data: profileData } = await supabase.from('profiles').select('full_name').eq('email', email).maybeSingle()
+              if (profileData?.full_name) {
+                localFullName.value = profileData.full_name
+              }
+            } catch {}
+          }
+          if (avatarDeleted.value) return true
+          hydrateAvatarFromMeta()
+        }
+      } catch {}
       return true
     } catch (err: any) {
       authError.value = err.message || 'Gagal masuk dengan OAuth.'
@@ -183,6 +307,9 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const taskStore = useTaskStore()
       taskStore.resetState()
+
+      localAvatarUrl.value = null
+      localFullName.value = null
 
       const { error } = await supabase.auth.signOut()
       ;(user as any).value = null
@@ -291,6 +418,19 @@ export const useAuthStore = defineStore('auth', () => {
     return msg
   }
 
+  // ─── Helper sinkron avatar ────────────────────────────────────────────────────
+  function hydrateAvatarFromMeta(): void {
+    const meta = user.value?.user_metadata as any
+    if (meta?.avatar_url) {
+      localAvatarUrl.value = meta.avatar_url
+    } else if (meta?.picture) {
+      localAvatarUrl.value = meta.picture
+    } else {
+      // Biarkan null jika tidak ada; akan menggunakan identity_data nanti
+      if (!localAvatarUrl.value) localAvatarUrl.value = null
+    }
+  }
+
   // ─── State Modal Profil ───────────────────────────────────────────────────────
   const showProfileModal = ref<boolean>(false)
   const profileLoading = ref<boolean>(false)
@@ -298,10 +438,55 @@ export const useAuthStore = defineStore('auth', () => {
   const profileSuccess = ref<string | null>(null)
 
   const avatarUrl = computed<string | null>(() => {
-    if (localAvatarUrl.value !== null) {
-      return localAvatarUrl.value === '' ? null : localAvatarUrl.value
+    if (!user.value) return null
+
+    const meta = user.value?.user_metadata as any
+    const email = user.value?.email
+
+    // 0️⃣ Prioritaskan cache dari tabel profiles
+    if (email) {
+      try {
+        const cached = sessionStorage.getItem(`profile_avatar_${email}`)
+        if (cached === '__deleted__') return null
+        if (cached) return cached
+      } catch {}
     }
-    return user.value?.user_metadata?.avatar_url || null
+
+    // 1️⃣ Custom uploaded avatar ke Supabase Storage (selalu menang)
+    //    localAvatarUrl === '' berarti avatar sengaja dihapus → return null
+    if (localAvatarUrl.value !== null && localAvatarUrl.value !== undefined) {
+      if (localAvatarUrl.value === '') return null
+      return localAvatarUrl.value
+    }
+
+    // Jika user sudah mengeklik "Hapus Foto" + "Simpan", semua fallback
+    // (metadata & OAuth identity) harus diabaikan → default inisial
+    if (avatarDeleted.value) return null
+
+    // 2️⃣ Cek user_metadata.avatar_url — valid hanya jika bukan URL OAuth provider
+    //    (berarti ini URL custom upload dari Supabase Storage yang tersimpan di metadata)
+    const metaAvatarUrl: string | undefined = meta?.avatar_url
+    if (metaAvatarUrl && !isOAuthProviderAvatarUrl(metaAvatarUrl)) {
+      return metaAvatarUrl
+    }
+
+    // 3️⃣ Ambil foto dari identity_data provider OAuth (Google/GitHub)
+    //    identity_data diperbarui Supabase setiap user re-authenticate via OAuth
+    const ids = user.value.identities || []
+    for (const identity of ids) {
+      const d = (identity as any)?.identity_data as any
+      if (d?.avatar_url) return d.avatar_url
+      if (d?.picture) return d.picture
+    }
+
+    // 4️⃣ Fallback terakhir: picture atau avatar_url dari user_metadata (termasuk OAuth URL)
+    //    Kita abaikan picture kalau user sudah sengaja menghapus avatar secara manual
+    //    (pengguna klik "Hapus Foto" + "Simpan Perubahan", jadi picture ini mesti diabaikan)
+    if (avatarDeleted.value) return null
+    if (meta?.picture) return meta.picture
+    if (metaAvatarUrl) return metaAvatarUrl
+
+    return null
   })
 
   const fullName = computed<string>(() => {
@@ -335,24 +520,24 @@ export const useAuthStore = defineStore('auth', () => {
     profileSuccess.value = null
 
     try {
-      let avatarPublicUrl = user.value.user_metadata?.avatar_url || null
+      let avatarPublicUrl: string | null = null
 
       // 1. Jika user meminta hapus avatar
       if (payload.removeAvatar) {
         avatarPublicUrl = null
+        localAvatarUrl.value = ''
+        avatarDeleted.value = true
+        try { const email = user.value.email; if (email) sessionStorage.setItem(`profile_avatar_${email}`, '__deleted__') } catch {}
       }
       // 2. Jika user mengunggah file foto avatar baru
       else if (payload.avatarFile) {
         const fileExt = payload.avatarFile.name.split('.').pop() || 'png'
-        // Path harus `public/{userId}/...` agar cocok dengan policy INSERT
-        // owner-scoped di storage.objects (segmen ke-2 harus sama dengan auth.uid()).
-        // Avatar memang harus bisa dibaca publik, jadi tetap di folder `public`.
         const filePath = `public/${user.value.id}/avatar-${Date.now()}.${fileExt}`
 
         const { error: uploadError } = await supabase.storage
           .from('project-crud')
           .upload(filePath, payload.avatarFile, {
-            cacheControl: '3600',
+            cacheControl: '0',
             upsert: true
           })
 
@@ -366,6 +551,12 @@ export const useAuthStore = defineStore('auth', () => {
           .getPublicUrl(filePath)
 
         avatarPublicUrl = urlData.publicUrl
+        localAvatarUrl.value = avatarPublicUrl
+        avatarDeleted.value = false
+        try { const email = user.value.email; if (email) sessionStorage.setItem(`profile_avatar_${email}`, avatarPublicUrl) } catch {}
+      } else {
+        // 3. Tidak ada perubahan avatar — pertahankan yang sudah ada
+        avatarPublicUrl = localAvatarUrl.value || (user.value.user_metadata as any)?.avatar_url || (user.value.user_metadata as any)?.picture || null
       }
 
       // 3. Susun data update untuk Supabase Auth
@@ -373,12 +564,14 @@ export const useAuthStore = defineStore('auth', () => {
         data: {
           full_name: string
           avatar_url: string | null
+          picture?: string | null
         }
         password?: string
       } = {
         data: {
           full_name: payload.fullName.trim(),
-          avatar_url: avatarPublicUrl
+          avatar_url: avatarPublicUrl,
+          picture: avatarPublicUrl
         }
       }
 
@@ -388,16 +581,65 @@ export const useAuthStore = defineStore('auth', () => {
 
       const { data, error } = await supabase.auth.updateUser(updateData)
 
+      // Refresh user metadata dari server agar perubahan avatar_url benar-benar tersinkron
+      if (!error) {
+        try {
+          const fresh = await supabase.auth.getUser()
+          if (fresh.data?.user) (user as any).value = fresh.data.user
+        } catch {}
+      }
+
       if (error) {
         profileError.value = translateAuthError(error.message)
         return false
       }
 
       if (data?.user) {
-        (user as any).value = data.user
-        localAvatarUrl.value = avatarPublicUrl ?? ''
+        // Update reaktif user object dari Supabase response (sudah memiliki user_metadata terbaru)
+        // Namun kita sudah refresh dengan getUser() di atas; hanya set jika fresh gagal
+        try {
+          const fresh = await supabase.auth.getUser()
+          if (fresh.data?.user) {
+            ;(user as any).value = fresh.data.user
+          } else {
+            ;(user as any).value = data.user
+          }
+        } catch {
+          ;(user as any).value = data.user
+        }
+
+        // Sinkronisasi localAvatarUrl agar konsisten dengan data yang baru disimpan
+        if (payload.removeAvatar) {
+          localAvatarUrl.value = ''
+        } else if (avatarPublicUrl) {
+          localAvatarUrl.value = avatarPublicUrl
+        }
+        // Jika tidak ada perubahan avatar, biarkan localAvatarUrl tetap seperti sebelumnya
+
+        // Simpan ke tabel profiles agar akun manual & Google konsisten
+        try {
+          const { error: upsertError } = await supabase.from('profiles').upsert({
+            email: user.value.email,
+            full_name: payload.fullName.trim(),
+            avatar_url: avatarPublicUrl
+          }, { onConflict: 'email' })
+          if (upsertError) console.error('[profiles] upsert error:', upsertError.message)
+          if (!upsertError) {
+            try {
+              const email = user.value.email
+              if (email) {
+                if (avatarPublicUrl) sessionStorage.setItem(`profile_avatar_${email}`, avatarPublicUrl)
+                else sessionStorage.setItem(`profile_avatar_${email}`, '__deleted__')
+              }
+            } catch {}
+          }
+        } catch (e: any) {
+          console.error('[profiles] upsert error:', e.message)
+        }
+
         localFullName.value = payload.fullName.trim()
         profileSuccess.value = 'Profil Anda berhasil diperbarui!'
+        await nextTick()
         return true
       }
 

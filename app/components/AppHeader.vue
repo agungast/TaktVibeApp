@@ -89,7 +89,16 @@
       <!-- User Avatar & Dropdown -->
       <div class="user-menu-wrap" ref="menuRef">
         <button class="topbar-avatar" @click="showDropdown = !showDropdown" title="Menu Pengguna">
-          <img v-if="authStore.avatarUrl" :src="authStore.avatarUrl" alt="Avatar" class="avatar-header-img" />
+          <img
+            v-if="authStore.avatarUrl && !avatarErrored"
+            :key="authStore.avatarUrl"
+            :src="authStore.avatarUrl"
+            alt="Avatar"
+            class="avatar-header-img"
+            @error="onAvatarError"
+            referrerpolicy="no-referrer"
+            crossorigin="anonymous"
+          />
           <span v-else>{{ authStore.userInitials }}</span>
         </button>
 
@@ -185,6 +194,22 @@ const handleLogout = () => {
   showDropdown.value = false
   authStore.openLogoutModal()
 }
+
+const avatarErrored = ref(false)
+
+const onAvatarError = (e: Event) => {
+  avatarErrored.value = true
+  const target = e.target as HTMLImageElement
+  if (target) target.style.display = 'none'
+}
+
+watch(() => authStore.avatarUrl, (newUrl, oldUrl) => {
+  // Reset error state HANYA jika URL benar-benar berganti ke URL baru yang berbeda
+  // Jangan reset jika URL sama (mencegah broken image loop setelah session refresh)
+  if (newUrl && newUrl !== oldUrl) {
+    avatarErrored.value = false
+  }
+})
 
 const handleClickOutside = (e: MouseEvent) => {
   const target = e.target as Node
@@ -339,6 +364,8 @@ onUnmounted(() => {
   font-family: inherit;
   width: 34px;
   height: 34px;
+  min-width: 34px;
+  min-height: 34px;
   border-radius: 50%;
   background: #111726;
   color: #f1f5f9;
@@ -351,6 +378,7 @@ onUnmounted(() => {
   justify-content: center;
   transition: border-color 0.15s ease, transform 0.15s ease;
   overflow: hidden;
+  aspect-ratio: 1 / 1;
   padding: 0;
 }
 
@@ -358,6 +386,8 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 
 .topbar-avatar:hover {

@@ -252,18 +252,36 @@ export const useTaskStore = defineStore('task', () => {
   async function fetchTasks(): Promise<void> {
     pending.value = true
     try {
-      let { data, error } = await supabase
+      let currentUserId = user.value?.id
+      if (!currentUserId && import.meta.client) {
+        try {
+          const { data: userData } = await supabase.auth.getUser()
+          currentUserId = userData?.user?.id
+        } catch {}
+      }
+
+      let query: any = supabase
         .from('todos')
         .select('*, task_attachments(*), subtasks(*)')
         .order('created_at', { ascending: false })
 
+      if (currentUserId) {
+        query = query.eq('user_id', currentUserId)
+      }
+
+      let { data, error } = await query
+
       // Resilient fallback jika tabel subtasks belum dimigrasi di remote Supabase
       if (error && (error.message?.includes('subtasks') || error.code === 'PGRST204' || error.message?.includes('relation'))) {
         console.warn('Tabel subtasks belum dibuat di Supabase remote. Mengambil data tugas tanpa relasi subtasks.')
-        const fallback = await supabase
+        let fallbackQuery: any = supabase
           .from('todos')
           .select('*, task_attachments(*)')
           .order('created_at', { ascending: false })
+        if (currentUserId) {
+          fallbackQuery = fallbackQuery.eq('user_id', currentUserId)
+        }
+        const fallback = await fallbackQuery
         data = fallback.data
         error = fallback.error
       }

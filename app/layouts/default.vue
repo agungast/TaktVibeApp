@@ -165,7 +165,16 @@
           :title="sidebarCollapsed ? `${authStore?.displayName || 'User'} (Klik untuk Edit Profil)` : 'Klik untuk Edit Profil'"
         >
           <div class="user-avatar">
-            <img v-if="authStore?.avatarUrl" :src="authStore?.avatarUrl" alt="Avatar" class="sidebar-avatar-img" />
+            <img
+              v-if="authStore?.avatarUrl && !sidebarAvatarErrored"
+              :key="authStore?.avatarUrl"
+              :src="authStore?.avatarUrl"
+              alt="Avatar"
+              class="sidebar-avatar-img"
+              @error="onSidebarAvatarError"
+              referrerpolicy="no-referrer"
+              crossorigin="anonymous"
+            />
             <span v-else>{{ authStore?.userInitials || 'U' }}</span>
           </div>
           <div class="user-meta">
@@ -245,6 +254,20 @@ const { $pinia } = useNuxtApp()
 const taskStore = useTaskStore($pinia)
 const authStore = useAuthStore($pinia)
 const route = useRoute()
+
+const sidebarAvatarErrored = ref(false)
+const onSidebarAvatarError = (e: Event) => {
+  sidebarAvatarErrored.value = true
+  const target = e.target as HTMLImageElement
+  if (target) target.style.display = 'none'
+}
+watch(() => authStore?.avatarUrl, (newUrl, oldUrl) => {
+  // Reset error state HANYA jika URL benar-benar berganti ke URL baru yang berbeda
+  // Jangan reset jika URL sama — mencegah broken image infinite loop setelah session refresh
+  if (newUrl && newUrl !== oldUrl) {
+    sidebarAvatarErrored.value = false
+  }
+})
 
 // Sidebar "Semua / Selesai / Aktif" memakai query filter yang sama dengan dashboard.
 const isFilter = (value: 'all' | 'done' | 'active'): boolean => {
@@ -669,6 +692,8 @@ onUnmounted(() => {
 .user-avatar {
   width: 34px;
   height: 34px;
+  min-width: 34px;
+  min-height: 34px;
   background: #111726;
   border-radius: 50%;
   display: flex;
@@ -681,6 +706,7 @@ onUnmounted(() => {
   overflow: hidden;
   border: 1.5px solid #2d3b55;
   transition: border-color 0.15s ease;
+  aspect-ratio: 1 / 1;
 }
 
 .user-info.clickable:hover .user-avatar {
@@ -691,6 +717,8 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 
 .user-meta {

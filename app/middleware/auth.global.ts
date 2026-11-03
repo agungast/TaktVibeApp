@@ -1,31 +1,40 @@
 export default defineNuxtRouteMiddleware(async (to) => {
+  // Callback OAuth menangani sesinya sendiri, jangan diintersep.
+  if (to.path === '/auth/callback') {
+    return
+  }
+
   const user = useSupabaseUser()
   const supabase = useSupabaseClient()
-
-  // Abaikan API endpoint Nitro
-  if (to.path.startsWith('/api')) return
 
   const publicRoutes = ['/', '/login', '/register', '/forgot-password', '/reset-password']
   const isPublicRoute = publicRoutes.includes(to.path)
 
   let isAuthenticated = !!user.value
-  if (!isAuthenticated) {
-    const { data: { session } } = await supabase.auth.getSession()
-    if (session?.user) {
-      isAuthenticated = true
-      ;(user as any).value = session.user
+
+  // Plugin server Supabase sudah mengisi user dari cookie, jadi fallback
+  // getSession() hanya perlu di client (misal setelah hard refresh).
+  if (!isAuthenticated && import.meta.client) {
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.user) {
+        isAuthenticated = true
+      }
+    } catch (err) {
+      console.error('Auth middleware getSession error:', err)
     }
   }
 
-  // 1. Jika belum login dan mencoba akses route yang diproteksi (misal /dashboard) -> arahkan ke /login
-  if (!isAuthenticated && !isPublicRoute) {
-    return navigateTo('/login')
+  // Halaman auth hanya untuk tamu. /reset-password sengaja tidak termasuk:
+  // user yang membuka tautan recovery email punya sesi aktif dan harus tetap
+  // bisa mengganti kata sandi.
+  const guestOnlyRoutes = ['/', '/login', '/register', '/forgot-password']
+  if (isAuthenticated && guestOnlyRoutes.includes(to.path)) {
+    return navigateTo('/dashboard', { replace: true })
   }
 
-  // 2. Jika sudah login dan mencoba akses /login, /register, /forgot-password -> arahkan ke /dashboard
-  // Catatan: Halaman /reset-password dikecualikan karena butuh sesi recovery user
-  const authOnlyPages = ['/login', '/register', '/forgot-password']
-  if (isAuthenticated && authOnlyPages.includes(to.path)) {
-    return navigateTo('/dashboard')
+  // Belum login dan mencoba akses route terproteksi -> lempar ke /login
+  if (!isAuthenticated && !isPublicRoute) {
+    return navigateTo('/login', { replace: true })
   }
 })

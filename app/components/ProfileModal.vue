@@ -56,12 +56,15 @@
             <div class="avatar-section">
               <div class="avatar-preview-wrap">
                 <img
-                  v-if="previewAvatarUrl || (authStore.avatarUrl && !removeAvatarRequested)"
+                  v-if="(previewAvatarUrl || authStore.avatarUrl) && !removeAvatarRequested && !avatarPreviewErrored"
+                  :key="(previewAvatarUrl || authStore.avatarUrl) || 'avatar-default'"
                   :src="previewAvatarUrl || authStore.avatarUrl!"
                   alt="Avatar"
                   class="avatar-image"
+                  @error="onAvatarPreviewError"
+                  referrerpolicy="no-referrer"
                 />
-                <div v-else class="avatar-initials-circle">
+                <div v-show="!((previewAvatarUrl || authStore.avatarUrl) && !removeAvatarRequested && !avatarPreviewErrored)" class="avatar-initials-circle">
                   {{ authStore.userInitials }}
                 </div>
 
@@ -95,11 +98,10 @@
                   </label>
 
                   <button
-                    v-if="previewAvatarUrl || (authStore.avatarUrl && !removeAvatarRequested)"
                     type="button"
                     class="avatar-remove-btn"
                     @click="handleRemoveAvatar"
-                    :disabled="authStore.profileLoading"
+                    :disabled="authStore.profileLoading || !authStore.avatarUrl || removeAvatarRequested"
                   >
                     Hapus Foto
                   </button>
@@ -291,6 +293,13 @@ const previewAvatarUrl = ref<string | null>(null)
 const removeAvatarRequested = ref<boolean>(false)
 const showPassword = ref<boolean>(false)
 const showPasswordFields = ref<boolean>(false)
+const avatarPreviewErrored = ref(false)
+
+const onAvatarPreviewError = (e: Event) => {
+  avatarPreviewErrored.value = true
+  const target = e.target as HTMLImageElement
+  if (target) target.style.display = 'none'
+}
 
 // Sinkronkan data saat modal dibuka
 watch(
@@ -301,12 +310,26 @@ watch(
       form.newPassword = ''
       form.confirmPassword = ''
       selectedAvatarFile.value = null
-      previewAvatarUrl.value = null
+      if (previewAvatarUrl.value && previewAvatarUrl.value.startsWith('blob:')) {
+        URL.revokeObjectURL(previewAvatarUrl.value)
+      }
+      previewAvatarUrl.value = authStore.avatarUrl || null
       removeAvatarRequested.value = false
       showPasswordFields.value = false
+      avatarPreviewErrored.value = false
     }
   }
 )
+
+watch(previewAvatarUrl, () => {
+  avatarPreviewErrored.value = false
+})
+watch(() => authStore.avatarUrl, (newUrl) => {
+  avatarPreviewErrored.value = false
+  if (!removeAvatarRequested.value && !selectedAvatarFile.value) {
+    previewAvatarUrl.value = newUrl || null
+  }
+})
 
 const isFormInvalid = computed<boolean>(() => {
   if (!form.fullName.trim()) return true
@@ -325,9 +348,13 @@ const onAvatarFileChange = (e: Event) => {
       toast.warning('Ukuran foto terlalu besar. Maksimal 3MB.')
       return
     }
+    if (previewAvatarUrl.value) {
+      URL.revokeObjectURL(previewAvatarUrl.value)
+    }
     selectedAvatarFile.value = file
     previewAvatarUrl.value = URL.createObjectURL(file)
     removeAvatarRequested.value = false
+    avatarPreviewErrored.value = false
   }
 }
 
@@ -338,6 +365,7 @@ const handleRemoveAvatar = () => {
     previewAvatarUrl.value = null
   }
   removeAvatarRequested.value = true
+  avatarPreviewErrored.value = false
 }
 
 const handleSaveProfile = async () => {
@@ -352,6 +380,8 @@ const handleSaveProfile = async () => {
 
   if (success) {
     toast.success('Profil berhasil diperbarui!')
+    previewAvatarUrl.value = authStore.avatarUrl || null
+    removeAvatarRequested.value = false
     setTimeout(() => {
       authStore.closeProfileModal()
     }, 1200)
@@ -383,7 +413,7 @@ const handleSaveProfile = async () => {
   border-radius: 18px;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7), 0 0 24px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -409,13 +439,13 @@ const handleSaveProfile = async () => {
 .header-icon-wrap {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #005afb, #6120f7);
+  background: #005afb;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  box-shadow: 0 0 14px rgba(99, 102, 241, 0.4);
+
 }
 
 .modal-title {
@@ -497,23 +527,31 @@ const handleSaveProfile = async () => {
   position: relative;
   width: 64px;
   height: 64px;
+  min-width: 64px;
+  min-height: 64px;
   flex-shrink: 0;
+  aspect-ratio: 1 / 1;
 }
 
 .avatar-image {
   width: 64px;
   height: 64px;
+  min-width: 64px;
+  min-height: 64px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #005afb;
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
+  border: 2px solid #334155;
+  display: block;
+  aspect-ratio: 1 / 1;
 }
 
 .avatar-initials-circle {
   width: 64px;
   height: 64px;
+  min-width: 64px;
+  min-height: 64px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #005afb, #6120f7);
+  background: #005afb;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -521,7 +559,7 @@ const handleSaveProfile = async () => {
   font-weight: 700;
   color: #ffffff;
   border: 2px solid #334155;
-  box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
+  aspect-ratio: 1 / 1;
 }
 
 .avatar-edit-badge {
@@ -777,7 +815,7 @@ const handleSaveProfile = async () => {
   align-items: center;
   gap: 8px;
   padding: 9px 18px;
-  background: linear-gradient(135deg, #005afb, #6120f7);
+  background: #005afb;
   border: 1px solid #005afb;
   border-radius: 8px;
   color: #ffffff;
@@ -785,13 +823,13 @@ const handleSaveProfile = async () => {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  box-shadow: none;
 }
 
 .btn-save-profile:hover:not(:disabled) {
-  background: linear-gradient(135deg, #004ecc, #521ad8);
+  background: #005afb;
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.45);
+  box-shadow: none;
 }
 
 .btn-save-profile:disabled, .btn-cancel:disabled {

@@ -73,7 +73,7 @@ export default defineNuxtConfig({
         'script-src': ["'self'", "'nonce-{{nonce}}'", "'strict-dynamic'"],
         'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
         'font-src': ["'self'", 'https://fonts.gstatic.com', 'data:'],
-        'img-src': ["'self'", 'data:', 'blob:', 'https://*.supabase.co'],
+        'img-src': ["'self'", 'data:', 'blob:', 'https://*.supabase.co', 'https://lh3.googleusercontent.com', 'https://*.googleusercontent.com'],
         // Koneksi REST + WebSocket milik Supabase.
         'connect-src': ["'self'", 'https://*.supabase.co', 'wss://*.supabase.co'],
         'media-src': ["'self'", 'blob:', 'https://*.supabase.co'],
