@@ -1,17 +1,19 @@
 {
-  "name": "nuxt-supabase-crud",
+  "name": "taktvibe",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host 0.0.0.0",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@nuxtjs/supabase": "^2.0.10",
+    "@pinia/nuxt": "^1.0.2",
     "nuxt": "^4.5.2",
+    "pinia": "^4.0.3",
     "vue": "^3.5.41",
     "vue-router": "^5.2.0"
   }
