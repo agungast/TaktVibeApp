@@ -141,6 +141,7 @@ import { useAuthStore } from '~/stores/authStore'
 import type { LoginCredentials } from '~/types/auth'
 
 definePageMeta({
+  title: 'Login',
   layout: 'auth'
 })
 

@@ -74,6 +74,7 @@
 import { useAuthStore } from '~/stores/authStore'
 
 definePageMeta({
+  title: 'Lupa Kata Sandi',
   layout: 'auth'
 })
 

@@ -736,7 +736,7 @@ const handleClose = () => {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 7, 13, 0.78);
+  background: var(--modal-backdrop-bg);
   backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
@@ -749,8 +749,8 @@ const handleClose = () => {
 
 /* ─── MODAL BOX DETAIL ────────────────────────────────────────────────────── */
 .modal-box-detail {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--modal-bg);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   width: 100%;
   max-width: 820px;
@@ -758,9 +758,9 @@ const handleClose = () => {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-elevated);
   scrollbar-width: thin;
-  scrollbar-color: #1f2a3f #090d16;
+  scrollbar-color: var(--border-color) var(--bg-base);
 }
 
 /* ─── TOPBAR ──────────────────────────────────────────────────────────────── */
@@ -769,8 +769,8 @@ const handleClose = () => {
   align-items: center;
   justify-content: space-between;
   padding: 14px 20px 12px;
-  border-bottom: 1px solid #172136;
-  background: #0d1422;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-subtle);
   flex-shrink: 0;
 }
 
@@ -783,14 +783,14 @@ const handleClose = () => {
 
 .detail-badge-id {
   font-family: monospace;
-  color: #94a3b8;
-  background: #172136;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
   padding: 2px 6px;
   border-radius: 4px;
 }
 
 .detail-meta-sep {
-  color: #475569;
+  color: var(--text-muted);
 }
 
 .detail-meta-status {
@@ -800,15 +800,15 @@ const handleClose = () => {
   letter-spacing: 0.03em;
 }
 
-.status-backlog { color: #94a3b8; }
+.status-backlog { color: var(--text-secondary); }
 .status-todo { color: #60a5fa; }
-.status-in_progress { color: #fbbf24; }
-.status-done { color: #4ade80; }
+.status-in_progress { color: var(--color-warning); }
+.status-done { color: var(--color-success); }
 
 .detail-close-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 4px;
   border-radius: 6px;
@@ -819,8 +819,8 @@ const handleClose = () => {
 }
 
 .detail-close-btn:hover {
-  color: #f1f5f9;
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  background: var(--bg-hover);
 }
 
 /* ─── HEADER & ATTRIBUTES SECTION ─────────────────────────────────────────── */
@@ -836,7 +836,7 @@ const handleClose = () => {
   border: none;
   font-size: 20px;
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--text-heading);
   font-family: inherit;
   padding: 2px 0;
   width: 100%;
@@ -845,12 +845,12 @@ const handleClose = () => {
 }
 
 .detail-title-input:hover {
-  border-color: #2d3b55;
+  border-color: var(--border-subtle);
 }
 
 .detail-title-input:focus {
   outline: none;
-  border-color: #005afb;
+  border-color: var(--accent-primary);
 }
 
 .detail-attrs-grid {
@@ -858,8 +858,8 @@ const handleClose = () => {
   grid-template-columns: repeat(3, 1fr);
   column-gap: 24px;
   row-gap: 18px;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 16px 20px;
   align-items: flex-start;
@@ -878,7 +878,7 @@ const handleClose = () => {
 .attr-label {
   font-size: 11.5px;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -891,8 +891,8 @@ const handleClose = () => {
 }
 
 .attr-p-btn {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 0 8px;
   height: 32px;
@@ -900,21 +900,21 @@ const handleClose = () => {
   align-items: center;
   gap: 5px;
   font-size: 11.5px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   font-family: inherit;
   transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
 .attr-p-btn:hover:not(.active) {
-  color: #f1f5f9;
-  border-color: #2d3b55;
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
 }
 
 .attr-p-btn.active {
-  color: #f1f5f9;
-  background: #172136;
-  border-color: #005afb;
+  color: var(--text-primary);
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
 }
 
 .p-dot {
@@ -927,13 +927,13 @@ const handleClose = () => {
 .dot-low .p-dot { background: #94a3b8; }
 .dot-medium .p-dot { background: #38bdf8; }
 .dot-high .p-dot { background: #fb923c; }
-.dot-urgent .p-dot { background: #f87171; }
+.dot-urgent .p-dot { background: var(--color-danger); }
 
 .attr-select {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 6px;
-  color: #f1f5f9;
+  color: var(--input-color);
   font-size: 12px;
   padding: 0 10px;
   height: 32px;
@@ -945,7 +945,7 @@ const handleClose = () => {
 
 .attr-select:hover,
 .attr-select:focus {
-  border-color: #3b4d6b;
+  border-color: var(--accent-primary);
   outline: none;
 }
 
@@ -978,9 +978,9 @@ const handleClose = () => {
 }
 
 .detail-tag-chip {
-  background: #172136;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   font-size: 11.5px;
   padding: 2px 7px;
   border-radius: 4px;
@@ -988,7 +988,7 @@ const handleClose = () => {
 
 .detail-divider {
   height: 1px;
-  background: #172136;
+  background: var(--border-color);
   width: 100%;
 }
 
@@ -1010,7 +1010,7 @@ const handleClose = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .section-title {
@@ -1024,24 +1024,24 @@ const handleClose = () => {
 .subtask-ratio-badge {
   font-size: 11.5px;
   font-weight: 500;
-  color: #94a3b8;
-  background: #090d16;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
   padding: 2px 8px;
   border-radius: 10px;
-  border: 1px solid #172136;
+  border: 1px solid var(--border-color);
 }
 
 .subtask-progress-track {
   width: 100%;
   height: 4px;
-  background: #172136;
+  background: var(--border-color);
   border-radius: 2px;
   overflow: hidden;
 }
 
 .subtask-progress-fill {
   height: 100%;
-  background: #4ade80;
+  background: var(--color-success);
   transform-origin: left;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1057,14 +1057,14 @@ const handleClose = () => {
   align-items: center;
   justify-content: space-between;
   padding: 7px 10px;
-  background: #0d1422;
-  border: 1px solid #172136;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .subtask-item:hover {
-  border-color: #243048;
+  border-color: var(--border-subtle);
 }
 
 .subtask-check-label {
@@ -1083,37 +1083,37 @@ const handleClose = () => {
 .subtask-custom-box {
   width: 16px;
   height: 16px;
-  border: 1.5px solid #475569;
+  border: 1.5px solid var(--border-subtle);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #111726;
+  background: var(--bg-elevated);
   flex-shrink: 0;
   transition: all 0.15s ease;
 }
 
 .subtask-item.is-completed .subtask-custom-box {
-  background: #22c55e;
-  border-color: #22c55e;
+  background: var(--color-success);
+  border-color: var(--color-success);
   color: #ffffff;
 }
 
 .subtask-title-text {
   font-size: 13px;
-  color: #f1f5f9;
+  color: var(--text-primary);
   line-height: 1.4;
 }
 
 .subtask-item.is-completed .subtask-title-text {
   text-decoration: line-through;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .subtask-del-btn {
   background: transparent;
   border: none;
-  color: #64748b;
+  color: var(--text-muted);
   cursor: pointer;
   padding: 3px;
   border-radius: 4px;
@@ -1126,7 +1126,7 @@ const handleClose = () => {
 }
 
 .subtask-del-btn:hover {
-  color: #f87171;
+  color: var(--color-danger);
   background: rgba(239, 68, 68, 0.1);
 }
 
@@ -1142,18 +1142,18 @@ const handleClose = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #090d16;
-  border: 1px solid #172136;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 6px 10px;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .subtask-input {
   background: transparent;
   border: none;
   width: 100%;
-  color: #f1f5f9;
+  color: var(--text-primary);
   font-size: 12.5px;
   font-family: inherit;
 }
@@ -1163,9 +1163,9 @@ const handleClose = () => {
 }
 
 .subtask-add-btn {
-  background: #172136;
-  border: 1px solid #2d3b55;
-  color: #f1f5f9;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
   font-size: 12px;
   font-weight: 500;
   padding: 6px 12px;
@@ -1176,7 +1176,7 @@ const handleClose = () => {
 }
 
 .subtask-add-btn:hover:not(:disabled) {
-  background: #243048;
+  background: var(--bg-active);
 }
 
 .subtask-add-btn:disabled {
@@ -1188,8 +1188,8 @@ const handleClose = () => {
 .md-tab-group {
   display: inline-flex;
   align-items: center;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 2px;
   gap: 2px;
@@ -1202,7 +1202,7 @@ const handleClose = () => {
   padding: 4px 9px;
   font-size: 12px;
   font-weight: 500;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -1212,12 +1212,12 @@ const handleClose = () => {
 }
 
 .md-tab-btn:hover:not(.active) {
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .md-tab-btn.active {
-  background: #172136;
-  color: #f1f5f9;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -1227,15 +1227,15 @@ const handleClose = () => {
   flex-wrap: wrap;
   gap: 4px;
   padding: 6px 8px;
-  background: #090d16;
-  border: 1px solid #172136;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
 }
 
 .tb-btn {
   background: transparent;
   border: 1px solid transparent;
-  color: #94a3b8;
+  color: var(--text-secondary);
   padding: 2px 7px;
   font-size: 11.5px;
   font-family: inherit;
@@ -1245,15 +1245,15 @@ const handleClose = () => {
 }
 
 .tb-btn:hover {
-  background: #172136;
-  color: #f1f5f9;
-  border-color: #2d3b55;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
 }
 
 .tb-sep {
   width: 1px;
   height: 14px;
-  background: #1f2a3f;
+  background: var(--border-color);
   margin: 0 3px;
 }
 
@@ -1263,67 +1263,67 @@ const handleClose = () => {
 
 .md-textarea {
   width: 100%;
-  background: #090d16;
-  border: 1px solid #172136;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 12px 14px;
   font-size: 13px;
   line-height: 1.6;
-  color: #f1f5f9;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-primary);
+  font-family: inherit;
   resize: vertical;
   scrollbar-width: thin;
 }
 
 .md-textarea:focus {
   outline: none;
-  border-color: #005afb;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(0, 90, 251, 0.2);
 }
 
 .md-preview-pane {
-  background: #090d16;
-  border: 1px solid #172136;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 16px 18px;
   min-height: 180px;
-  color: #f1f5f9;
+  color: var(--text-primary);
   font-size: 13.5px;
   line-height: 1.65;
 }
 
 .md-empty-preview {
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 13px;
 }
 
 /* Markdown Styled Output */
-:deep(.md-h1) { font-size: 18px; font-weight: 700; margin: 12px 0 6px; color: #f8fafc; border-bottom: 1px solid #172136; padding-bottom: 4px; }
-:deep(.md-h2) { font-size: 16px; font-weight: 600; margin: 10px 0 5px; color: #f1f5f9; }
-:deep(.md-h3) { font-size: 14.5px; font-weight: 600; margin: 8px 0 4px; color: #e2e8f0; }
+:deep(.md-h1) { font-size: 18px; font-weight: 700; margin: 12px 0 6px; color: var(--text-heading); border-bottom: 1px solid var(--border-color); padding-bottom: 4px; }
+:deep(.md-h2) { font-size: 16px; font-weight: 600; margin: 10px 0 5px; color: var(--text-primary); }
+:deep(.md-h3) { font-size: 14.5px; font-weight: 600; margin: 8px 0 4px; color: var(--text-soft); }
 :deep(.md-p) { margin: 6px 0; }
 :deep(.md-ul), :deep(.md-ol) { margin: 6px 0 6px 20px; padding: 0; }
 :deep(.md-ul li), :deep(.md-ol li) { margin-bottom: 3px; }
 :deep(.md-quote) {
   margin: 10px 0;
   padding: 8px 14px;
-  background: rgba(30, 41, 59, 0.35);
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-style: italic;
 }
 :deep(.md-inline-code) {
   font-family: monospace;
   font-size: 12px;
-  background: #172136;
-  color: #a5b4fc;
+  background: var(--bg-elevated);
+  color: var(--text-soft);
   padding: 2px 5px;
   border-radius: 4px;
 }
 :deep(.md-code-block) {
-  background: #050811;
-  border: 1px solid #172136;
+  background: var(--bg-base);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   margin: 10px 0;
   position: relative;
@@ -1334,7 +1334,7 @@ const handleClose = () => {
   top: 4px;
   right: 8px;
   font-size: 10.5px;
-  color: #64748b;
+  color: var(--text-muted);
   text-transform: uppercase;
   font-family: monospace;
 }
@@ -1344,7 +1344,7 @@ const handleClose = () => {
   font-family: monospace;
   font-size: 12px;
   line-height: 1.5;
-  color: #e2e8f0;
+  color: var(--text-soft);
 }
 :deep(.md-link) {
   color: #60a5fa;
@@ -1353,7 +1353,7 @@ const handleClose = () => {
 }
 :deep(.md-hr) {
   border: none;
-  border-top: 1px solid #172136;
+  border-top: 1px solid var(--border-color);
   margin: 14px 0;
 }
 
@@ -1366,16 +1366,16 @@ const handleClose = () => {
 .save-state {
   font-size: 12px;
 }
-.save-state.saving { color: #fbbf24; }
-.save-state.saved { color: #4ade80; font-weight: 500; }
-.save-state.idle { color: #64748b; }
+.save-state.saving { color: var(--color-warning); }
+.save-state.saved { color: var(--color-success); font-weight: 500; }
+.save-state.idle { color: var(--text-muted); }
 
 .pulse-dot {
   display: inline-block;
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #fbbf24;
+  background: var(--color-warning);
   margin-right: 4px;
   animation: pulse-dot-anim 1s infinite alternate;
 }
@@ -1386,7 +1386,7 @@ const handleClose = () => {
 }
 
 .save-md-btn {
-  background: #005afb;
+  background: var(--accent-primary);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #ffffff;
   font-size: 12.5px;
@@ -1399,7 +1399,7 @@ const handleClose = () => {
 }
 
 .save-md-btn:hover:not(:disabled) {
-  background: #004ecc;
+  background: var(--accent-primary-hover);
 }
 
 .save-md-btn:disabled {
@@ -1410,8 +1410,8 @@ const handleClose = () => {
 /* ─── FOOTER BAR ──────────────────────────────────────────────────────────── */
 .detail-footer-bar {
   padding: 14px 24px;
-  border-top: 1px solid #172136;
-  background: #0d1422;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1429,13 +1429,13 @@ const handleClose = () => {
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .manage-att-btn {
-  background: #172136;
-  border: 1px solid #2d3b55;
-  color: #cbd5e1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-soft);
   font-size: 11.5px;
   font-weight: 500;
   padding: 3px 9px;
@@ -1446,14 +1446,14 @@ const handleClose = () => {
 }
 
 .manage-att-btn:hover {
-  color: #f1f5f9;
-  background: #243048;
+  color: var(--text-primary);
+  background: var(--bg-active);
 }
 
 .btn-done-modal {
-  background: #172136;
-  border: 1px solid #2d3b55;
-  color: #f1f5f9;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
   font-size: 12.5px;
   font-weight: 500;
   padding: 6px 16px;
@@ -1464,7 +1464,7 @@ const handleClose = () => {
 }
 
 .btn-done-modal:hover {
-  background: #243048;
+  background: var(--bg-active);
 }
 
 /* ─── FOCUS & DURATION ATTRIBUTES ───────────────────────────────────────── */
@@ -1472,8 +1472,8 @@ const handleClose = () => {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #0284c7;
-  border: 1px solid #0284c7;
+  background-color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
   color: #ffffff;
   font-size: 12px;
   font-weight: 600;
@@ -1489,46 +1489,46 @@ const handleClose = () => {
 
 .attr-input-num {
   width: 100%;
-  background-color: #090d16;
-  border: 1px solid #1e293b;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 6px;
   padding: 6px 10px;
-  color: #f1f5f9;
+  color: var(--input-color);
   font-size: 13px;
   font-family: inherit;
 }
 .attr-input-num:focus {
   outline: none;
-  border-color: #0284c7;
+  border-color: var(--accent-primary);
 }
 
 .actual-hours-display {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #090d16;
-  border: 1px solid #1e293b;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 5px 10px;
 }
 .hours-val {
   font-size: 13px;
   font-weight: 600;
-  color: #38bdf8;
+  color: var(--text-primary);
 }
 .quick-focus-icon-btn {
   font-size: 11px;
   font-weight: 600;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: color-mix(in srgb, var(--accent-primary) 55%, var(--text-primary));
+  background: rgba(0, 90, 251, 0.1);
+  border: 1px solid rgba(0, 90, 251, 0.25);
   border-radius: 4px;
   padding: 2px 6px;
   cursor: pointer;
   transition: all 150ms ease;
 }
 .quick-focus-icon-btn:hover {
-  background: rgba(56, 189, 248, 0.2);
+  background: rgba(0, 90, 251, 0.2);
 }
 
 /* ─── AI SUBTASK BREAKDOWN (SPRINT 2) ───────────────────────────────────── */
@@ -1542,9 +1542,9 @@ const handleClose = () => {
   align-items: center;
   gap: 6px;
   padding: 4px 10px;
-  background-color: rgba(2, 132, 199, 0.12);
-  border: 1px solid rgba(2, 132, 199, 0.35);
-  color: #38bdf8;
+  background-color: rgba(0, 90, 251, 0.12);
+  border: 1px solid rgba(0, 90, 251, 0.35);
+  color: color-mix(in srgb, var(--accent-primary) 55%, var(--text-primary));
   font-size: 11.5px;
   font-weight: 600;
   border-radius: 6px;
@@ -1552,8 +1552,8 @@ const handleClose = () => {
   transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ai-breakdown-btn:hover:not(:disabled) {
-  background-color: rgba(2, 132, 199, 0.22);
-  border-color: #38bdf8;
+  background-color: rgba(0, 90, 251, 0.22);
+  border-color: var(--accent-primary);
 }
 .ai-breakdown-btn:disabled {
   opacity: 0.6;
@@ -1571,8 +1571,8 @@ const handleClose = () => {
 .ai-suggestion-card {
   margin: 12px 0 16px 0;
   padding: 14px;
-  background-color: #0b1120;
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  background-color: var(--bg-subtle);
+  border: 1px solid rgba(0, 90, 251, 0.25);
   border-radius: 10px;
 }
 .ai-card-header {
@@ -1589,27 +1589,27 @@ const handleClose = () => {
 .ai-card-title {
   font-size: 13px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 .ai-close-preview {
   background: transparent;
   border: none;
   font-size: 18px;
-  color: #64748b;
+  color: var(--text-muted);
   cursor: pointer;
   line-height: 1;
 }
 .ai-close-preview:hover {
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 .ai-card-notice {
   font-size: 11.5px;
-  color: #fbbf24;
+  color: var(--color-warning);
   margin: 0 0 6px 0;
 }
 .ai-card-desc {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   margin: 0 0 10px 0;
 }
 .ai-items-list {
@@ -1622,20 +1622,20 @@ const handleClose = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: #111726;
-  border: 1px solid #1e293b;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 6px 10px;
 }
 .ai-checkbox {
-  accent-color: #0284c7;
+  accent-color: var(--accent-primary);
   cursor: pointer;
 }
 .ai-item-input {
   flex: 1;
   background: transparent;
   border: none;
-  color: #f1f5f9;
+  color: var(--text-primary);
   font-size: 12.5px;
   font-family: inherit;
 }
@@ -1649,8 +1649,8 @@ const handleClose = () => {
 }
 .btn-apply-ai {
   padding: 6px 14px;
-  background-color: #0284c7;
-  border: 1px solid #0284c7;
+  background-color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
   color: #ffffff;
   font-size: 12px;
   font-weight: 600;
@@ -1668,16 +1668,16 @@ const handleClose = () => {
 .btn-cancel-ai {
   padding: 6px 12px;
   background: transparent;
-  border: 1px solid #334155;
-  color: #94a3b8;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
   font-size: 12px;
   font-weight: 500;
   border-radius: 6px;
   cursor: pointer;
 }
 .btn-cancel-ai:hover {
-  background-color: #1e293b;
-  color: #f1f5f9;
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 /* ─── TRANSITIONS ─────────────────────────────────────────────────────────── */

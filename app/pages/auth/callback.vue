@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 definePageMeta({
+  title: 'Callback',
   layout: false
 })
 

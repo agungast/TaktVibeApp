@@ -440,6 +440,7 @@ import { useTheme } from '~/composables/useTheme'
 const FeatureTour = defineAsyncComponent(() => import('~/components/FeatureTour.vue'))
 
 definePageMeta({
+  title: 'Personal Task & Knowledge Management',
   layout: false
 })
 

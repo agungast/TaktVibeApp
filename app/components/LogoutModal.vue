@@ -90,7 +90,7 @@ onUnmounted(() => {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--modal-backdrop-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,14 +101,14 @@ onUnmounted(() => {
 
 /* Card */
 .modal-card {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--modal-bg);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
   padding: 28px 24px;
   max-width: 380px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-elevated);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +125,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #f87171;
+  color: var(--color-danger);
   margin-bottom: 16px;
 }
 
@@ -141,20 +141,20 @@ onUnmounted(() => {
 .modal-title {
   font-size: 18px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-heading);
   margin: 0;
   letter-spacing: -0.02em;
 }
 
 .modal-desc {
   font-size: 13.5px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   margin: 0;
   line-height: 1.5;
 }
 
 .user-highlight {
-  color: #f8fafc;
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -168,10 +168,10 @@ onUnmounted(() => {
 .btn-cancel {
   flex: 1;
   padding: 10px 16px;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
@@ -180,8 +180,8 @@ onUnmounted(() => {
 }
 
 .btn-cancel:hover:not(:disabled) {
-  background: #172136;
-  color: #ffffff;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .btn-confirm-logout {
@@ -191,7 +191,7 @@ onUnmounted(() => {
   justify-content: center;
   gap: 8px;
   padding: 10px 16px;
-  background: #ef4444;
+  background: #dc2626;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   color: #ffffff;
@@ -200,12 +200,12 @@ onUnmounted(() => {
   cursor: pointer;
   transition: all 0.15s ease;
   font-family: inherit;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-confirm-logout:hover:not(:disabled) {
-  background: #dc2626;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  background: #b91c1c;
+  box-shadow: var(--shadow-md);
 }
 
 .btn-confirm-logout:disabled, .btn-cancel:disabled {

@@ -242,25 +242,25 @@ const focusStore = useFocusStore()
   align-items: center;
   gap: 12px;
   padding: 8px 14px;
-  background-color: var(--color-surface, #111726);
-  border: 1px solid var(--color-border, #1e293b);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 9999px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-elevated);
   font-family: 'Outfit', sans-serif;
-  color: var(--color-text, #f1f5f9);
+  color: var(--text-primary);
 }
 
 .docked-status-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--color-text-muted, #64748b);
+  background-color: var(--text-muted);
   transition: background-color 200ms ease;
 }
 
 .docked-status-dot.running {
-  background-color: #10b981;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
 }
 
 .docked-info {
@@ -274,7 +274,7 @@ const focusStore = useFocusStore()
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--text-secondary);
   font-weight: 600;
 }
 
@@ -284,14 +284,14 @@ const focusStore = useFocusStore()
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--color-text, #f1f5f9);
+  color: var(--text-primary);
 }
 
 .docked-time {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: var(--color-primary, #38bdf8);
+  color: var(--accent-primary);
 }
 
 .docked-actions {
@@ -307,14 +307,14 @@ const focusStore = useFocusStore()
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid var(--color-border, #334155);
+  border: 1px solid var(--border-color);
   cursor: pointer;
   transition: background-color 150ms ease, transform 150ms ease;
 }
 
 .docked-btn.primary {
-  background-color: var(--color-primary, #0284c7);
-  border-color: var(--color-primary, #0284c7);
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
   color: #ffffff;
 }
 
@@ -324,13 +324,13 @@ const focusStore = useFocusStore()
 }
 
 .docked-btn.secondary {
-  background-color: var(--color-surface-hover, #1e293b);
-  color: var(--color-text-muted, #94a3b8);
+  background-color: var(--bg-hover);
+  color: var(--text-secondary);
 }
 
 .docked-btn.secondary:hover {
-  color: var(--color-text, #f1f5f9);
-  background-color: #334155;
+  color: var(--text-primary);
+  background-color: var(--bg-active);
 }
 
 /* ─── EXPANDED MODAL ─────────────────────────────────────────────────────── */
@@ -342,20 +342,20 @@ const focusStore = useFocusStore()
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background-color: rgba(9, 13, 22, 0.75);
+  background-color: var(--modal-backdrop-bg);
   backdrop-filter: blur(6px);
 }
 
 .focus-modal-card {
   width: 100%;
   max-width: 480px;
-  background-color: var(--color-surface, #0f172a);
-  border: 1px solid var(--color-border, #1e293b);
+  background-color: var(--modal-bg);
+  border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-elevated);
   font-family: 'Outfit', sans-serif;
-  color: var(--color-text, #f1f5f9);
+  color: var(--text-primary);
 }
 
 .modal-top {
@@ -371,7 +371,7 @@ const focusStore = useFocusStore()
   gap: 8px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -380,12 +380,12 @@ const focusStore = useFocusStore()
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #64748b;
+  background-color: var(--text-muted);
 }
 
 .focus-pulse-dot.active {
-  background-color: #10b981;
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
 }
 
 .modal-controls {
@@ -403,14 +403,14 @@ const focusStore = useFocusStore()
   border-radius: 8px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: background-color 150ms ease, color 150ms ease;
 }
 
 .icon-control-btn:hover {
-  background-color: var(--color-surface-hover, #1e293b);
-  color: var(--color-text, #f1f5f9);
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 /* Task Banner */
@@ -444,16 +444,16 @@ const focusStore = useFocusStore()
   text-transform: uppercase;
 }
 
-.priority-badge.low { background-color: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+.priority-badge.low { background-color: rgba(148, 163, 184, 0.15); color: var(--text-soft); }
 .priority-badge.medium { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-.priority-badge.high { background-color: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-.priority-badge.urgent { background-color: rgba(239, 68, 68, 0.15); color: #f87171; }
+.priority-badge.high { background-color: rgba(245, 158, 11, 0.15); color: var(--color-warning); }
+.priority-badge.urgent { background-color: rgba(239, 68, 68, 0.15); color: var(--color-danger); }
 
 .task-focus-title {
   font-size: 18px;
   font-weight: 700;
   line-height: 1.35;
-  color: var(--color-text, #f1f5f9);
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -463,10 +463,10 @@ const focusStore = useFocusStore()
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background-color: var(--color-bg, #090d16);
+  background-color: var(--bg-elevated);
   padding: 4px;
   border-radius: 10px;
-  border: 1px solid var(--color-border, #1e293b);
+  border: 1px solid var(--border-color);
   margin-bottom: 24px;
 }
 
@@ -478,14 +478,14 @@ const focusStore = useFocusStore()
   border-radius: 8px;
   border: none;
   background: transparent;
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mode-btn.active {
-  background-color: var(--color-surface, #1e293b);
-  color: var(--color-text, #f1f5f9);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -502,7 +502,7 @@ const focusStore = useFocusStore()
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1;
-  color: var(--color-text, #f1f5f9);
+  color: var(--text-primary);
   margin-bottom: 16px;
 }
 
@@ -513,7 +513,7 @@ const focusStore = useFocusStore()
 .timer-progress-track {
   width: 100%;
   height: 6px;
-  background-color: var(--color-bg, #090d16);
+  background-color: var(--bg-active);
   border-radius: 9999px;
   overflow: hidden;
   margin-bottom: 10px;
@@ -522,14 +522,14 @@ const focusStore = useFocusStore()
 .timer-progress-bar {
   height: 100%;
   width: 100%;
-  background-color: var(--color-primary, #0284c7);
+  background-color: var(--accent-primary);
   transform-origin: left;
   transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .timer-sub-caption {
   font-size: 13px;
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -548,11 +548,11 @@ const focusStore = useFocusStore()
   justify-content: center;
   gap: 8px;
   padding: 12px 28px;
-  background-color: var(--color-primary, #0284c7);
+  background-color: var(--accent-primary);
   color: #ffffff;
   font-weight: 700;
   font-size: 15px;
-  border: 1px solid var(--color-primary, #0284c7);
+  border: 1px solid var(--accent-primary);
   border-radius: 12px;
   cursor: pointer;
   transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -564,9 +564,9 @@ const focusStore = useFocusStore()
 }
 
 .btn-play-pause.running {
-  background-color: #334155;
-  border-color: #475569;
-  color: #f1f5f9;
+  background-color: var(--bg-elevated);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
 }
 
 .btn-reset, .btn-minimize-text {
@@ -575,9 +575,9 @@ const focusStore = useFocusStore()
   gap: 6px;
   padding: 11px 16px;
   border-radius: 10px;
-  border: 1px solid var(--color-border, #334155);
+  border: 1px solid var(--border-color);
   background-color: transparent;
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--text-secondary);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -585,8 +585,8 @@ const focusStore = useFocusStore()
 }
 
 .btn-reset:hover, .btn-minimize-text:hover {
-  background-color: var(--color-surface-hover, #1e293b);
-  color: var(--color-text, #f1f5f9);
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 /* Footer Stats */
@@ -594,10 +594,10 @@ const focusStore = useFocusStore()
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid var(--color-border, #1e293b);
+  border-top: 1px solid var(--border-color);
   padding-top: 14px;
   font-size: 12px;
-  color: var(--color-text-muted, #94a3b8);
+  color: var(--text-secondary);
 }
 
 /* ─── TRANSITIONS (Anti-Bounce Exponential Ease-Out) ─────────────────────── */

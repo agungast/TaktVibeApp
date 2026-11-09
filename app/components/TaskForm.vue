@@ -445,7 +445,7 @@ defineExpose({
   background: transparent;
   border: none;
   border-radius: 6px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-family: inherit;
   font-size: 12.5px;
   font-weight: 500;
@@ -454,8 +454,8 @@ defineExpose({
 }
 
 .details-toggle:hover {
-  color: #f1f5f9;
-  background: #111726;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
 }
 
 .details-toggle:focus-visible {
@@ -473,7 +473,7 @@ defineExpose({
 }
 
 .details-hint {
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-weight: 400;
 }
 
@@ -490,13 +490,13 @@ defineExpose({
   gap: 12px;
   flex-wrap: wrap;
   padding-top: 12px;
-  border-top: 1px solid #1c273c;
+  border-top: 1px solid var(--border-color);
 }
 
 .form-hint {
   margin: 0;
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .form-bottom-actions .submit-btn {
@@ -526,15 +526,15 @@ defineExpose({
 .form-label {
   font-size: 13px;
   font-weight: 500;
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .required {
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .optional {
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 11.5px;
   font-weight: 400;
 }
@@ -554,7 +554,7 @@ defineExpose({
 .create-space-inline-btn {
   background: transparent;
   border: none;
-  color: #38bdf8;
+  color: color-mix(in srgb, var(--accent-primary) 55%, var(--text-primary));
   font-size: 11.5px;
   font-weight: 500;
   cursor: pointer;
@@ -564,15 +564,15 @@ defineExpose({
 }
 
 .create-space-inline-btn:hover {
-  color: #7dd3fc;
+  color: var(--accent-primary);
   text-decoration: underline;
 }
 
 .files-count-badge {
   font-size: 11px;
-  color: #cbd5e1;
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  color: var(--text-soft);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   padding: 2px 8px;
   border-radius: 12px;
   font-weight: 600;
@@ -588,17 +588,17 @@ defineExpose({
 .input-icon {
   position: absolute;
   left: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   pointer-events: none;
 }
 
 .text-input {
   width: 100%;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   padding: 10px 14px 10px 36px;
-  color: #f1f5f9;
+  color: var(--input-color);
   font-size: 13.5px;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -606,12 +606,12 @@ defineExpose({
 }
 
 .text-input:focus {
-  border-color: #005afb;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(0, 90, 251, 0.2);
 }
 
 .text-input::placeholder {
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 /* Priority Selector */
@@ -626,21 +626,21 @@ defineExpose({
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   padding: 8px 6px;
   font-size: 12px;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   font-family: inherit;
   transition: all 0.15s ease;
 }
 
 .priority-btn:hover:not(:disabled) {
-  border-color: #2d3b55;
-  color: #f1f5f9;
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
 }
 
 .p-dot {
@@ -650,33 +650,33 @@ defineExpose({
   flex-shrink: 0;
 }
 
-.dot-low .p-dot { background: #2dd4bf; }
-.dot-medium .p-dot { background: #818cf8; }
-.dot-high .p-dot { background: #fbbf24; }
-.dot-urgent .p-dot { background: #f87171; }
+.dot-low .p-dot { background: var(--priority-low); }
+.dot-medium .p-dot { background: var(--priority-medium); }
+.dot-high .p-dot { background: var(--priority-high); }
+.dot-urgent .p-dot { background: var(--priority-urgent); }
 
 .dot-low.active {
   background: rgba(45, 212, 191, 0.12);
-  border-color: #2dd4bf;
-  color: #5eead4;
+  border-color: var(--priority-low);
+  color: color-mix(in srgb, var(--priority-low) 50%, var(--text-primary));
 }
 
 .dot-medium.active {
   background: rgba(129, 140, 248, 0.12);
-  border-color: #818cf8;
-  color: #c7d2fe;
+  border-color: var(--priority-medium);
+  color: color-mix(in srgb, var(--priority-medium) 50%, var(--text-primary));
 }
 
 .dot-high.active {
   background: rgba(251, 191, 36, 0.12);
-  border-color: #fbbf24;
-  color: #fde68a;
+  border-color: var(--priority-high);
+  color: color-mix(in srgb, var(--priority-high) 50%, var(--text-primary));
 }
 
 .dot-urgent.active {
   background: rgba(248, 113, 113, 0.12);
-  border-color: #f87171;
-  color: #fca5a5;
+  border-color: var(--priority-urgent);
+  color: color-mix(in srgb, var(--priority-urgent) 50%, var(--text-primary));
 }
 
 /* 2-Column Responsive Row */
@@ -704,11 +704,11 @@ defineExpose({
 
 .custom-select {
   width: 100%;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   padding: 10px 32px 10px 14px;
-  color: #f1f5f9;
+  color: var(--input-color);
   font-size: 13.5px;
   font-family: inherit;
   appearance: none;
@@ -718,14 +718,14 @@ defineExpose({
 }
 
 .custom-select:focus {
-  border-color: #005afb;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(0, 90, 251, 0.2);
 }
 
 .select-chevron {
   position: absolute;
   right: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   pointer-events: none;
 }
 
@@ -741,9 +741,9 @@ defineExpose({
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: rgba(99, 102, 241, 0.1);
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  color: #c7d2fe;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-soft);
   font-size: 11.5px;
   font-weight: 500;
   padding: 2px 8px;
@@ -753,7 +753,7 @@ defineExpose({
 .tag-del-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   font-size: 13px;
   line-height: 1;
@@ -763,24 +763,24 @@ defineExpose({
 }
 
 .tag-del-btn:hover {
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 /* Upload Area Drag & Drop */
 .upload-area {
-  border: 1.5px dashed #2d3b55;
+  border: 1.5px dashed var(--border-subtle);
   border-radius: 8px;
   padding: 14px 16px;
   cursor: pointer;
-  background: #090d16;
+  background: var(--input-bg);
   transition: background 0.15s ease, border-color 0.15s ease;
   display: block;
 }
 
 .upload-area:hover,
 .upload-area.is-dragging {
-  border-color: #005afb;
-  background: #0d1424;
+  border-color: var(--accent-primary);
+  background: var(--bg-hover);
 }
 
 .hidden-file-input {
@@ -797,9 +797,9 @@ defineExpose({
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: #111726;
-  border: 1px solid #2d3b55;
-  color: #f1f5f9;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -813,13 +813,13 @@ defineExpose({
 .upload-title {
   font-size: 13.5px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .upload-hint {
   font-size: 12px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   margin: 2px 0 0;
 }
 
@@ -836,8 +836,8 @@ defineExpose({
   align-items: center;
   gap: 10px;
   padding: 8px 12px;
-  background: #0d1422;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   transition: background 0.15s ease;
 }
@@ -852,7 +852,7 @@ defineExpose({
   height: 36px;
   border-radius: 6px;
   overflow: hidden;
-  background: #111726;
+  background: var(--bg-elevated);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -870,12 +870,12 @@ defineExpose({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #cbd5e1;
+  color: var(--text-soft);
 }
 
-.doc-icon.pdf { color: #f87171; }
+.doc-icon.pdf { color: var(--color-danger); }
 .doc-icon.word { color: #60a5fa; }
-.doc-icon.zip { color: #fbbf24; }
+.doc-icon.zip { color: var(--color-warning); }
 
 .file-ext {
   font-size: 11px;
@@ -890,7 +890,7 @@ defineExpose({
 .file-name {
   font-size: 12px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -899,7 +899,7 @@ defineExpose({
 
 .file-size {
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .file-options {
@@ -916,20 +916,20 @@ defineExpose({
 }
 
 .private-toggle input {
-  accent-color: #f59e0b;
+  accent-color: var(--color-warning);
   cursor: pointer;
 }
 
 .private-label {
   font-size: 11px;
   font-weight: 600;
-  color: #fbbf24;
+  color: var(--color-warning);
 }
 
 .file-remove-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 4px;
   border-radius: 4px;
@@ -941,13 +941,13 @@ defineExpose({
 
 .file-remove-btn:hover {
   background: rgba(239, 68, 68, 0.12);
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 /* Divider */
 .form-divider {
   height: 1px;
-  background: #1c273c;
+  background: var(--border-color);
   margin: 14px 0;
 }
 
@@ -958,7 +958,7 @@ defineExpose({
   justify-content: center;
   width: 100%;
   padding: 10px 16px;
-  background: #005afb;
+  background: var(--accent-primary);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   color: #ffffff;
@@ -966,13 +966,13 @@ defineExpose({
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-sm);
   font-family: inherit;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: #004ecc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  background: var(--accent-primary-hover);
+  box-shadow: var(--shadow-md);
 }
 
 .submit-btn:disabled {

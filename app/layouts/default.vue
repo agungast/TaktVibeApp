@@ -455,13 +455,14 @@ onUnmounted(() => {
 }
 
 .nav-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: #94a3b8;
-  letter-spacing: 0.06em;
   padding: 6px 10px 4px;
   margin: 0;
   white-space: nowrap;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .sidebar.sidebar-collapsed:not(:hover) .nav-label {
@@ -502,8 +503,17 @@ onUnmounted(() => {
   flex-shrink: 0;
 }
 
+/* Judul panjang dipotong dengan elipsis agar badge & tombol aksi tidak terdorong keluar */
+.nav-item-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .nav-badge {
   margin-left: auto;
+  flex-shrink: 0;
   background: #111726;
   border: 1px solid #1f2a3f;
   color: #cbd5e1;
@@ -605,6 +615,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 2px;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .custom-space:hover .space-count {
@@ -625,6 +636,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   transition: color 0.15s ease, background 0.15s ease;
 }
 

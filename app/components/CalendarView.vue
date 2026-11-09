@@ -563,7 +563,7 @@ const openDayTasks = (cell: MonthCell) => {
   flex: 1;
   width: 100%;
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #f1f5f9;
+  color: var(--text-primary);
   min-height: 480px;
 }
 
@@ -573,8 +573,8 @@ const openDayTasks = (cell: MonthCell) => {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  background: #0d1422;
-  border-bottom: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-color);
   flex-wrap: wrap;
   gap: 12px;
 }
@@ -595,9 +595,9 @@ const openDayTasks = (cell: MonthCell) => {
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -606,18 +606,18 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .cal-nav-btn:hover {
-  background: #172136;
-  border-color: #3b82f6;
-  color: #ffffff;
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .cal-today-btn {
   padding: 4px 10px;
   height: 28px;
   border-radius: 6px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   font-size: 11.5px;
   font-weight: 600;
   cursor: pointer;
@@ -626,15 +626,15 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .cal-today-btn:hover {
-  background: #172136;
-  border-color: #3b82f6;
-  color: #ffffff;
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .current-period-title {
   font-size: 15px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -650,8 +650,8 @@ const openDayTasks = (cell: MonthCell) => {
 .cal-mode-switcher {
   display: flex;
   align-items: center;
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 2px;
   gap: 2px;
@@ -660,7 +660,7 @@ const openDayTasks = (cell: MonthCell) => {
 .mode-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 11.5px;
   font-weight: 500;
   padding: 3px 10px;
@@ -671,12 +671,12 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .mode-btn:hover:not(.active) {
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .mode-btn.active {
-  background: #1e293b;
-  color: #ffffff;
+  background: var(--bg-active);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -692,11 +692,11 @@ const openDayTasks = (cell: MonthCell) => {
   align-items: center;
   gap: 6px;
   padding: 4px 9px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 11.5px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-weight: 500;
 }
 
@@ -707,11 +707,11 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .count-dot.scheduled {
-  background: #3b82f6;
+  background: var(--accent-primary);
 }
 
 .count-dot.unscheduled {
-  background: #f59e0b;
+  background: var(--color-warning);
 }
 
 .unscheduled-toggle-btn {
@@ -719,11 +719,11 @@ const openDayTasks = (cell: MonthCell) => {
   align-items: center;
   gap: 6px;
   padding: 4px 10px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 11.5px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-weight: 500;
   cursor: pointer;
   font-family: inherit;
@@ -731,14 +731,14 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .unscheduled-toggle-btn:hover {
-  background: #172136;
-  color: #f1f5f9;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .unscheduled-toggle-btn.active {
-  background: #1a2336;
-  border-color: #f59e0b;
-  color: #f59e0b;
+  background: var(--bg-active);
+  border-color: var(--color-warning);
+  color: var(--color-warning);
 }
 
 .chevron-icon {
@@ -762,15 +762,15 @@ const openDayTasks = (cell: MonthCell) => {
   display: flex;
   flex-direction: column;
   overflow-x: auto;
-  background: #090d16;
+  background: var(--bg-base);
 }
 
 /* ─── Weekdays Header Row ─────────────────────────────────────────────────── */
 .weekdays-grid {
   display: grid;
   grid-template-columns: repeat(7, minmax(110px, 1fr));
-  background: #0d1422;
-  border-bottom: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .weekday-col-header {
@@ -778,13 +778,13 @@ const openDayTasks = (cell: MonthCell) => {
   text-align: center;
   font-size: 11.5px;
   font-weight: 600;
-  color: #94a3b8;
+  color: var(--text-secondary);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .weekday-col-header.weekend {
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 /* ─── Month Grid ──────────────────────────────────────────────────────────── */
@@ -796,13 +796,13 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .month-day-cell {
-  border-right: 1px solid #172136;
-  border-bottom: 1px solid #172136;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   padding: 6px 8px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  background: #090d16;
+  background: var(--bg-base);
   transition: background 0.15s ease, border-color 0.15s ease;
   position: relative;
 }
@@ -812,21 +812,21 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .month-day-cell:hover {
-  background: #0f172a;
+  background: var(--bg-surface);
 }
 
 .month-day-cell.other-month {
-  background: #060910;
+  background: var(--bg-subtle);
   opacity: 0.45;
 }
 
 .month-day-cell.is-today {
-  background: #0e172a;
+  background: rgba(0, 90, 251, 0.08);
 }
 
 .month-day-cell.drop-target {
-  background: #15223c;
-  border: 1px dashed #3b82f6;
+  background: rgba(0, 90, 251, 0.12);
+  border: 1px dashed var(--accent-primary);
 }
 
 .cell-top {
@@ -838,7 +838,7 @@ const openDayTasks = (cell: MonthCell) => {
 .day-number {
   font-size: 11.5px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
   width: 22px;
   height: 22px;
   display: flex;
@@ -848,18 +848,18 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .day-number.today-badge {
-  background: #2563eb;
+  background: var(--accent-primary);
   color: #ffffff;
 }
 
 .cell-task-counter {
   font-size: 10px;
   font-weight: 600;
-  color: #94a3b8;
-  background: #111726;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
   padding: 1px 5px;
   border-radius: 9999px;
-  border: 1px solid #1f2a3f;
+  border: 1px solid var(--border-color);
 }
 
 .cell-task-list {
@@ -876,19 +876,19 @@ const openDayTasks = (cell: MonthCell) => {
   align-items: center;
   gap: 5px;
   padding: 3px 6px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   font-size: 11.5px;
-  color: #f1f5f9;
+  color: var(--text-primary);
   cursor: grab;
   user-select: none;
   transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 }
 
 .cal-task-chip:hover {
-  background: #172136;
-  border-color: #2d3b55;
+  background: var(--bg-hover);
+  border-color: var(--border-subtle);
   transform: translateY(-1px);
 }
 
@@ -931,7 +931,7 @@ const openDayTasks = (cell: MonthCell) => {
   background: transparent;
   border: none;
   font-size: 10.5px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   padding: 2px 4px;
   text-align: left;
   cursor: pointer;
@@ -941,7 +941,7 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .more-tasks-btn:hover {
-  color: #60a5fa;
+  color: var(--accent-primary);
 }
 
 /* ─── Week Grid View ──────────────────────────────────────────────────────── */
@@ -949,11 +949,11 @@ const openDayTasks = (cell: MonthCell) => {
   display: grid;
   grid-template-columns: repeat(7, minmax(130px, 1fr));
   flex: 1;
-  background: #090d16;
+  background: var(--bg-base);
 }
 
 .week-day-col {
-  border-right: 1px solid #172136;
+  border-right: 1px solid var(--border-color);
   padding: 8px;
   display: flex;
   flex-direction: column;
@@ -966,12 +966,12 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .week-day-col.is-today {
-  background: #0c1322;
+  background: rgba(0, 90, 251, 0.08);
 }
 
 .week-day-col.drop-target {
-  background: #15223c;
-  outline: 1px dashed #3b82f6;
+  background: rgba(0, 90, 251, 0.12);
+  outline: 1px dashed var(--accent-primary);
 }
 
 .week-col-header {
@@ -979,13 +979,13 @@ const openDayTasks = (cell: MonthCell) => {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 6px;
-  border-bottom: 1px solid #172136;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .week-col-date {
   font-size: 13px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
   width: 24px;
   height: 24px;
   display: flex;
@@ -995,13 +995,13 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .week-col-date.today-badge {
-  background: #2563eb;
+  background: var(--accent-primary);
   color: #ffffff;
 }
 
 .week-col-info {
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .week-tasks-stack {
@@ -1013,18 +1013,18 @@ const openDayTasks = (cell: MonthCell) => {
 
 .week-empty-slot {
   height: 60px;
-  border: 1px dashed #1f2a3f;
+  border: 1px dashed var(--border-color);
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 11.5px;
 }
 
 .week-task-card {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 8px 10px;
   display: flex;
@@ -1036,7 +1036,7 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .week-task-card:hover {
-  border-color: #2d3b55;
+  border-color: var(--border-subtle);
   transform: translateY(-1px);
 }
 
@@ -1075,15 +1075,15 @@ const openDayTasks = (cell: MonthCell) => {
   letter-spacing: 0.02em;
 }
 
-.week-priority-badge.p-low { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; }
+.week-priority-badge.p-low { background: rgba(148, 163, 184, 0.15); color: var(--text-soft); }
 .week-priority-badge.p-medium { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-.week-priority-badge.p-high { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-.week-priority-badge.p-urgent { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+.week-priority-badge.p-high { background: rgba(245, 158, 11, 0.15); color: var(--color-warning); }
+.week-priority-badge.p-urgent { background: rgba(239, 68, 68, 0.15); color: var(--color-danger); }
 
 .week-card-title {
   font-size: 12.5px;
   font-weight: 500;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0;
   line-height: 1.35;
   overflow: hidden;
@@ -1099,12 +1099,12 @@ const openDayTasks = (cell: MonthCell) => {
   align-items: center;
   gap: 6px;
   font-size: 10.5px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .week-subtask-pill {
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   padding: 1px 5px;
   border-radius: 4px;
 }
@@ -1112,8 +1112,8 @@ const openDayTasks = (cell: MonthCell) => {
 /* ─── Unscheduled Tray ────────────────────────────────────────────────────── */
 .unscheduled-tray {
   width: 260px;
-  background: #0b101c;
-  border-left: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border-left: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -1124,8 +1124,8 @@ const openDayTasks = (cell: MonthCell) => {
   align-items: center;
   justify-content: space-between;
   padding: 12px 14px;
-  border-bottom: 1px solid #1f2a3f;
-  background: #0d1422;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-subtle);
 }
 
 .tray-title-wrap {
@@ -1137,14 +1137,14 @@ const openDayTasks = (cell: MonthCell) => {
 .tray-title {
   font-size: 13px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .tray-badge {
   font-size: 10.5px;
   font-weight: 600;
-  color: #fbbf24;
+  color: var(--color-warning);
   background: rgba(245, 158, 11, 0.12);
   border: 1px solid rgba(245, 158, 11, 0.25);
   padding: 1px 6px;
@@ -1154,7 +1154,7 @@ const openDayTasks = (cell: MonthCell) => {
 .tray-close-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 16px;
   line-height: 1;
   cursor: pointer;
@@ -1162,12 +1162,12 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .tray-close-btn:hover {
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .tray-caption {
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   padding: 8px 14px 4px 14px;
   margin: 0;
   line-height: 1.35;
@@ -1184,14 +1184,14 @@ const openDayTasks = (cell: MonthCell) => {
 
 .tray-empty {
   font-size: 12px;
-  color: #64748b;
+  color: var(--text-muted);
   text-align: center;
   padding: 24px 8px;
 }
 
 .tray-task-card {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 8px 10px;
   display: flex;
@@ -1203,7 +1203,7 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .tray-task-card:hover {
-  border-color: #2d3b55;
+  border-color: var(--border-subtle);
   transform: translateY(-1px);
 }
 
@@ -1230,12 +1230,12 @@ const openDayTasks = (cell: MonthCell) => {
 
 .tray-p-dot.p-low { background: #94a3b8; }
 .tray-p-dot.p-medium { background: #60a5fa; }
-.tray-p-dot.p-high { background: #fbbf24; }
-.tray-p-dot.p-urgent { background: #f87171; }
+.tray-p-dot.p-high { background: var(--color-warning); }
+.tray-p-dot.p-urgent { background: var(--color-danger); }
 
 .tray-card-title {
   font-size: 12px;
-  color: #e2e8f0;
+  color: var(--text-soft);
   margin: 0;
   line-height: 1.35;
 }
@@ -1340,7 +1340,7 @@ const openDayTasks = (cell: MonthCell) => {
     inset: 0;
     width: 100%;
     z-index: 30;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.6);
+    box-shadow: var(--shadow-elevated);
   }
 }
 </style>

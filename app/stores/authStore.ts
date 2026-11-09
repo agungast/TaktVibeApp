@@ -3,6 +3,15 @@ import { useToastStore } from '~/stores/toastStore'
 import type { LoginCredentials, RegisterCredentials } from '~/types/auth'
 import { nextTick } from 'vue'
 
+// ---------------------------------------------------------------------------
+// Minimal type for the `profiles` table (only fields used in this store)
+// ---------------------------------------------------------------------------
+interface ProfileRow {
+  email: string
+  full_name?: string | null
+  avatar_url?: string | null
+}
+
 export const useAuthStore = defineStore('auth', () => {
   const supabase = useSupabaseClient()
   const user = useSupabaseUser()
@@ -49,7 +58,7 @@ export const useAuthStore = defineStore('auth', () => {
       if (email) {
         try {
           await syncFromProfiles()
-          const { data: profileData } = await supabase.from('profiles').select('full_name').eq('email', email).maybeSingle()
+          const { data: profileData } = await (supabase.from as any)('profiles').select('full_name').eq('email', email).maybeSingle()
           if (profileData?.full_name) {
             localFullName.value = profileData.full_name
           }
@@ -78,7 +87,7 @@ export const useAuthStore = defineStore('auth', () => {
     const email = user.value?.email
     if (!email) return
     try {
-      const { data: profileData } = await supabase.from('profiles').select('avatar_url').eq('email', email).maybeSingle()
+      const { data: profileData } = await (supabase.from as any)('profiles').select('avatar_url').eq('email', email).maybeSingle()
       if (profileData?.avatar_url) {
         localAvatarUrl.value = profileData.avatar_url
         avatarDeleted.value = false
@@ -279,7 +288,7 @@ export const useAuthStore = defineStore('auth', () => {
           if (email) {
             try {
               await syncFromProfiles()
-              const { data: profileData } = await supabase.from('profiles').select('full_name').eq('email', email).maybeSingle()
+              const { data: profileData } = await (supabase.from as any)('profiles').select('full_name').eq('email', email).maybeSingle()
               if (profileData?.full_name) {
                 localFullName.value = profileData.full_name
               }
@@ -553,7 +562,7 @@ export const useAuthStore = defineStore('auth', () => {
         avatarPublicUrl = urlData.publicUrl
         localAvatarUrl.value = avatarPublicUrl
         avatarDeleted.value = false
-        try { const email = user.value.email; if (email) sessionStorage.setItem(`profile_avatar_${email}`, avatarPublicUrl) } catch {}
+        try { const email = user.value.email; if (email) sessionStorage.setItem(`profile_avatar_${email}`, avatarPublicUrl ?? '') } catch {}
       } else {
         // 3. Tidak ada perubahan avatar — pertahankan yang sudah ada
         avatarPublicUrl = localAvatarUrl.value || (user.value.user_metadata as any)?.avatar_url || (user.value.user_metadata as any)?.picture || null
@@ -618,7 +627,7 @@ export const useAuthStore = defineStore('auth', () => {
 
         // Simpan ke tabel profiles agar akun manual & Google konsisten
         try {
-          const { error: upsertError } = await supabase.from('profiles').upsert({
+          const { error: upsertError } = await (supabase.from as any)('profiles').upsert({
             email: user.value.email,
             full_name: payload.fullName.trim(),
             avatar_url: avatarPublicUrl

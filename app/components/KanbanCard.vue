@@ -501,8 +501,8 @@ const confirmEdit = (): void => {
 
 <style scoped>
 .kanban-card {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 12px;
   display: flex;
@@ -516,7 +516,7 @@ const confirmEdit = (): void => {
 }
 
 .kanban-card:hover {
-  border-color: #2d3b55;
+  border-color: var(--border-subtle);
   transform: translateY(-1px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
 }
@@ -528,7 +528,7 @@ const confirmEdit = (): void => {
 .kanban-card.is-dragging {
   opacity: 0.45;
   border-style: dashed;
-  border-color: #005afb;
+  border-color: var(--accent-primary);
 }
 
 .kanban-card.is-completed {
@@ -600,7 +600,7 @@ const confirmEdit = (): void => {
 
 .priority-badge.p-low {
   background: rgba(148, 163, 184, 0.12);
-  color: #cbd5e1;
+  color: var(--text-soft);
   border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
@@ -612,13 +612,13 @@ const confirmEdit = (): void => {
 
 .priority-badge.p-high {
   background: rgba(245, 158, 11, 0.12);
-  color: #fbbf24;
+  color: var(--color-warning);
   border: 1px solid rgba(245, 158, 11, 0.25);
 }
 
 .priority-badge.p-urgent {
   background: rgba(239, 68, 68, 0.14);
-  color: #f87171;
+  color: var(--color-danger);
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
@@ -631,7 +631,7 @@ const confirmEdit = (): void => {
 .card-action-btn {
   background: transparent;
   border: 1px solid transparent;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   width: 26px;
   height: 26px;
@@ -643,21 +643,21 @@ const confirmEdit = (): void => {
 }
 
 .card-action-btn:hover {
-  background: #172136;
-  border-color: #2d3b55;
-  color: #ffffff;
+  background: var(--bg-hover);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
 }
 
 .card-action-btn.delete-btn:hover {
   background: rgba(239, 68, 68, 0.12);
   border-color: rgba(239, 68, 68, 0.3);
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .card-action-btn.detail-btn:hover {
-  background: rgba(79, 70, 229, 0.14);
-  border-color: rgba(79, 70, 229, 0.35);
-  color: #a5b4fc;
+  background: rgba(0, 90, 251, 0.12);
+  border-color: rgba(0, 90, 251, 0.35);
+  color: var(--accent-primary);
 }
 
 /* Card Title */
@@ -665,7 +665,7 @@ const confirmEdit = (): void => {
   margin: 0;
   font-size: 13.5px;
   font-weight: 600;
-  color: #f8fafc;
+  color: var(--text-heading);
   line-height: 1.45;
   word-break: break-word;
   cursor: pointer;
@@ -673,12 +673,12 @@ const confirmEdit = (): void => {
 }
 
 .card-title:hover:not(.completed-title) {
-  color: #818cf8;
+  color: var(--accent-primary);
 }
 
 .completed-title {
   text-decoration: line-through;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 /* Meta: Tags, Subtasks, Hours */
@@ -695,7 +695,7 @@ const confirmEdit = (): void => {
   gap: 3px;
   font-size: 11.5px;
   font-weight: 600;
-  color: #4ade80;
+  color: var(--color-success);
   background: rgba(34, 197, 94, 0.1);
   border: 1px solid rgba(34, 197, 94, 0.25);
   padding: 1px 6px;
@@ -716,7 +716,7 @@ const confirmEdit = (): void => {
   gap: 3px;
   font-size: 11.5px;
   font-weight: 500;
-  color: #93c5fd;
+  color: var(--accent-primary);
   background: rgba(59, 130, 246, 0.1);
   border: 1px solid rgba(59, 130, 246, 0.25);
   padding: 1px 6px;
@@ -734,9 +734,9 @@ const confirmEdit = (): void => {
 .meta-tag-badge {
   font-size: 11.5px;
   font-weight: 500;
-  color: #94a3b8;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  color: var(--text-secondary);
+  background: var(--bg-base);
+  border: 1px solid var(--border-color);
   padding: 2px 7px;
   border-radius: 4px;
   line-height: 1.3;
@@ -748,7 +748,7 @@ const confirmEdit = (): void => {
   align-items: center;
   justify-content: space-between;
   padding-top: 6px;
-  border-top: 1px solid #172136;
+  border-top: 1px solid var(--border-color);
   font-size: 11.5px;
 }
 
@@ -758,9 +758,9 @@ const confirmEdit = (): void => {
   gap: 4px;
   padding: 2px 6px;
   border-radius: 5px;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   font-size: 11.5px;
   font-weight: 500;
 }
@@ -768,11 +768,11 @@ const confirmEdit = (): void => {
 .due-badge.is-overdue {
   background: rgba(239, 68, 68, 0.12);
   border-color: rgba(239, 68, 68, 0.3);
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .no-due-text {
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 11.5px;
 }
 
@@ -782,9 +782,9 @@ const confirmEdit = (): void => {
   gap: 4px;
   padding: 2px 6px;
   border-radius: 5px;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   font-size: 11.5px;
   font-weight: 600;
   cursor: pointer;
@@ -793,9 +793,9 @@ const confirmEdit = (): void => {
 }
 
 .att-trigger-btn:hover {
-  background: #172136;
-  border-color: #005afb;
-  color: #ffffff;
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
 }
 
 .lock-dot {
@@ -812,8 +812,8 @@ const confirmEdit = (): void => {
   padding: 2px 6px;
   border-radius: 5px;
   background: transparent;
-  border: 1px dashed #2d3b55;
-  color: #94a3b8;
+  border: 1px dashed var(--border-subtle);
+  color: var(--text-secondary);
   font-size: 11.5px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -821,9 +821,9 @@ const confirmEdit = (): void => {
 }
 
 .att-add-quick-btn:hover {
-  border-color: #005afb;
-  color: #ffffff;
-  background: #172136;
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+  background: var(--bg-hover);
 }
 
 /* ─── Modal Styles ────────────────────────────────────────────────────────── */
@@ -840,14 +840,14 @@ const confirmEdit = (): void => {
 }
 
 .modal-box {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 24px;
   max-width: 380px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-elevated);
 }
 
 .modal-box-lg {
@@ -864,7 +864,7 @@ const confirmEdit = (): void => {
   align-items: center;
   justify-content: center;
   margin: 0 auto 14px;
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .modal-header-edit {
@@ -883,26 +883,26 @@ const confirmEdit = (): void => {
 }
 
 .edit-icon {
-  background: #172136 !important;
-  color: #f1f5f9 !important;
+  background: var(--bg-hover) !important;
+  color: var(--text-primary) !important;
 }
 
 .modal-title {
   font-size: 16.5px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0 0 4px;
 }
 
 .modal-message {
   font-size: 13.5px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   margin: 0 0 6px;
 }
 
 .modal-task-name {
   font-size: 13px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-style: italic;
   margin: 0 0 20px;
   word-break: break-word;
@@ -918,9 +918,9 @@ const confirmEdit = (): void => {
   flex: 1;
   padding: 9px 16px;
   border-radius: 8px;
-  border: 1px solid #1f2a3f;
-  background: #090d16;
-  color: #cbd5e1;
+  border: 1px solid var(--border-color);
+  background: var(--bg-base);
+  color: var(--text-soft);
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
@@ -929,8 +929,8 @@ const confirmEdit = (): void => {
 }
 
 .btn-cancel:hover {
-  background: #172136;
-  color: #ffffff;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .btn-confirm {
@@ -938,7 +938,7 @@ const confirmEdit = (): void => {
   padding: 9px 16px;
   border-radius: 8px;
   border: none;
-  background: #ef4444;
+  background: var(--color-danger);
   color: #ffffff;
   font-size: 13.5px;
   font-weight: 600;
@@ -948,7 +948,7 @@ const confirmEdit = (): void => {
 }
 
 .btn-confirm:hover {
-  background: #dc2626;
+  filter: brightness(0.92);
 }
 
 /* Edit Form */
@@ -967,11 +967,11 @@ const confirmEdit = (): void => {
 .edit-label {
   font-size: 12px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
 }
 
 .required {
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .edit-priority-grid {
@@ -986,27 +986,27 @@ const confirmEdit = (): void => {
   justify-content: center;
   gap: 5px;
   padding: 6px 4px;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-base);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 11.5px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
   cursor: pointer;
   transition: all 0.15s ease;
   font-family: inherit;
 }
 
 .edit-p-btn:hover {
-  background: #172136;
-  color: #ffffff;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .edit-p-btn.active {
-  border-color: #005afb;
-  background: #172136;
-  color: #ffffff;
-  box-shadow: 0 0 0 1px #005afb;
+  border-color: var(--accent-primary);
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 1px var(--accent-primary);
 }
 
 .p-dot {
@@ -1028,17 +1028,17 @@ const confirmEdit = (): void => {
 }
 
 .edit-select {
-  color-scheme: dark;
+  color-scheme: inherit;
 }
 
 .edit-input,
 .edit-select {
   width: 100%;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   padding: 8px 12px;
-  color: #f1f5f9;
+  color: var(--input-color);
   font-size: 13px;
   font-family: inherit;
   outline: none;
@@ -1048,8 +1048,8 @@ const confirmEdit = (): void => {
 
 .edit-input:focus,
 .edit-select:focus {
-  border-color: #005afb;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(0, 90, 251, 0.2);
 }
 
 .edit-tags-list {
@@ -1064,9 +1064,9 @@ const confirmEdit = (): void => {
   gap: 4px;
   font-size: 11.5px;
   font-weight: 500;
-  color: #cbd5e1;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  color: var(--text-soft);
+  background: var(--bg-base);
+  border: 1px solid var(--border-color);
   padding: 2px 7px;
   border-radius: 5px;
 }
@@ -1074,7 +1074,7 @@ const confirmEdit = (): void => {
 .edit-tag-del {
   background: none;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   font-size: 13px;
   line-height: 1;
@@ -1082,12 +1082,12 @@ const confirmEdit = (): void => {
 }
 
 .edit-tag-del:hover {
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .edit-error {
   font-size: 12px;
-  color: #f87171;
+  color: var(--color-danger);
   margin: -4px 0 0;
 }
 
@@ -1096,7 +1096,7 @@ const confirmEdit = (): void => {
   padding: 9px 16px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #005afb;
+  background: var(--accent-primary);
   color: #ffffff;
   font-size: 13.5px;
   font-weight: 600;
@@ -1106,7 +1106,7 @@ const confirmEdit = (): void => {
 }
 
 .btn-save:hover:not(:disabled) {
-  background: #004ecc;
+  background: var(--accent-primary-hover);
 }
 
 .btn-save:disabled {

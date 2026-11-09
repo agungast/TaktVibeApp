@@ -396,7 +396,7 @@ const handleSaveProfile = async () => {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.82);
+  background: var(--modal-backdrop-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: flex;
@@ -408,16 +408,17 @@ const handleSaveProfile = async () => {
 
 /* Card */
 .modal-card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--modal-bg);
+  border: 1px solid var(--border-color);
   border-radius: 18px;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7);
+  box-shadow: var(--shadow-elevated);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Header */
@@ -426,8 +427,8 @@ const handleSaveProfile = async () => {
   align-items: center;
   justify-content: space-between;
   padding: 18px 22px;
-  background: rgba(15, 23, 42, 0.45);
-  border-bottom: 1px solid #334155;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .header-left {
@@ -439,7 +440,7 @@ const handleSaveProfile = async () => {
 .header-icon-wrap {
   width: 40px;
   height: 40px;
-  background: #005afb;
+  background: var(--accent-primary);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -451,20 +452,20 @@ const handleSaveProfile = async () => {
 .modal-title {
   font-size: 16px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-heading);
   margin: 0;
 }
 
 .modal-subtitle {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   margin: 2px 0 0 0;
 }
 
 .modal-close-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 6px;
   border-radius: 6px;
@@ -475,8 +476,8 @@ const handleSaveProfile = async () => {
 }
 
 .modal-close-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #f1f5f9;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 /* Body */
@@ -503,13 +504,13 @@ const handleSaveProfile = async () => {
 .alert-banner.error {
   background: rgba(239, 68, 68, 0.12);
   border: 1px solid rgba(239, 68, 68, 0.35);
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .alert-banner.success {
   background: rgba(34, 197, 94, 0.12);
   border: 1px solid rgba(34, 197, 94, 0.35);
-  color: #4ade80;
+  color: var(--color-success);
 }
 
 /* Avatar Section */
@@ -518,8 +519,8 @@ const handleSaveProfile = async () => {
   align-items: center;
   gap: 16px;
   padding: 12px;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid #334155;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
 }
 
@@ -540,7 +541,7 @@ const handleSaveProfile = async () => {
   min-height: 64px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #334155;
+  border: 2px solid var(--border-color);
   display: block;
   aspect-ratio: 1 / 1;
 }
@@ -551,14 +552,14 @@ const handleSaveProfile = async () => {
   min-width: 64px;
   min-height: 64px;
   border-radius: 50%;
-  background: #005afb;
+  background: var(--accent-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
   font-weight: 700;
   color: #ffffff;
-  border: 2px solid #334155;
+  border: 2px solid var(--border-color);
   aspect-ratio: 1 / 1;
 }
 
@@ -569,8 +570,8 @@ const handleSaveProfile = async () => {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #005afb;
-  border: 2px solid #1e293b;
+  background: var(--accent-primary);
+  border: 2px solid var(--modal-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -602,17 +603,18 @@ const handleSaveProfile = async () => {
 .avatar-upload-btn {
   padding: 6px 12px;
   border-radius: 7px;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid #005afb;
-  color: #818cf8;
+  background: rgba(0, 90, 251, 0.12);
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  font-family: inherit;
   transition: all 0.15s ease;
 }
 
 .avatar-upload-btn:hover:not(.disabled) {
-  background: #005afb;
+  background: var(--accent-primary);
   color: #ffffff;
 }
 
@@ -620,23 +622,24 @@ const handleSaveProfile = async () => {
   padding: 6px 12px;
   border-radius: 7px;
   background: transparent;
-  border: 1px solid #475569;
-  color: #94a3b8;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  font-family: inherit;
   transition: all 0.15s ease;
 }
 
 .avatar-remove-btn:hover:not(:disabled) {
-  border-color: #ef4444;
-  color: #f87171;
+  border-color: var(--color-danger);
+  color: var(--color-danger);
   background: rgba(239, 68, 68, 0.1);
 }
 
 .avatar-hint {
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 /* Form Group */
@@ -649,11 +652,11 @@ const handleSaveProfile = async () => {
 .form-label {
   font-size: 12px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
 }
 
 .required {
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .input-wrapper {
@@ -665,30 +668,31 @@ const handleSaveProfile = async () => {
 .input-icon {
   position: absolute;
   left: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   pointer-events: none;
 }
 
 .form-input {
   width: 100%;
-  background: #0f172a;
-  border: 1px solid #334155;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 9px;
   padding: 10px 14px 10px 38px;
-  color: #f1f5f9;
+  color: var(--input-color);
+  font-family: inherit;
   font-size: 13px;
   outline: none;
   transition: all 0.15s ease;
 }
 
 .form-input:focus {
-  border-color: #005afb;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(0, 90, 251, 0.2);
 }
 
 .readonly-input {
-  background: rgba(15, 23, 42, 0.4);
-  color: #94a3b8;
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
   padding-right: 90px;
 }
 
@@ -700,7 +704,7 @@ const handleSaveProfile = async () => {
   gap: 4px;
   font-size: 11px;
   font-weight: 600;
-  color: #4ade80;
+  color: var(--color-success);
   background: rgba(34, 197, 94, 0.12);
   border: 1px solid rgba(34, 197, 94, 0.25);
   padding: 2px 8px;
@@ -712,7 +716,7 @@ const handleSaveProfile = async () => {
   right: 12px;
   background: none;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 4px;
   display: flex;
@@ -721,21 +725,21 @@ const handleSaveProfile = async () => {
 }
 
 .password-eye-btn:hover {
-  color: #cbd5e1;
+  color: var(--text-soft);
 }
 
 .password-mismatch-msg {
   font-size: 11px;
-  color: #fb923c;
+  color: var(--color-warning);
   margin-top: 2px;
 }
 
 /* Security Section */
 .security-section {
-  border: 1px solid #334155;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   overflow: hidden;
-  background: rgba(15, 23, 42, 0.2);
+  background: var(--bg-subtle);
 }
 
 .security-toggle-btn {
@@ -746,7 +750,8 @@ const handleSaveProfile = async () => {
   padding: 12px 14px;
   background: transparent;
   border: none;
-  color: #cbd5e1;
+  color: var(--text-soft);
+  font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -754,18 +759,18 @@ const handleSaveProfile = async () => {
 }
 
 .security-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-hover);
 }
 
 .toggle-title-wrap {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #818cf8;
+  color: var(--accent-primary);
 }
 
 .chevron-toggle {
-  color: #94a3b8;
+  color: var(--text-secondary);
   transition: transform 0.2s ease;
 }
 
@@ -775,11 +780,11 @@ const handleSaveProfile = async () => {
 
 .security-fields {
   padding: 14px;
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: rgba(15, 23, 42, 0.4);
+  background: var(--bg-subtle);
 }
 
 /* Modal Footer */
@@ -789,16 +794,17 @@ const handleSaveProfile = async () => {
   justify-content: flex-end;
   gap: 10px;
   padding-top: 8px;
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--border-color);
   margin-top: 6px;
 }
 
 .btn-cancel {
   padding: 9px 16px;
-  background: rgba(51, 65, 85, 0.6);
-  border: 1px solid #475569;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  color: #cbd5e1;
+  color: var(--text-soft);
+  font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -806,8 +812,8 @@ const handleSaveProfile = async () => {
 }
 
 .btn-cancel:hover:not(:disabled) {
-  background: #334155;
-  color: #ffffff;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .btn-save-profile {
@@ -815,10 +821,11 @@ const handleSaveProfile = async () => {
   align-items: center;
   gap: 8px;
   padding: 9px 18px;
-  background: #005afb;
-  border: 1px solid #005afb;
+  background: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
   border-radius: 8px;
   color: #ffffff;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -827,7 +834,7 @@ const handleSaveProfile = async () => {
 }
 
 .btn-save-profile:hover:not(:disabled) {
-  background: #005afb;
+  background: var(--accent-primary-hover);
   transform: translateY(-1px);
   box-shadow: none;
 }

@@ -271,7 +271,7 @@ const handleUploadNewFiles = async () => {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(3, 7, 18, 0.75);
+  background: var(--modal-backdrop-bg);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -281,15 +281,15 @@ const handleUploadNewFiles = async () => {
 }
 
 .modal-card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: var(--modal-bg);
+  border: 1px solid var(--border-color);
   border-radius: 16px;
   width: 100%;
   max-width: 580px;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-elevated);
   overflow: hidden;
 }
 
@@ -298,8 +298,8 @@ const handleUploadNewFiles = async () => {
   align-items: center;
   justify-content: space-between;
   padding: 18px 22px;
-  border-bottom: 1px solid #334155;
-  background: rgba(15, 23, 42, 0.6);
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-subtle);
 }
 
 .header-title-wrap {
@@ -312,9 +312,9 @@ const handleUploadNewFiles = async () => {
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  color: #818cf8;
+  background: rgba(0, 90, 251, 0.12);
+  border: 1px solid rgba(0, 90, 251, 0.25);
+  color: var(--accent-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -323,13 +323,13 @@ const handleUploadNewFiles = async () => {
 .modal-title {
   font-size: 16px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-heading);
   margin: 0;
 }
 
 .modal-subtitle {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   margin: 2px 0 0;
   max-width: 380px;
   white-space: nowrap;
@@ -343,7 +343,7 @@ const handleUploadNewFiles = async () => {
   border-radius: 8px;
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -352,8 +352,8 @@ const handleUploadNewFiles = async () => {
 }
 
 .close-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .modal-body {
@@ -376,14 +376,14 @@ const handleUploadNewFiles = async () => {
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
-  background: #0f172a;
-  border: 1px solid #334155;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   transition: border-color 0.15s ease;
 }
 
 .attachment-card:hover {
-  border-color: #475569;
+  border-color: var(--border-subtle);
 }
 
 .attachment-card.is-private {
@@ -394,7 +394,7 @@ const handleUploadNewFiles = async () => {
   width: 44px;
   height: 44px;
   border-radius: 8px;
-  background: #1e293b;
+  background: var(--bg-elevated);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -416,13 +416,13 @@ const handleUploadNewFiles = async () => {
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: #94a3b8;
+  color: var(--text-secondary);
   position: relative;
 }
 
-.pdf-doc { color: #f87171; }
+.pdf-doc { color: var(--color-danger); }
 .word-doc { color: #60a5fa; }
-.zip-doc { color: #fbbf24; }
+.zip-doc { color: var(--color-warning); }
 
 .ext-badge {
   font-size: 11px;
@@ -445,7 +445,7 @@ const handleUploadNewFiles = async () => {
 .att-name {
   font-size: 14px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -477,13 +477,13 @@ const handleUploadNewFiles = async () => {
 .privacy-badge.private {
   background: rgba(245, 158, 11, 0.15);
   border: 1px solid rgba(245, 158, 11, 0.3);
-  color: #fbbf24;
+  color: var(--color-warning);
 }
 
 .privacy-badge.public {
   background: rgba(34, 197, 94, 0.15);
   border: 1px solid rgba(34, 197, 94, 0.3);
-  color: #4ade80;
+  color: var(--color-success);
 }
 
 .att-meta {
@@ -491,7 +491,7 @@ const handleUploadNewFiles = async () => {
   align-items: center;
   gap: 6px;
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 
@@ -515,32 +515,32 @@ const handleUploadNewFiles = async () => {
 }
 
 .action-btn.download {
-  color: #818cf8;
+  color: var(--accent-primary);
 }
 
 .action-btn.download:hover {
-  background: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(0, 90, 251, 0.12);
+  border-color: rgba(0, 90, 251, 0.3);
 }
 
 .action-btn.delete {
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .action-btn.delete:hover {
   background: rgba(239, 68, 68, 0.15);
   border-color: rgba(239, 68, 68, 0.3);
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 /* Empty */
 .empty-attachments {
   text-align: center;
   padding: 24px;
-  background: #0f172a;
-  border: 1px dashed #334155;
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border-color);
   border-radius: 10px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -550,7 +550,7 @@ const handleUploadNewFiles = async () => {
 
 /* Add Section */
 .add-section {
-  border-top: 1px solid #334155;
+  border-top: 1px solid var(--border-color);
   padding-top: 16px;
   display: flex;
   flex-direction: column;
@@ -560,23 +560,23 @@ const handleUploadNewFiles = async () => {
 .add-title {
   font-size: 13px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
   margin: 0;
 }
 
 .dropzone {
   display: block;
-  border: 1px dashed #475569;
+  border: 1px dashed var(--border-subtle);
   border-radius: 9px;
   padding: 14px;
   text-align: center;
   cursor: pointer;
   transition: all 0.15s ease;
-  background: #0f172a;
+  background: var(--bg-subtle);
 }
 
 .dropzone:hover {
-  border-color: #005afb;
+  border-color: var(--accent-primary);
   background: rgba(0, 90, 251, 0.05);
 }
 
@@ -585,7 +585,7 @@ const handleUploadNewFiles = async () => {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 12px;
 }
 
@@ -605,14 +605,14 @@ const handleUploadNewFiles = async () => {
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
-  background: #0f172a;
-  border: 1px solid #334155;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 7px;
   font-size: 12px;
 }
 
 .new-file-name {
-  color: #f1f5f9;
+  color: var(--text-primary);
   font-weight: 500;
   max-width: 200px;
   white-space: nowrap;
@@ -621,7 +621,7 @@ const handleUploadNewFiles = async () => {
 }
 
 .new-file-size {
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 11px;
 }
 
@@ -630,21 +630,21 @@ const handleUploadNewFiles = async () => {
   align-items: center;
   gap: 4px;
   font-size: 11px;
-  color: #fbbf24;
+  color: var(--color-warning);
   cursor: pointer;
 }
 
 .remove-new-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 16px;
   cursor: pointer;
   padding: 0 4px;
 }
 
 .remove-new-btn:hover {
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .upload-now-btn {
@@ -653,20 +653,19 @@ const handleUploadNewFiles = async () => {
   justify-content: center;
   gap: 8px;
   padding: 9px;
-  background: linear-gradient(135deg, #005afb, #6120f7);
+  background: var(--accent-primary);
   border: none;
   border-radius: 8px;
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
   margin-top: 4px;
 }
 
 .upload-now-btn:hover:not(:disabled) {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  background: var(--accent-primary-hover);
 }
 
 .upload-now-btn:disabled {

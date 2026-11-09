@@ -89,7 +89,7 @@ export const useFocusStore = defineStore('focus', () => {
       timeLeft.value = remaining
 
       if (import.meta.client) {
-        document.title = `(${formattedTime.value}) ${activeTask.value?.title || 'Fokus'} — TaktVibe`
+        document.title = `(${formattedTime.value}) ${activeTask.value?.title || 'Fokus'} - TaktVibe`
       }
 
       if (remaining <= 0) {
@@ -98,7 +98,7 @@ export const useFocusStore = defineStore('focus', () => {
     } else if (timeLeft.value > 0) {
       timeLeft.value--
       if (import.meta.client) {
-        document.title = `(${formattedTime.value}) ${activeTask.value?.title || 'Fokus'} — TaktVibe`
+        document.title = `(${formattedTime.value}) ${activeTask.value?.title || 'Fokus'} - TaktVibe`
       }
       if (timeLeft.value <= 0) {
         handleTimerComplete()
@@ -162,7 +162,7 @@ export const useFocusStore = defineStore('focus', () => {
       timerInterval = null
     }
     if (import.meta.client) {
-      document.title = 'TaktVibe — Personal Task & Knowledge Management'
+      document.title = 'TaktVibe - Personal Task & Knowledge Management'
     }
   }
 

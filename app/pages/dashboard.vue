@@ -229,6 +229,10 @@ import type { Task, TaskFormSubmitPayload, TaskEditPayload, TaskStatus } from '~
 
 type QuickFilter = 'all' | 'active' | 'today' | 'overdue' | 'done'
 
+definePageMeta({
+  title: 'Dashboard'
+})
+
 // ─── Pinia Store ────────────────────────────────────────────────────────────
 const taskStore = useTaskStore()
 const focusStore = useFocusStore()
@@ -438,14 +442,14 @@ onMounted(async () => {
   line-height: 1.15;
   font-weight: 650;
   letter-spacing: -0.02em;
-  color: #f8fafc;
+  color: var(--text-heading);
 }
 
 .page-summary {
   margin: 6px 0 0;
   font-size: 13px;
   line-height: 1.5;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .page-actions {
@@ -472,24 +476,24 @@ onMounted(async () => {
 }
 
 .primary-btn {
-  background: #005afb;
+  background: var(--accent-primary);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #ffffff;
 }
 
 .primary-btn:hover {
-  background: #0047c7;
+  background: var(--accent-primary-hover);
 }
 
 .ghost-btn {
   background: transparent;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
 }
 
 .ghost-btn:hover {
-  background: #111726;
-  color: #f1f5f9;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
 }
 
 /* ─── Quick Input Button (Sprint 3) ─────────────────────────────────── */
@@ -508,8 +512,8 @@ onMounted(async () => {
   padding: 8px 14px;
   border-radius: 8px;
   background: transparent;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
@@ -518,9 +522,9 @@ onMounted(async () => {
 }
 
 .quick-input-btn:hover {
-  background: #111726;
-  border-color: #2d3b55;
-  color: #f1f5f9;
+  background: var(--bg-elevated);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
 }
 
 .quick-input-btn:focus-visible {
@@ -553,7 +557,7 @@ onMounted(async () => {
   gap: 12px;
   flex-wrap: wrap;
   padding: 13px 18px;
-  border-bottom: 1px solid #1a2438;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .card-title-group {
@@ -569,12 +573,12 @@ onMounted(async () => {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .card-subtitle {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .card-header-actions {
@@ -601,14 +605,14 @@ onMounted(async () => {
   border-radius: 7px;
   border: 1px solid transparent;
   background: transparent;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .icon-btn:hover {
-  background: #111726;
-  color: #e2e8f0;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
 }
 
 /* ─── FILTER TOOLBAR ──────────────────────────────────────────────────────── */
@@ -635,7 +639,7 @@ onMounted(async () => {
   border: 1px solid transparent;
   border-radius: 7px;
   background: transparent;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-family: inherit;
   font-size: 12.5px;
   font-weight: 500;
@@ -644,30 +648,30 @@ onMounted(async () => {
 }
 
 .filter-btn:hover {
-  background: #111726;
-  color: #e2e8f0;
+  background: var(--bg-elevated);
+  color: var(--text-primary);
 }
 
 .filter-btn.active {
-  background: #172136;
-  border-color: #27354f;
-  color: #f1f5f9;
+  background: var(--bg-active);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
 }
 
 .filter-count {
   font-size: 12px;
   font-weight: 600;
-  color: #cbd5e1;
-  background: #0b1120;
-  border: 1px solid #1f2a3f;
+  color: var(--text-soft);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 999px;
   padding: 0 6px;
   line-height: 17px;
 }
 
 .filter-btn.active .filter-count {
-  color: #ffffff;
-  border-color: #33456a;
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
 }
 
 .toolbar-meta {
@@ -679,7 +683,7 @@ onMounted(async () => {
 
 .result-count {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .active-space-pill {
@@ -689,9 +693,9 @@ onMounted(async () => {
   max-width: 220px;
   padding: 3px 8px;
   border-radius: 999px;
-  border: 1px solid #27354f;
-  background: #131c2e;
-  color: #cbd5e1;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-soft);
   font-size: 11.5px;
   font-weight: 500;
 }
@@ -719,7 +723,7 @@ onMounted(async () => {
   border: none;
   border-radius: 50%;
   background: transparent;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-size: 14px;
   line-height: 1;
   cursor: pointer;
@@ -727,8 +731,8 @@ onMounted(async () => {
 }
 
 .clear-space-btn:hover {
-  background: #24314a;
-  color: #f1f5f9;
+  background: var(--bg-active);
+  color: var(--text-primary);
 }
 
 /* ─── VIEW SWITCHER ───────────────────────────────────────────────────────── */
@@ -738,8 +742,8 @@ onMounted(async () => {
   gap: 2px;
   padding: 2px;
   border-radius: 8px;
-  background: #0b1120;
-  border: 1px solid #1a2438;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
 }
 
 .view-switch-btn {
@@ -751,7 +755,7 @@ onMounted(async () => {
   border: none;
   border-radius: 6px;
   background: transparent;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-family: inherit;
   font-size: 12px;
   font-weight: 500;
@@ -760,13 +764,13 @@ onMounted(async () => {
 }
 
 .view-switch-btn:hover {
-  color: #e2e8f0;
-  background: #111726;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
 }
 
 .view-switch-btn.active {
-  background: #1b2740;
-  color: #f1f5f9;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 /* ─── VIEW PANELS ─────────────────────────────────────────────────────────── */

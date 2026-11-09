@@ -116,7 +116,7 @@ onUnmounted(() => {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--modal-backdrop-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,14 +127,14 @@ onUnmounted(() => {
 
 /* Card */
 .modal-card {
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--modal-bg);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
   padding: 28px 24px;
   max-width: 420px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-elevated);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -156,7 +156,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6ea8ff;
+  color: var(--accent-primary);
   margin-bottom: 16px;
 }
 
@@ -172,14 +172,14 @@ onUnmounted(() => {
 .modal-title {
   font-size: 18px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-heading);
   margin: 0;
   letter-spacing: -0.02em;
 }
 
 .modal-desc {
   font-size: 13.5px;
-  color: #cbd5e1;
+  color: var(--text-secondary);
   margin: 0;
   line-height: 1.5;
 }
@@ -202,8 +202,8 @@ onUnmounted(() => {
   gap: 12px;
   width: 100%;
   padding: 12px;
-  background: #0d1422;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
@@ -212,8 +212,8 @@ onUnmounted(() => {
 }
 
 .template-item:hover:not(:disabled) {
-  background: #172136;
-  border-color: #2d3b55;
+  background: var(--bg-hover);
+  border-color: var(--border-subtle);
 }
 
 .template-item:disabled {
@@ -236,12 +236,12 @@ onUnmounted(() => {
 .template-name {
   font-size: 13.5px;
   font-weight: 600;
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .template-title {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -252,18 +252,18 @@ onUnmounted(() => {
   align-items: center;
   gap: 6px;
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--text-secondary);
 }
 
 .template-priority {
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
 }
 
 .template-cta {
   flex-shrink: 0;
   padding: 6px 12px;
-  background: #005afb;
+  background: var(--accent-primary);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 7px;
   color: #ffffff;
@@ -280,7 +280,7 @@ onUnmounted(() => {
 /* Empty inline */
 .empty-inline {
   font-size: 13px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   margin: 0 0 20px;
   line-height: 1.5;
 }
@@ -295,10 +295,10 @@ onUnmounted(() => {
 .btn-cancel {
   flex: 1;
   padding: 10px 16px;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
@@ -307,8 +307,8 @@ onUnmounted(() => {
 }
 
 .btn-cancel:hover {
-  background: #172136;
-  color: #ffffff;
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 .btn-cancel:focus-visible {

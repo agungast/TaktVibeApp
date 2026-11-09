@@ -116,21 +116,22 @@ defineExpose({ openPalette, close })
 </script>
 
 <style scoped>
-.cmd-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: flex-start; justify-content: center; z-index: 99999; padding-top: 12vh; font-family: 'Outfit', sans-serif; }
-.cmd-modal { width: 100%; max-width: 560px; background: #0f172a; border: 1px solid #1f2a3f; border-radius: 12px; overflow: hidden; box-shadow: 0 24px 48px rgba(0,0,0,0.7); }
-.cmd-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid #1f2a3f; color: #94a3b8; }
-.cmd-input { flex: 1; background: transparent; border: none; color: #f1f5f9; font-family: inherit; font-size: 14px; outline: none; }
-.cmd-hint { font-size: 11px; padding: 2px 6px; border: 1px solid #1f2a3f; border-radius: 6px; }
+.cmd-backdrop { position: fixed; inset: 0; background: var(--modal-backdrop-bg); display: flex; align-items: flex-start; justify-content: center; z-index: 99999; padding-top: 12vh; font-family: 'Outfit', sans-serif; }
+.cmd-modal { width: 100%; max-width: 560px; background: var(--modal-bg); border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-elevated); }
+.cmd-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border-color); color: var(--text-secondary); }
+.cmd-input { flex: 1; background: transparent; border: none; color: var(--text-primary); font-family: inherit; font-size: 14px; outline: none; }
+.cmd-hint { font-size: 11px; padding: 2px 6px; border: 1px solid var(--border-color); border-radius: 6px; }
 .cmd-list { max-height: 320px; overflow-y: auto; padding: 6px; }
-.cmd-empty { padding: 12px; color: #94a3b8; font-size: 13px; text-align: center; }
-.cmd-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; border: none; background: transparent; color: #cbd5e1; text-align: left; cursor: pointer; font-family: inherit; }
-.cmd-item.active { background: #172136; color: #f1f5f9; }
+.cmd-empty { padding: 12px; color: var(--text-secondary); font-size: 13px; text-align: center; }
+.cmd-item { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; border: none; background: transparent; color: var(--text-soft); text-align: left; cursor: pointer; font-family: inherit; }
+.cmd-item:hover { background: var(--bg-hover); }
+.cmd-item.active { background: var(--bg-active); color: var(--text-primary); }
 .cmd-item-icon { font-size: 14px; }
 .cmd-item-text { flex: 1; min-width: 0; }
 .cmd-item-title { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.cmd-item-subtitle { font-size: 11px; color: #94a3b8; }
-.cmd-item-shortcut { font-size: 11px; color: #94a3b8; padding: 1px 6px; border: 1px solid #1f2a3f; border-radius: 6px; }
-.cmd-footer { padding: 6px 12px; border-top: 1px solid #1f2a3f; font-size: 11px; color: #94a3b8; text-align: center; }
+.cmd-item-subtitle { font-size: 11px; color: var(--text-secondary); }
+.cmd-item-shortcut { font-size: 11px; color: var(--text-secondary); padding: 1px 6px; border: 1px solid var(--border-color); border-radius: 6px; }
+.cmd-footer { padding: 6px 12px; border-top: 1px solid var(--border-color); font-size: 11px; color: var(--text-secondary); text-align: center; }
 .cmd-palette-enter-active, .cmd-palette-leave-active { transition: opacity 0.15s ease; }
 .cmd-palette-enter-active .cmd-modal, .cmd-palette-leave-active .cmd-modal { transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), opacity 0.15s ease; }
 .cmd-palette-enter-from, .cmd-palette-leave-to { opacity: 0; }

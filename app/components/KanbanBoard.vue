@@ -156,7 +156,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
   overflow-x: auto;
   padding: 16px 20px 24px;
   scrollbar-width: thin;
-  scrollbar-color: #1f2a3f #090d16;
+  scrollbar-color: var(--border-color) var(--bg-base);
 }
 
 .kanban-grid {
@@ -167,8 +167,8 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 }
 
 .kanban-column {
-  background: #090d16;
-  border: 1px solid #172136;
+  background: var(--bg-base);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -177,8 +177,8 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 }
 
 .kanban-column.is-drag-over {
-  border-color: #005afb;
-  background: #0d1424;
+  border-color: var(--accent-primary);
+  background: var(--bg-subtle);
 }
 
 /* Column Header */
@@ -187,7 +187,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #172136;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .column-title-wrap {
@@ -211,16 +211,16 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 .column-title {
   font-size: 13.5px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-primary);
   letter-spacing: 0.01em;
 }
 
 .column-count-badge {
   font-size: 11.5px;
   font-weight: 600;
-  color: #64748b;
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   padding: 1px 7px;
   border-radius: 10px;
   min-width: 20px;
@@ -228,7 +228,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 }
 
 .column-count-badge.has-items {
-  color: #cbd5e1;
+  color: var(--text-soft);
 }
 
 /* Cards Stack */
@@ -248,7 +248,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 
 /* Empty Dropzone */
 .empty-dropzone {
-  border: 1px dashed #1f2a3f;
+  border: 1px dashed var(--border-color);
   border-radius: 8px;
   height: 120px;
   display: flex;
@@ -256,16 +256,16 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 500;
   transition: all 0.15s ease;
 }
 
 .kanban-column.is-drag-over .empty-dropzone {
-  border-color: #005afb;
-  color: #93c5fd;
-  background: rgba(79, 70, 229, 0.04);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: rgba(0, 90, 251, 0.06);
 }
 
 /* Skeleton Loading */
@@ -275,8 +275,8 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 
 .skeleton-card {
   height: 90px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   margin-bottom: 10px;
   animation: pulse-skeleton 1.5s ease-in-out infinite;

@@ -12,6 +12,15 @@ import { onMounted } from 'vue'
 import { setActivePinia } from 'pinia'
 import { useTheme } from '~/composables/useTheme'
 
+const route = useRoute()
+
+useHead({
+  title: () => (route.meta.title as string) || undefined,
+  titleTemplate: (title) => {
+    return title && title !== 'TaktVibe' ? `TaktVibe - ${title}` : 'TaktVibe'
+  }
+})
+
 const { $pinia } = useNuxtApp()
 if ($pinia) {
   setActivePinia($pinia)

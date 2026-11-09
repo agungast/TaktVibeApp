@@ -55,6 +55,10 @@
   --color-success: #4ade80;
   --color-warning: #fbbf24;
   --color-danger: #f87171;
+  --priority-low: #2dd4bf;
+  --priority-medium: #818cf8;
+  --priority-high: #fbbf24;
+  --priority-urgent: #f87171;
   color-scheme: dark;
 }
 
@@ -109,6 +113,11 @@ html.light {
   --color-success: #16a34a;
   --color-warning: #d97706;
   --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --priority-low: #2dd4bf;
+  --priority-medium: #818cf8;
+  --priority-high: #fbbf24;
+  --priority-urgent: #f87171;
   color-scheme: light;
 }
 
@@ -1123,4 +1132,39 @@ html.light .oauth-divider::after {
 .slide-up-leave-to {
   opacity: 0;
   transform: translateY(20px);
+}
+
+/* Light mode overrides for tokens that were missing */
+html.light .tag-pill {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+html.light .dot-low.active {
+  background: rgba(45, 212, 191, 0.12);
+  border-color: #2dd4bf;
+  color: #0f172a;
+}
+
+html.light .dot-medium.active {
+  background: rgba(129, 140, 248, 0.12);
+  border-color: #818cf8;
+  color: #0f172a;
+}
+
+html.light .dot-high.active {
+  background: rgba(251, 191, 36, 0.12);
+  border-color: #fbbf24;
+  color: #0f172a;
+}
+
+html.light .dot-urgent.active {
+  background: rgba(248, 113, 113, 0.12);
+  border-color: #f87171;
+  color: #0f172a;
+}
+
+html.light .copilot-dot {
+  background: var(--color-success);
 }

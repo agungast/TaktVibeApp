@@ -89,11 +89,7 @@
               <span class="preview-label">Pratinjau Badge:</span>
               <div
                 class="preview-badge"
-                :style="{
-                  borderColor: formColor,
-                  color: formColor,
-                  background: `${formColor}14`
-                }"
+                :style="{ '--project-accent': formColor }"
               >
                 <span class="badge-icon">{{ formIcon }}</span>
                 <span class="badge-text">{{ formName.trim() || 'Nama Ruang Kerja' }}</span>
@@ -210,7 +206,7 @@ async function handleSubmit(): Promise<void> {
 .project-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 7, 13, 0.78);
+  background: var(--modal-backdrop-bg);
   backdrop-filter: blur(4px);
   z-index: 9999;
   display: flex;
@@ -220,12 +216,12 @@ async function handleSubmit(): Promise<void> {
 }
 
 .project-modal-box {
-  background: #0d1322;
-  border: 1px solid #1f2a3f;
+  background: var(--modal-bg);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   width: 100%;
   max-width: 440px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow-elevated);
   font-family: 'Outfit', sans-serif;
   overflow: hidden;
 }
@@ -233,7 +229,7 @@ async function handleSubmit(): Promise<void> {
 /* ─── HEADER ─────────────────────────────────────────────────────────────── */
 .project-modal-header {
   padding: 16px 20px;
-  border-bottom: 1px solid #172136;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -253,13 +249,13 @@ async function handleSubmit(): Promise<void> {
   margin: 0;
   font-size: 15.5px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-heading);
 }
 
 .close-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 4px;
   border-radius: 4px;
@@ -270,8 +266,8 @@ async function handleSubmit(): Promise<void> {
 }
 
 .close-btn:hover {
-  color: #f1f5f9;
-  background: #172136;
+  color: var(--text-primary);
+  background: var(--bg-hover);
 }
 
 /* ─── FORM ───────────────────────────────────────────────────────────────── */
@@ -291,21 +287,21 @@ async function handleSubmit(): Promise<void> {
 .form-label {
   font-size: 12px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
 .req-star {
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 .form-input {
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   padding: 9px 12px;
-  color: #f1f5f9;
+  color: var(--input-color);
   font-size: 13.5px;
   font-family: inherit;
   transition: border-color 0.15s ease;
@@ -313,7 +309,7 @@ async function handleSubmit(): Promise<void> {
 
 .form-input:focus {
   outline: none;
-  border-color: #005afb;
+  border-color: var(--accent-primary);
 }
 
 /* ─── ICON PICKER ────────────────────────────────────────────────────────── */
@@ -324,8 +320,8 @@ async function handleSubmit(): Promise<void> {
 }
 
 .icon-choice-btn {
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 16px;
   padding: 6px 0;
@@ -337,13 +333,13 @@ async function handleSubmit(): Promise<void> {
 }
 
 .icon-choice-btn:hover {
-  background: #172136;
-  border-color: #2d3b55;
+  background: var(--bg-hover);
+  border-color: var(--border-subtle);
 }
 
 .icon-choice-btn.active {
-  background: #172136;
-  border-color: #38bdf8;
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
 }
 
 /* ─── COLOR PICKER ───────────────────────────────────────────────────────── */
@@ -354,8 +350,8 @@ async function handleSubmit(): Promise<void> {
 }
 
 .color-choice-btn {
-  background: #090d16;
-  border: 1px solid #1f2a3f;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 6px 8px;
   cursor: pointer;
@@ -366,13 +362,13 @@ async function handleSubmit(): Promise<void> {
 }
 
 .color-choice-btn:hover {
-  background: #172136;
-  border-color: #2d3b55;
+  background: var(--bg-hover);
+  border-color: var(--border-subtle);
 }
 
 .color-choice-btn.active {
-  background: #172136;
-  border-color: #38bdf8;
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
 }
 
 .color-dot {
@@ -384,24 +380,25 @@ async function handleSubmit(): Promise<void> {
 
 .color-name {
   font-size: 11.5px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   white-space: nowrap;
 }
 
 /* ─── PREVIEW ────────────────────────────────────────────────────────────── */
 .preview-box {
-  background: #090d16;
-  border: 1px solid #172136;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
   padding: 10px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .preview-label {
   font-size: 11.5px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
@@ -413,7 +410,10 @@ async function handleSubmit(): Promise<void> {
   font-weight: 500;
   padding: 3px 9px;
   border-radius: 5px;
-  border: 1px solid;
+  /* Campur aksen dengan warna teks tema agar tetap terbaca di dark & light */
+  color: color-mix(in srgb, var(--project-accent) 55%, var(--text-primary));
+  border: 1px solid color-mix(in srgb, var(--project-accent) 45%, var(--border-color));
+  background: color-mix(in srgb, var(--project-accent) 12%, transparent);
   max-width: 220px;
 }
 
@@ -437,9 +437,9 @@ async function handleSubmit(): Promise<void> {
 }
 
 .btn-cancel {
-  background: transparent;
-  border: 1px solid #1f2a3f;
-  color: #94a3b8;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   border-radius: 6px;
   padding: 7px 14px;
   font-size: 12.5px;
@@ -449,13 +449,13 @@ async function handleSubmit(): Promise<void> {
 }
 
 .btn-cancel:hover:not(:disabled) {
-  color: #f1f5f9;
-  background: #172136;
+  color: var(--text-primary);
+  background: var(--bg-hover);
 }
 
 .btn-submit {
-  background: #005afb;
-  border: 1px solid #005afb;
+  background: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
   color: #ffffff;
   border-radius: 6px;
   padding: 7px 16px;
@@ -470,7 +470,8 @@ async function handleSubmit(): Promise<void> {
 }
 
 .btn-submit:hover:not(:disabled) {
-  background: #004ecc;
+  background: var(--accent-primary-hover);
+  border-color: var(--accent-primary-hover);
 }
 
 .btn-submit:disabled {
