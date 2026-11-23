@@ -633,9 +633,9 @@ const confirmEdit = (): void => {
 <style scoped>
 /* Table Row */
 .table-row {
-  border-bottom: 1px solid #172136;
+  border-bottom: 1px solid var(--bg-hover);
   transition: background 0.15s ease;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .table-row:hover {
@@ -653,7 +653,7 @@ td {
 
 /* No column */
 .td-no {
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-size: 12px;
   font-weight: 600;
   width: 48px;
@@ -704,7 +704,7 @@ td {
 }
 
 .task-text-btn:hover .task-text:not(.completed-text) {
-  color: #818cf8;
+  color: var(--text-secondary);
 }
 
 .task-text {
@@ -738,7 +738,7 @@ td {
   border-radius: 4px;
   line-height: 1.3;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .meta-subtask-badge:hover {
@@ -794,7 +794,7 @@ td {
   align-items: center;
   gap: 5px;
   padding: 3px 7px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
@@ -843,7 +843,7 @@ td {
   align-items: center;
   gap: 4px;
   padding: 3px 6px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   color: var(--text-soft);
@@ -868,12 +868,12 @@ td {
   align-items: center;
   gap: 6px;
   padding: 3px 8px;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   font-size: 12px;
   font-weight: 600;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   white-space: nowrap;
   font-family: inherit;
   background: transparent;
@@ -941,7 +941,7 @@ td {
 .thumb-wrap {
   width: 32px;
   height: 32px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   overflow: hidden;
   position: relative;
   cursor: pointer;
@@ -977,7 +977,7 @@ td {
 }
 
 .thumb-wrap:hover {
-  border-color: #005afb;
+  border-color: var(--accent-primary);
 }
 
 .thumb-wrap:hover .thumb-overlay {
@@ -990,14 +990,14 @@ td {
   align-items: center;
   gap: 4px;
   padding: 3px 7px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   color: var(--text-soft);
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -1019,13 +1019,13 @@ td {
   align-items: center;
   gap: 4px;
   padding: 3px 7px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   background: var(--bg-elevated);
   border: 1px dashed var(--border-subtle);
   color: var(--text-soft);
   font-size: 11px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -1060,7 +1060,7 @@ td {
   height: 38px;
   padding: 0;
   border: 1px solid transparent;
-  border-radius: 7px;
+  border-radius: var(--radius-control);
   background: transparent;
   color: var(--text-soft);
   cursor: pointer;
@@ -1110,7 +1110,7 @@ td {
   min-height: 36px;
   padding: 8px 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   background: transparent;
   color: var(--text-primary);
   font-family: inherit;
@@ -1151,13 +1151,13 @@ td {
   justify-content: center;
   z-index: 9999;
   padding: 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .modal-box {
-  background: #111726;
-  border: 1px solid #1f2a3f;
-  border-radius: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
   padding: 28px 24px;
   max-width: 380px;
   width: 100%;
@@ -1180,7 +1180,7 @@ td {
 .modal-title {
   font-size: 17px;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0 0 8px;
 }
 
@@ -1192,7 +1192,7 @@ td {
 
 .modal-task-name {
   font-size: 13px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-style: italic;
   margin: 0 0 24px;
   word-break: break-word;
@@ -1206,33 +1206,33 @@ td {
 .btn-cancel {
   flex: 1;
   padding: 9px 16px;
-  border-radius: 8px;
-  border: 1px solid #1f2a3f;
-  background: #090d16;
-  color: #cbd5e1;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--border-color);
+  background: var(--bg-base);
+  color: var(--text-soft);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
 .btn-cancel:hover {
-  background: #172136;
+  background: var(--bg-hover);
   color: #ffffff;
 }
 
 .btn-confirm {
   flex: 1;
   padding: 9px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: none;
   background: #ef4444;
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -1335,12 +1335,12 @@ td {
   padding: 6px 4px;
   background: var(--bg-base);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   font-size: 11px;
   font-weight: 600;
   color: var(--text-soft);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -1364,7 +1364,7 @@ td {
 }
 
 .dot-low .p-dot {
-  background: #94a3b8;
+  background: var(--text-secondary);
 }
 
 .dot-medium .p-dot {
@@ -1394,7 +1394,7 @@ td {
   width: 100%;
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 8px 12px;
   color: var(--input-color);
   font-size: 13px;
@@ -1456,14 +1456,14 @@ td {
 .btn-save {
   flex: 1;
   padding: 9px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: var(--accent-primary);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }

@@ -743,7 +743,7 @@ const handleClose = () => {
   align-items: center;
   justify-content: center;
   padding: 24px 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-y: auto;
 }
 
@@ -751,7 +751,7 @@ const handleClose = () => {
 .modal-box-detail {
   background: var(--modal-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   width: 100%;
   max-width: 820px;
   max-height: 88vh;
@@ -811,7 +811,7 @@ const handleClose = () => {
   color: var(--text-secondary);
   cursor: pointer;
   padding: 4px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -860,7 +860,7 @@ const handleClose = () => {
   row-gap: 18px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   padding: 16px 20px;
   align-items: flex-start;
 }
@@ -893,7 +893,7 @@ const handleClose = () => {
 .attr-p-btn {
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 0 8px;
   height: 32px;
   display: inline-flex;
@@ -924,7 +924,7 @@ const handleClose = () => {
   flex-shrink: 0;
 }
 
-.dot-low .p-dot { background: #94a3b8; }
+.dot-low .p-dot { background: var(--text-secondary); }
 .dot-medium .p-dot { background: #38bdf8; }
 .dot-high .p-dot { background: #fb923c; }
 .dot-urgent .p-dot { background: var(--color-danger); }
@@ -932,7 +932,7 @@ const handleClose = () => {
 .attr-select {
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   color: var(--input-color);
   font-size: 12px;
   padding: 0 10px;
@@ -1027,7 +1027,7 @@ const handleClose = () => {
   color: var(--text-secondary);
   background: var(--bg-subtle);
   padding: 2px 8px;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   border: 1px solid var(--border-color);
 }
 
@@ -1059,7 +1059,7 @@ const handleClose = () => {
   padding: 7px 10px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
@@ -1090,7 +1090,7 @@ const handleClose = () => {
   justify-content: center;
   background: var(--bg-elevated);
   flex-shrink: 0;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .subtask-item.is-completed .subtask-custom-box {
@@ -1118,7 +1118,7 @@ const handleClose = () => {
   padding: 3px;
   border-radius: 4px;
   opacity: 0;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .subtask-item:hover .subtask-del-btn {
@@ -1144,7 +1144,7 @@ const handleClose = () => {
   gap: 8px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 6px 10px;
   color: var(--text-muted);
 }
@@ -1169,10 +1169,10 @@ const handleClose = () => {
   font-size: 12px;
   font-weight: 500;
   padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .subtask-add-btn:hover:not(:disabled) {
@@ -1190,7 +1190,7 @@ const handleClose = () => {
   align-items: center;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 2px;
   gap: 2px;
 }
@@ -1208,7 +1208,7 @@ const handleClose = () => {
   align-items: center;
   gap: 5px;
   font-family: inherit;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .md-tab-btn:hover:not(.active) {
@@ -1229,7 +1229,7 @@ const handleClose = () => {
   padding: 6px 8px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
 }
 
 .tb-btn {
@@ -1241,7 +1241,7 @@ const handleClose = () => {
   font-family: inherit;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .tb-btn:hover {
@@ -1265,7 +1265,7 @@ const handleClose = () => {
   width: 100%;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 12px 14px;
   font-size: 13px;
   line-height: 1.6;
@@ -1284,7 +1284,7 @@ const handleClose = () => {
 .md-preview-pane {
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 16px 18px;
   min-height: 180px;
   color: var(--text-primary);
@@ -1309,7 +1309,7 @@ const handleClose = () => {
   padding: 8px 14px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   color: var(--text-soft);
   font-style: italic;
 }
@@ -1324,7 +1324,7 @@ const handleClose = () => {
 :deep(.md-code-block) {
   background: var(--bg-base);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   margin: 10px 0;
   position: relative;
   overflow-x: auto;
@@ -1392,10 +1392,10 @@ const handleClose = () => {
   font-size: 12.5px;
   font-weight: 600;
   padding: 6px 14px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .save-md-btn:hover:not(:disabled) {
@@ -1442,7 +1442,7 @@ const handleClose = () => {
   border-radius: 4px;
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .manage-att-btn:hover {
@@ -1457,10 +1457,10 @@ const handleClose = () => {
   font-size: 12.5px;
   font-weight: 500;
   padding: 6px 16px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .btn-done-modal:hover {
@@ -1478,9 +1478,9 @@ const handleClose = () => {
   font-size: 12px;
   font-weight: 600;
   padding: 5px 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   cursor: pointer;
-  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 150ms cubic-bezier(0.16, 1, 0.3, 1), color 150ms cubic-bezier(0.16, 1, 0.3, 1), border-color 150ms cubic-bezier(0.16, 1, 0.3, 1), opacity 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-start-focus-top:hover {
   filter: brightness(1.1);
@@ -1491,7 +1491,7 @@ const handleClose = () => {
   width: 100%;
   background-color: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 6px 10px;
   color: var(--input-color);
   font-size: 13px;
@@ -1508,7 +1508,7 @@ const handleClose = () => {
   justify-content: space-between;
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 5px 10px;
 }
 .hours-val {
@@ -1525,7 +1525,7 @@ const handleClose = () => {
   border-radius: 4px;
   padding: 2px 6px;
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, opacity 150ms ease;
 }
 .quick-focus-icon-btn:hover {
   background: rgba(0, 90, 251, 0.2);
@@ -1547,9 +1547,9 @@ const handleClose = () => {
   color: color-mix(in srgb, var(--accent-primary) 55%, var(--text-primary));
   font-size: 11.5px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   cursor: pointer;
-  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 150ms cubic-bezier(0.16, 1, 0.3, 1), color 150ms cubic-bezier(0.16, 1, 0.3, 1), border-color 150ms cubic-bezier(0.16, 1, 0.3, 1), opacity 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ai-breakdown-btn:hover:not(:disabled) {
   background-color: rgba(0, 90, 251, 0.22);
@@ -1573,7 +1573,7 @@ const handleClose = () => {
   padding: 14px;
   background-color: var(--bg-subtle);
   border: 1px solid rgba(0, 90, 251, 0.25);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
 }
 .ai-card-header {
   display: flex;
@@ -1624,7 +1624,7 @@ const handleClose = () => {
   gap: 8px;
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 6px 10px;
 }
 .ai-checkbox {
@@ -1654,9 +1654,9 @@ const handleClose = () => {
   color: #ffffff;
   font-size: 12px;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, opacity 150ms ease;
 }
 .btn-apply-ai:hover:not(:disabled) {
   filter: brightness(1.1);
@@ -1672,7 +1672,7 @@ const handleClose = () => {
   color: var(--text-secondary);
   font-size: 12px;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   cursor: pointer;
 }
 .btn-cancel-ai:hover {

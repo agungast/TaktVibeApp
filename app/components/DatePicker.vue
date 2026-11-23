@@ -223,10 +223,10 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   gap: 8px;
   width: 100%;
-  background: var(--input-bg, #090d16);
-  border: 1px solid var(--input-border, #1f2a3f);
-  border-radius: 6px;
-  color: var(--input-color, #f1f5f9);
+  background: var(--input-bg, var(--bg-base));
+  border: 1px solid var(--input-border, var(--border-color));
+  border-radius: var(--radius-control);
+  color: var(--input-color, var(--text-primary));
   font-family: inherit;
   font-size: 12px;
   height: 32px;
@@ -238,7 +238,7 @@ onBeforeUnmount(() => {
 
 .dp-trigger:hover:not(:disabled),
 .dp-trigger:focus-visible {
-  border-color: var(--border-subtle, #2d3b55);
+  border-color: var(--border-subtle, var(--border-subtle));
   outline: none;
 }
 
@@ -252,11 +252,11 @@ onBeforeUnmount(() => {
 }
 
 .dp-value {
-  color: var(--input-color, #f1f5f9);
+  color: var(--input-color, var(--text-primary));
 }
 
 .dp-placeholder {
-  color: var(--input-placeholder, #94a3b8);
+  color: var(--input-placeholder, var(--text-secondary));
 }
 
 .dp-trigger-actions {
@@ -273,17 +273,17 @@ onBeforeUnmount(() => {
   width: 16px;
   height: 16px;
   border-radius: 4px;
-  color: var(--text-secondary, #94a3b8);
+  color: var(--text-secondary, var(--text-secondary));
   cursor: pointer;
 }
 
 .dp-clear:hover {
-  color: var(--text-primary, #f1f5f9);
-  background: var(--bg-hover, #172136);
+  color: var(--text-primary, var(--text-primary));
+  background: var(--bg-hover, var(--bg-hover));
 }
 
 .dp-icon {
-  color: var(--text-secondary, #94a3b8);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 .dp-popup {
@@ -292,9 +292,9 @@ onBeforeUnmount(() => {
   left: 0;
   z-index: 80;
   width: 260px;
-  background: var(--dropdown-bg, #111726);
-  border: 1px solid var(--border-color, #1f2a3f);
-  border-radius: 10px;
+  background: var(--dropdown-bg, var(--bg-elevated));
+  border: 1px solid var(--border-color, var(--border-color));
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-elevated, 0 16px 36px rgba(0, 0, 0, 0.6));
   padding: 10px;
 }
@@ -312,34 +312,34 @@ onBeforeUnmount(() => {
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   border: 1px solid transparent;
   background: transparent;
-  color: var(--text-secondary, #94a3b8);
+  color: var(--text-secondary, var(--text-secondary));
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 .dp-nav-btn:hover {
-  background: var(--bg-hover, #172136);
-  color: var(--text-primary, #f1f5f9);
+  background: var(--bg-hover, var(--bg-hover));
+  color: var(--text-primary, var(--text-primary));
 }
 
 .dp-nav-label {
   flex: 1;
   background: transparent;
   border: none;
-  color: var(--text-primary, #f1f5f9);
+  color: var(--text-primary, var(--text-primary));
   font-family: inherit;
   font-size: 12.5px;
   font-weight: 600;
   cursor: pointer;
   padding: 4px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
 }
 
 .dp-nav-label:hover {
-  background: var(--bg-hover, #172136);
+  background: var(--bg-hover, var(--bg-hover));
 }
 
 .dp-weekdays,
@@ -364,8 +364,8 @@ onBeforeUnmount(() => {
   justify-content: center;
   border: none;
   background: transparent;
-  border-radius: 6px;
-  color: var(--text-soft, #cbd5e1);
+  border-radius: var(--radius-control);
+  color: var(--text-soft, var(--text-soft));
   font-family: inherit;
   font-size: 12px;
   cursor: pointer;
@@ -373,8 +373,8 @@ onBeforeUnmount(() => {
 }
 
 .dp-day:hover {
-  background: var(--bg-hover, #172136);
-  color: var(--text-primary, #f1f5f9);
+  background: var(--bg-hover, var(--bg-hover));
+  color: var(--text-primary, var(--text-primary));
 }
 
 .dp-day.is-other {
@@ -382,18 +382,18 @@ onBeforeUnmount(() => {
 }
 
 .dp-day.is-today {
-  color: var(--accent-primary, #005afb);
+  color: var(--accent-primary, var(--accent-primary));
   font-weight: 700;
 }
 
 .dp-day.is-selected {
-  background: var(--accent-primary, #005afb);
+  background: var(--accent-primary, var(--accent-primary));
   color: #ffffff;
   font-weight: 600;
 }
 
 .dp-day.is-selected:hover {
-  background: var(--accent-primary-hover, #004ecc);
+  background: var(--accent-primary-hover, var(--accent-primary-hover));
 }
 
 .dp-year-grid {
@@ -404,10 +404,10 @@ onBeforeUnmount(() => {
 
 .dp-year {
   padding: 7px 0;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   border: none;
   background: transparent;
-  color: var(--text-soft, #cbd5e1);
+  color: var(--text-soft, var(--text-soft));
   font-family: inherit;
   font-size: 12px;
   cursor: pointer;
@@ -415,12 +415,12 @@ onBeforeUnmount(() => {
 }
 
 .dp-year:hover {
-  background: var(--bg-hover, #172136);
-  color: var(--text-primary, #f1f5f9);
+  background: var(--bg-hover, var(--bg-hover));
+  color: var(--text-primary, var(--text-primary));
 }
 
 .dp-year.is-selected {
-  background: var(--accent-primary, #005afb);
+  background: var(--accent-primary, var(--accent-primary));
   color: #ffffff;
   font-weight: 600;
 }
@@ -431,16 +431,16 @@ onBeforeUnmount(() => {
   gap: 6px;
   margin-top: 8px;
   padding-top: 8px;
-  border-top: 1px solid var(--border-color, #1f2a3f);
+  border-top: 1px solid var(--border-color, var(--border-color));
 }
 
 .dp-foot-btn {
   flex: 1;
   padding: 6px 0;
-  border-radius: 6px;
-  border: 1px solid var(--border-color, #1f2a3f);
+  border-radius: var(--radius-control);
+  border: 1px solid var(--border-color, var(--border-color));
   background: transparent;
-  color: var(--text-soft, #cbd5e1);
+  color: var(--text-soft, var(--text-soft));
   font-family: inherit;
   font-size: 11.5px;
   font-weight: 600;
@@ -449,9 +449,9 @@ onBeforeUnmount(() => {
 }
 
 .dp-foot-btn:hover {
-  background: var(--bg-hover, #172136);
-  color: var(--text-primary, #f1f5f9);
-  border-color: var(--border-subtle, #2d3b55);
+  background: var(--bg-hover, var(--bg-hover));
+  color: var(--text-primary, var(--text-primary));
+  border-color: var(--border-subtle, var(--border-subtle));
 }
 
 .dp-pop-enter-active,

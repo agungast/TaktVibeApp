@@ -129,14 +129,14 @@ watch(() => taskStore.projectNotes, (list) => {
 .pn-icon { font-size: 18px; }
 .pn-title { margin: 0; font-size: 14px; font-weight: 600; color: var(--text-heading); }
 .pn-subtitle { margin: 0; font-size: 12px; color: var(--text-secondary); }
-.pn-close { width: 32px; height: 32px; border-radius: 8px; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.pn-close { width: 32px; height: 32px; border-radius: var(--radius-control); border: none; background: transparent; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .pn-close:hover { background: var(--bg-hover); color: var(--text-primary); }
 .pn-body { flex: 1; display: grid; grid-template-columns: 260px 1fr; min-height: 0; }
 .pn-sidebar { border-right: 1px solid var(--border-color); display: flex; flex-direction: column; padding: 10px; gap: 8px; background: var(--bg-subtle); }
-.pn-new { padding: 8px 10px; border-radius: 8px; border: 1px solid var(--accent-primary); background: var(--accent-primary); color: #fff; font-family: inherit; cursor: pointer; font-weight: 600; }
+.pn-new { padding: 8px 10px; border-radius: var(--radius-control); border: 1px solid var(--accent-primary); background: var(--accent-primary); color: #fff; font-family: inherit; cursor: pointer; font-weight: 600; }
 .pn-new:hover { background: var(--accent-primary-hover); border-color: var(--accent-primary-hover); }
 .pn-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
-.pn-item { text-align: left; padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; background: transparent; color: var(--text-soft); cursor: pointer; font-family: inherit; }
+.pn-item { text-align: left; padding: 8px 10px; border-radius: var(--radius-control); border: 1px solid transparent; background: transparent; color: var(--text-soft); cursor: pointer; font-family: inherit; }
 .pn-item:hover { background: var(--bg-hover); }
 .pn-item.active { background: var(--bg-active); border-color: var(--border-subtle); color: var(--text-primary); }
 .pn-item-title { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -148,7 +148,7 @@ watch(() => taskStore.projectNotes, (list) => {
 .pn-textarea { flex: 1; padding: 14px 16px; border: none; background: transparent; color: var(--text-soft); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.7; resize: none; }
 .pn-textarea:focus { outline: none; }
 .pn-editor-footer { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-top: 1px solid var(--border-color); background: var(--bg-subtle); }
-.pn-btn { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border-color); background: transparent; color: var(--text-soft); cursor: pointer; font-family: inherit; }
+.pn-btn { padding: 6px 12px; border-radius: var(--radius-control); border: 1px solid var(--border-color); background: transparent; color: var(--text-soft); cursor: pointer; font-family: inherit; }
 .pn-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
 .pn-btn-danger:hover { color: var(--color-danger); border-color: var(--color-danger); background: rgba(239, 68, 68, 0.1); }
 .pn-status { font-size: 12px; color: var(--text-secondary); }

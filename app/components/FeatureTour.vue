@@ -254,10 +254,10 @@ onBeforeUnmount(() => {
 .tour {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 html.light .tour {
@@ -286,7 +286,7 @@ html.light .tour {
   align-items: center;
   gap: 7px;
   padding: 5px 11px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   border: 1px solid transparent;
   background: transparent;
   color: var(--text-secondary);
@@ -414,7 +414,7 @@ html.light .tour {
   padding: 4px;
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   width: fit-content;
   margin-bottom: 16px;
 }
@@ -442,7 +442,7 @@ html.light .tour {
 .mv-pane {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -493,7 +493,7 @@ html.light .tour {
 .mv-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -515,7 +515,7 @@ html.light .tour {
   flex: 1;
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 6px;
   display: flex;
   flex-direction: column;
@@ -546,7 +546,7 @@ html.light .tour {
   padding: 8px;
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   font-size: 0.75rem;
   color: var(--text-secondary);
 }
@@ -569,7 +569,7 @@ html.light .tour {
 .att-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -605,7 +605,7 @@ html.light .tour {
   gap: 8px;
   padding: 18px;
   border: 1px dashed var(--border-subtle);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   font-size: 0.8125rem;
   color: var(--text-secondary);
   background: var(--bg-surface);
@@ -624,7 +624,7 @@ html.light .tour {
   padding: 10px 12px;
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   animation: att-file-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) 1.1s both;
 }
 
@@ -639,7 +639,7 @@ html.light .tour {
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   color: var(--accent-primary);
@@ -704,7 +704,7 @@ html.light .tour {
   align-items: center;
   gap: 10px;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
   animation: att-file-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 3.2s both;
@@ -728,7 +728,7 @@ html.light .tour {
 .sov-panel {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   overflow: hidden;
 }
 
@@ -810,7 +810,7 @@ html.light .tour {
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: var(--accent-primary);
   border: 1px solid var(--accent-primary);
   color: #ffffff;
@@ -831,7 +831,7 @@ html.light .tour {
   align-items: center;
   gap: 8px;
   padding: 7px 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
   animation: att-file-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.4s both;

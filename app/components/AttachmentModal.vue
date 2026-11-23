@@ -311,7 +311,7 @@ const handleUploadNewFiles = async () => {
 .header-icon {
   width: 38px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   background: rgba(0, 90, 251, 0.12);
   border: 1px solid rgba(0, 90, 251, 0.25);
   color: var(--accent-primary);
@@ -340,7 +340,7 @@ const handleUploadNewFiles = async () => {
 .close-btn {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: transparent;
   border: none;
   color: var(--text-secondary);
@@ -348,7 +348,7 @@ const handleUploadNewFiles = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .close-btn:hover {
@@ -378,7 +378,7 @@ const handleUploadNewFiles = async () => {
   padding: 10px 14px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   transition: border-color 0.15s ease;
 }
 
@@ -393,7 +393,7 @@ const handleUploadNewFiles = async () => {
 .att-thumb-wrap {
   width: 44px;
   height: 44px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: var(--bg-elevated);
   display: flex;
   align-items: center;
@@ -504,14 +504,14 @@ const handleUploadNewFiles = async () => {
 .action-btn {
   width: 30px;
   height: 30px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   background: transparent;
   border: 1px solid transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .action-btn.download {
@@ -539,7 +539,7 @@ const handleUploadNewFiles = async () => {
   padding: 24px;
   background: var(--bg-subtle);
   border: 1px dashed var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   color: var(--text-soft);
   display: flex;
   flex-direction: column;
@@ -571,7 +571,7 @@ const handleUploadNewFiles = async () => {
   padding: 14px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   background: var(--bg-subtle);
 }
 
@@ -607,7 +607,7 @@ const handleUploadNewFiles = async () => {
   padding: 8px 12px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 7px;
+  border-radius: var(--radius-control);
   font-size: 12px;
 }
 
@@ -655,7 +655,7 @@ const handleUploadNewFiles = async () => {
   padding: 9px;
   background: var(--accent-primary);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
@@ -689,7 +689,7 @@ const handleUploadNewFiles = async () => {
 /* Modal Transition */
 .modal-enter-active,
 .modal-leave-active {
-  transition: all 0.25s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
 }
 
 .modal-enter-from,

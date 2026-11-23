@@ -503,7 +503,7 @@ const confirmEdit = (): void => {
 .kanban-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -511,7 +511,7 @@ const confirmEdit = (): void => {
   cursor: grab;
   user-select: none;
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -555,7 +555,7 @@ const confirmEdit = (): void => {
   align-items: center;
   gap: 4px;
   padding: 2px 7px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   border: 1px solid;
   font-size: 11.5px;
   font-weight: 550;
@@ -584,7 +584,7 @@ const confirmEdit = (): void => {
   align-items: center;
   gap: 5px;
   padding: 2px 7px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   font-size: 11.5px;
   font-weight: 600;
   white-space: nowrap;
@@ -635,11 +635,11 @@ const confirmEdit = (): void => {
   cursor: pointer;
   width: 26px;
   height: 26px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .card-action-btn:hover {
@@ -702,7 +702,7 @@ const confirmEdit = (): void => {
   border-radius: 4px;
   line-height: 1.3;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .card-subtask-badge:hover {
@@ -723,7 +723,7 @@ const confirmEdit = (): void => {
   border-radius: 4px;
   line-height: 1.3;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .card-doc-badge:hover {
@@ -788,7 +788,7 @@ const confirmEdit = (): void => {
   font-size: 11.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -816,7 +816,7 @@ const confirmEdit = (): void => {
   color: var(--text-secondary);
   font-size: 11.5px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -836,13 +836,13 @@ const confirmEdit = (): void => {
   justify-content: center;
   z-index: 9999;
   padding: 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .modal-box {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   padding: 24px;
   max-width: 380px;
   width: 100%;
@@ -917,14 +917,14 @@ const confirmEdit = (): void => {
 .btn-cancel {
   flex: 1;
   padding: 9px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: 1px solid var(--border-color);
   background: var(--bg-base);
   color: var(--text-soft);
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -936,14 +936,14 @@ const confirmEdit = (): void => {
 .btn-confirm {
   flex: 1;
   padding: 9px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: none;
   background: var(--color-danger);
   color: #ffffff;
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -988,12 +988,12 @@ const confirmEdit = (): void => {
   padding: 6px 4px;
   background: var(--bg-base);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   font-size: 11.5px;
   font-weight: 600;
   color: var(--text-soft);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
@@ -1016,7 +1016,7 @@ const confirmEdit = (): void => {
   flex-shrink: 0;
 }
 
-.dot-low .p-dot { background: #94a3b8; }
+.dot-low .p-dot { background: var(--text-secondary); }
 .dot-medium .p-dot { background: #60a5fa; }
 .dot-high .p-dot { background: #fbbf24; }
 .dot-urgent .p-dot { background: #f87171; }
@@ -1036,7 +1036,7 @@ const confirmEdit = (): void => {
   width: 100%;
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 8px 12px;
   color: var(--input-color);
   font-size: 13px;
@@ -1094,14 +1094,14 @@ const confirmEdit = (): void => {
 .btn-save {
   flex: 1;
   padding: 9px 16px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: var(--accent-primary);
   color: #ffffff;
   font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 

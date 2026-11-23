@@ -175,7 +175,7 @@ onUnmounted(() => {
   padding: 8px 12px;
   background: rgba(30, 41, 59, 0.7);
   border: 1px solid rgba(51, 65, 85, 0.6);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   backdrop-filter: blur(8px);
 }
 
@@ -186,7 +186,7 @@ onUnmounted(() => {
 }
 
 .toolbar-title {
-  color: #f1f5f9;
+  color: var(--text-primary);
   font-size: 14px;
   font-weight: 600;
   max-width: 400px;
@@ -200,7 +200,7 @@ onUnmounted(() => {
   background: rgba(99, 102, 241, 0.15);
   border: 1px solid rgba(99, 102, 241, 0.3);
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   font-size: 12px;
   font-weight: 600;
 }
@@ -214,7 +214,7 @@ onUnmounted(() => {
 .toolbar-btn {
   width: 34px;
   height: 34px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #e2e8f0;
@@ -222,7 +222,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   text-decoration: none;
 }
 
@@ -262,7 +262,7 @@ onUnmounted(() => {
   max-width: 100%;
   max-height: 80vh;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -282,7 +282,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
   z-index: 10;
   backdrop-filter: blur(8px);
 }
@@ -296,7 +296,7 @@ onUnmounted(() => {
 }
 
 .nav-btn:hover {
-  background: #005afb;
+  background: var(--accent-primary);
   border-color: #818cf8;
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 0 16px rgba(99, 102, 241, 0.5);

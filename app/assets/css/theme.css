@@ -4,121 +4,137 @@
    ========================================================================== */
 
 /* ─── 1. CSS VARIABLES (TOKENS) ─────────────────────────────────────────── */
-:root {
-  /* DARK THEME (DEFAULT) */
-  --bg-base: #090d16;
-  --bg-surface: #0f172a;
-  --bg-elevated: #111726;
-  --bg-subtle: #0d1422;
-  --bg-hover: #172136;
-  --bg-active: #1a253c;
-
-  --border-color: #1f2a3f;
-  --border-subtle: #2d3b55;
-  --border-focus: #005afb;
-
-  --text-primary: #f1f5f9;
-  --text-heading: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #7c8aa0;
-  --text-soft: #cbd5e1;
-
-  --input-bg: #090d16;
-  --input-border: #1f2a3f;
-  --input-color: #f1f5f9;
-  --input-placeholder: #94a3b8;
-
-  --card-bg: #0f172a;
-  --card-header-bg: #0d1422;
-  --modal-bg: #0f172a;
-  --modal-elevated: #111726;
-  --dropdown-bg: #111726;
-
-  --badge-bg: #111726;
-  --badge-border: #1f2a3f;
-  --badge-text: #cbd5e1;
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-elevated: 0 16px 36px rgba(0, 0, 0, 0.6);
-  --modal-backdrop-bg: rgba(4, 7, 13, 0.78);
-
-  --scrollbar-track: #0f172a;
-  --scrollbar-thumb: #334155;
-  --scrollbar-thumb-hover: #475569;
-
-  --accent-primary: #005afb;
-  --accent-primary-hover: #004ecc;
-  --accent-violet: #6120f7;
-  --accent-gradient: linear-gradient(135deg, #005afb 0%, #6120f7 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #004ecc 0%, #521ad8 100%);
-  --color-success: #4ade80;
-  --color-warning: #fbbf24;
-  --color-danger: #f87171;
-  --priority-low: #2dd4bf;
-  --priority-medium: #818cf8;
-  --priority-high: #fbbf24;
-  --priority-urgent: #f87171;
-  color-scheme: dark;
-}
-
+/* Achromatic ledger: neutral chrome, one data hue, no decorative colour. */
+:root,
 html.light {
-  /* LIGHT THEME TOKENS */
-  --bg-base: #f8fafc;
+  --bg-base: #f2f4f7;
   --bg-surface: #ffffff;
-  --bg-elevated: #f1f5f9;
-  --bg-subtle: #f8fafc;
-  --bg-hover: #f1f5f9;
-  --bg-active: #e2e8f0;
+  --bg-elevated: #f7f8fa;
+  --bg-subtle: #f5f6f8;
+  --bg-hover: #e9ecf0;
+  --bg-active: #e2e5e9;
 
-  --border-color: #e2e8f0;
-  --border-subtle: #cbd5e1;
-  --border-focus: #005afb;
+  --border-color: #dfe3e8;
+  --border-subtle: #cfd4da;
+  --border-focus: #1d5fbf;
 
-  --text-primary: #0f172a;
-  --text-heading: #020617;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --text-soft: #334155;
+  --text-primary: #111316;
+  --text-heading: #0a0b0d;
+  --text-secondary: #5f636b;
+  --text-muted: #6b6f76;
+  --text-soft: #45484d;
 
   --input-bg: #ffffff;
-  --input-border: #cbd5e1;
-  --input-color: #0f172a;
-  --input-placeholder: #94a3b8;
+  --input-border: #d3d8de;
+  --input-color: #111316;
+  --input-placeholder: #6b6f76;
 
   --card-bg: #ffffff;
-  --card-header-bg: #f8fafc;
+  --card-header-bg: #f7f8fa;
   --modal-bg: #ffffff;
-  --modal-elevated: #f8fafc;
+  --modal-elevated: #f7f8fa;
   --dropdown-bg: #ffffff;
 
-  --badge-bg: #f1f5f9;
-  --badge-border: #e2e8f0;
-  --badge-text: #334155;
+  --badge-bg: #f1f3f5;
+  --badge-border: #dfe3e8;
+  --badge-text: #45484d;
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
-  --shadow-elevated: 0 12px 32px rgba(15, 23, 42, 0.12);
-  --modal-backdrop-bg: rgba(15, 23, 42, 0.52);
+  --shadow-sm: none;
+  --shadow-md: 0 8px 24px rgba(17, 19, 22, 0.12);
+  --shadow-elevated: 0 12px 32px rgba(17, 19, 22, 0.16);
+  --modal-backdrop-bg: rgba(17, 19, 22, 0.44);
 
-  --scrollbar-track: #f1f5f9;
-  --scrollbar-thumb: #cbd5e1;
-  --scrollbar-thumb-hover: #94a3b8;
+  --scrollbar-track: #f2f4f7;
+  --scrollbar-thumb: #c8cdd4;
+  --scrollbar-thumb-hover: #a8aeb7;
 
-  --accent-primary: #005afb;
-  --accent-primary-hover: #004ecc;
-  --accent-violet: #6120f7;
-  --accent-gradient: linear-gradient(135deg, #005afb 0%, #6120f7 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #004ecc 0%, #521ad8 100%);
-  --color-success: #16a34a;
-  --color-warning: #d97706;
-  --color-danger: #dc2626;
-  --color-danger-hover: #b91c1c;
-  --priority-low: #2dd4bf;
-  --priority-medium: #818cf8;
-  --priority-high: #fbbf24;
-  --priority-urgent: #f87171;
+  --accent-primary: #141414;
+  --accent-primary-hover: #292929;
+  --accent-violet: #1d5fbf;
+  --chart-1: #111316;
+  --chart-2: #8a8f96;
+  --chart-3: #1d5fbf;
+  --color-success: #2e7d32;
+  --color-warning: #92400e;
+  --color-danger: #c4242a;
+  --color-danger-hover: #a01b20;
+  --priority-low: #5f636b;
+  --priority-medium: #45484d;
+  --priority-high: #92400e;
+  --priority-urgent: #c4242a;
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --row-height: 44px;
+  --gap: 12px;
+  --pad: 24px;
+  --control-height: 36px;
+  --fs-title: 24px;
+  --fs-section: 16px;
+  --fs-kpi: 30px;
+  --fs-body: 14px;
+  --fs-small: 12px;
   color-scheme: light;
+}
+
+/* Dark mode stays available as a neutral variant of the same system. */
+html.dark,
+html[data-theme='dark'] {
+  --bg-base: #111214;
+  --bg-surface: #191a1d;
+  --bg-elevated: #202125;
+  --bg-subtle: #17181b;
+  --bg-hover: #292b30;
+  --bg-active: #33363c;
+
+  --border-color: #303237;
+  --border-subtle: #43464d;
+  --border-focus: #7aa7e8;
+
+  --text-primary: #f2f3f5;
+  --text-heading: #ffffff;
+  --text-secondary: #b6bac1;
+  --text-muted: #9aa0a8;
+  --text-soft: #d5d8dd;
+
+  --input-bg: #111214;
+  --input-border: #43464d;
+  --input-color: #f2f3f5;
+  --input-placeholder: #9aa0a8;
+
+  --card-bg: #191a1d;
+  --card-header-bg: #17181b;
+  --modal-bg: #191a1d;
+  --modal-elevated: #202125;
+  --dropdown-bg: #202125;
+
+  --badge-bg: #24262a;
+  --badge-border: #303237;
+  --badge-text: #d5d8dd;
+
+  --shadow-sm: none;
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --modal-backdrop-bg: rgba(0, 0, 0, 0.6);
+
+  --scrollbar-track: #17181b;
+  --scrollbar-thumb: #43464d;
+  --scrollbar-thumb-hover: #5c6068;
+
+  --accent-primary: #f2f3f5;
+  --accent-primary-hover: #ffffff;
+  --accent-violet: #7aa7e8;
+  --chart-1: #f2f3f5;
+  --chart-2: #8a8f96;
+  --chart-3: #7aa7e8;
+  --color-success: #6cc47a;
+  --color-warning: #e0a456;
+  --color-danger: #f07a7f;
+  --color-danger-hover: #ff9a9e;
+  --priority-low: #9aa0a8;
+  --priority-medium: #d5d8dd;
+  --priority-high: #e0a456;
+  --priority-urgent: #f07a7f;
+  color-scheme: dark;
 }
 
 /* ─── THEME RESPONSIVE ASSETS ───────────────────────────────────────────── */
@@ -1149,7 +1165,7 @@ html.light .dot-low.active {
 
 html.light .dot-medium.active {
   background: rgba(129, 140, 248, 0.12);
-  border-color: #818cf8;
+  border-color: #5f636b;
   color: #0f172a;
 }
 

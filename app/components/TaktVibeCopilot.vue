@@ -93,21 +93,21 @@ function applyAction(a: any) {
 .copilot-title-wrap { display: flex; align-items: center; gap: 8px; }
 .copilot-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-success); }
 .copilot-title { margin: 0; font-size: 14px; font-weight: 600; color: var(--text-heading); }
-.copilot-close { width: 32px; height: 32px; border-radius: 8px; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.copilot-close { width: 32px; height: 32px; border-radius: var(--radius-control); border: none; background: transparent; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .copilot-close:hover { background: var(--bg-hover); color: var(--text-primary); }
 .copilot-messages { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
 .copilot-msg { display: flex; flex-direction: column; gap: 6px; max-width: 90%; }
 .copilot-msg.user { align-self: flex-end; }
 .copilot-msg.assistant { align-self: flex-start; }
-.copilot-bubble { padding: 8px 12px; border-radius: 10px; font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
+.copilot-bubble { padding: 8px 12px; border-radius: var(--radius-card); font-size: 13px; line-height: 1.5; white-space: pre-wrap; }
 .copilot-msg.assistant .copilot-bubble { background: var(--bg-elevated); color: var(--text-soft); border: 1px solid var(--border-color); }
 .copilot-msg.user .copilot-bubble { background: var(--accent-primary); color: #ffffff; }
-.copilot-action { align-self: flex-start; padding: 5px 10px; border-radius: 7px; border: 1px solid var(--border-color); background: transparent; color: var(--text-soft); font-size: 12px; cursor: pointer; font-family: inherit; }
+.copilot-action { align-self: flex-start; padding: 5px 10px; border-radius: var(--radius-control); border: 1px solid var(--border-color); background: transparent; color: var(--text-soft); font-size: 12px; cursor: pointer; font-family: inherit; }
 .copilot-action:hover { background: var(--bg-hover); color: var(--text-primary); }
 .copilot-input-wrap { display: flex; gap: 8px; padding: 10px; border-top: 1px solid var(--border-color); background: var(--bg-subtle); }
-.copilot-input { flex: 1; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--input-color); font-family: inherit; font-size: 13px; }
+.copilot-input { flex: 1; padding: 8px 10px; border-radius: var(--radius-control); border: 1px solid var(--border-color); background: var(--input-bg); color: var(--input-color); font-family: inherit; font-size: 13px; }
 .copilot-input:focus { outline: none; border-color: var(--accent-primary); }
-.copilot-send { padding: 8px 12px; border-radius: 8px; border: none; background: var(--accent-primary); color: #ffffff; font-weight: 600; cursor: pointer; font-family: inherit; transition: background-color 0.15s ease; }
+.copilot-send { padding: 8px 12px; border-radius: var(--radius-control); border: none; background: var(--accent-primary); color: #ffffff; font-weight: 600; cursor: pointer; font-family: inherit; transition: background-color 0.15s ease; }
 .copilot-send:hover:not(:disabled) { background: var(--accent-primary-hover); }
 .copilot-slide-enter-active, .copilot-slide-leave-active { transition: transform 0.25s cubic-bezier(0.16,1,0.3,1); }
 .copilot-slide-enter-from, .copilot-slide-leave-to { transform: translateX(100%); }

@@ -134,7 +134,7 @@ const toastStore = useToastStore()
   pointer-events: none;
   width: 100%;
   max-width: 360px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .toast-stack {
@@ -151,9 +151,9 @@ const toastStore = useToastStore()
   align-items: flex-start;
   gap: 10px;
   padding: 10px 14px;
-  border-radius: 8px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
+  border-radius: var(--radius-control);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
@@ -162,22 +162,22 @@ const toastStore = useToastStore()
 /* Subtle Semantic Tints (Without neon glow) */
 .toast-card.toast-success {
   border-color: rgba(16, 185, 129, 0.35);
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.07) 0%, #111726 60%);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.07) 0%, var(--bg-elevated) 60%);
 }
 
 .toast-card.toast-error {
   border-color: rgba(239, 68, 68, 0.35);
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.07) 0%, #111726 60%);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.07) 0%, var(--bg-elevated) 60%);
 }
 
 .toast-card.toast-warning {
   border-color: rgba(245, 158, 11, 0.35);
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.07) 0%, #111726 60%);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.07) 0%, var(--bg-elevated) 60%);
 }
 
 .toast-card.toast-info {
   border-color: rgba(59, 130, 246, 0.35);
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.07) 0%, #111726 60%);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.07) 0%, var(--bg-elevated) 60%);
 }
 
 /* Icons */
@@ -224,14 +224,14 @@ const toastStore = useToastStore()
 .toast-title {
   font-size: 13px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0;
   line-height: 1.35;
 }
 
 .toast-message {
   font-size: 12px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   margin: 0;
   line-height: 1.4;
   word-break: break-word;
@@ -241,7 +241,7 @@ const toastStore = useToastStore()
 .toast-close-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 3px;
   margin-top: -2px;
@@ -256,7 +256,7 @@ const toastStore = useToastStore()
 
 .toast-close-btn:hover {
   color: #ffffff;
-  background: #172136;
+  background: var(--bg-hover);
 }
 
 /* Progress Countdown Line */

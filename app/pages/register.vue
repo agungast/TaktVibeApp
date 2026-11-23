@@ -1,12 +1,12 @@
 <template>
-  <div class="auth-card">
-    <div class="auth-card-header">
-      <h2 class="auth-card-title">Buat Akun Baru</h2>
-      <p class="auth-card-desc">Daftar sekarang untuk mulai mengelola tugas Anda</p>
+  <div class="ldg-card">
+    <div class="ldg-header">
+      <h2 class="ldg-title">Daftar akun</h2>
+      <p class="ldg-desc">Buat akun untuk mulai mengelola tugas Anda.</p>
     </div>
 
     <!-- Alert Error / Success -->
-    <div v-if="localError || authStore.authError" class="auth-alert error">
+    <div v-if="localError || authStore.authError" class="ldg-alert error">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="12" y1="8" x2="12" y2="12"></line>
@@ -15,7 +15,7 @@
       <span>{{ localError || authStore.authError }}</span>
     </div>
 
-    <div v-if="authStore.successMessage" class="auth-alert success">
+    <div v-if="authStore.successMessage" class="ldg-alert success">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
@@ -23,12 +23,12 @@
     </div>
 
     <!-- Register Form -->
-    <form @submit.prevent="handleRegister" class="auth-form">
+    <form @submit.prevent="handleRegister" class="ldg-form">
       <!-- Nama Lengkap -->
-      <div class="form-group">
-        <label class="form-label" for="reg-name">Nama Lengkap</label>
-        <div class="input-wrap">
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="ldg-group">
+        <label class="ldg-label" for="reg-name">Nama lengkap</label>
+        <div class="ldg-input-wrap">
+          <svg class="ldg-input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
@@ -37,18 +37,18 @@
             v-model="form.fullName"
             type="text"
             required
-            placeholder="Masukkan Nama Lengkap Anda"
-            class="form-input"
+            placeholder="Masukkan nama lengkap"
+            class="ldg-input"
             :disabled="authStore.loading"
           />
         </div>
       </div>
 
       <!-- Email -->
-      <div class="form-group">
-        <label class="form-label" for="reg-email">Alamat Email</label>
-        <div class="input-wrap">
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="ldg-group">
+        <label class="ldg-label" for="reg-email">Email</label>
+        <div class="ldg-input-wrap">
+          <svg class="ldg-input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
@@ -58,17 +58,17 @@
             type="email"
             required
             placeholder="nama@email.com"
-            class="form-input"
+            class="ldg-input"
             :disabled="authStore.loading"
           />
         </div>
       </div>
 
       <!-- Password -->
-      <div class="form-group">
-        <label class="form-label" for="reg-password">Kata Sandi</label>
-        <div class="input-wrap">
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="ldg-group">
+        <label class="ldg-label" for="reg-password">Kata sandi</label>
+        <div class="ldg-input-wrap">
+          <svg class="ldg-input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
@@ -79,12 +79,12 @@
             required
             placeholder="Minimal 6 karakter"
             minlength="6"
-            class="form-input has-toggle"
+            class="ldg-input has-toggle"
             :disabled="authStore.loading"
           />
           <button
             type="button"
-            class="toggle-pwd-btn"
+            class="ldg-toggle"
             @click="showPassword = !showPassword"
             tabindex="-1"
             title="Lihat kata sandi"
@@ -102,10 +102,10 @@
       </div>
 
       <!-- Confirm Password -->
-      <div class="form-group">
-        <label class="form-label" for="reg-confirm-password">Konfirmasi Kata Sandi</label>
-        <div class="input-wrap">
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="ldg-group">
+        <label class="ldg-label" for="reg-confirm-password">Konfirmasi kata sandi</label>
+        <div class="ldg-input-wrap">
+          <svg class="ldg-input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
           <input
@@ -115,23 +115,23 @@
             required
             placeholder="Ulangi kata sandi"
             minlength="6"
-            class="form-input"
+            class="ldg-input"
             :disabled="authStore.loading"
           />
         </div>
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" class="auth-submit-btn" :disabled="authStore.loading || !form.fullName?.trim() || !form.email || !form.password || !form.confirmPassword">
-        <span v-if="authStore.loading" class="spinner"></span>
-        <span>{{ authStore.loading ? 'Mendaftarkan...' : 'Daftar Akun' }}</span>
+      <button type="submit" class="ldg-submit" :disabled="authStore.loading || !form.fullName?.trim() || !form.email || !form.password || !form.confirmPassword">
+        <span v-if="authStore.loading" class="ldg-spinner"></span>
+        <span>{{ authStore.loading ? 'Mendaftarkan...' : 'Daftar' }}</span>
       </button>
     </form>
 
     <!-- OAuth Buttons -->
-    <div class="oauth-divider"><span>atau daftar dengan</span></div>
-    <div class="oauth-group">
-      <button type="button" class="oauth-btn oauth-google" @click="handleOAuth('google')" :disabled="authStore.loading">
+    <div class="ldg-divider"><span>atau daftar dengan</span></div>
+    <div class="ldg-oauth-group">
+      <button type="button" class="ldg-oauth-btn" @click="handleOAuth('google')" :disabled="authStore.loading">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
           <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
           <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
@@ -141,15 +141,15 @@
         </svg>
         <span>Daftar dengan Google</span>
       </button>
-      <button type="button" class="oauth-btn oauth-github" @click="handleOAuth('github')" :disabled="authStore.loading">
-        <svg class="github-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      <button type="button" class="ldg-oauth-btn" @click="handleOAuth('github')" :disabled="authStore.loading">
+        <svg class="ldg-github-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         <span>Daftar dengan GitHub</span>
       </button>
     </div>
 
     <!-- Switch to Login -->
-    <div class="auth-card-footer">
-      <p>Sudah punya akun? <NuxtLink to="/login" class="auth-link">Masuk di Sini</NuxtLink></p>
+    <div class="ldg-footer">
+      <p>Sudah punya akun? <NuxtLink to="/login" class="ldg-text-link">Masuk</NuxtLink></p>
     </div>
   </div>
 </template>
@@ -187,17 +187,17 @@ const handleRegister = async () => {
   localError.value = null
 
   if (!form.fullName || !form.fullName.trim()) {
-    localError.value = 'Silakan masukkan nama lengkap Anda.'
+    localError.value = 'Masukkan nama lengkap Anda.'
     return
   }
 
   if (form.password.length < 6) {
-    localError.value = 'Kata sandi minimal harus terdiri dari 6 karakter.'
+    localError.value = 'Kata sandi minimal 6 karakter.'
     return
   }
 
   if (form.password !== form.confirmPassword) {
-    localError.value = 'Konfirmasi kata sandi tidak cocok. Silakan periksa kembali.'
+    localError.value = 'Konfirmasi kata sandi tidak cocok.'
     return
   }
 
@@ -210,308 +210,285 @@ const handleRegister = async () => {
 </script>
 
 <style scoped>
-.auth-card {
-  background: var(--card-bg, #0f1626);
-  border: 1px solid var(--border-color, #1e293b);
-  border-radius: 12px;
-  padding: 34px 28px;
-  box-shadow: var(--shadow-md, 0 1px 3px rgba(0, 0, 0, 0.4));
-  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.auth-card-header {
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.auth-card-title {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text-heading, #f8fafc);
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.auth-card-desc {
-  font-size: 13.5px;
-  color: var(--text-secondary, #94a3b8);
-  margin-top: 6px;
-  margin-bottom: 0;
-  line-height: 1.5;
-}
-
-/* Alert */
-.auth-alert {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+.ldg-card {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e5e9);
   border-radius: 8px;
-  font-size: 13px;
-  line-height: 1.4;
-  margin-bottom: 20px;
+  padding: 24px;
+  color: var(--text-primary, #111316);
+  font-family: 'Outfit', sans-serif;
 }
 
-.auth-alert.error {
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.22);
-  color: #fca5a5;
+.ldg-header {
+  margin-bottom: 24px;
 }
 
-.auth-alert.success {
-  background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.22);
-  color: #86efac;
-}
-
-.auth-alert svg {
-  flex-shrink: 0;
-}
-
-/* Form */
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.form-label {
-  font-size: 13px;
+.ldg-title {
+  font-size: 24px;
   font-weight: 500;
-  color: var(--text-soft, #cbd5e1);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-primary, #111316);
+  margin: 0;
 }
 
-.input-wrap {
+.ldg-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary, #5f636b);
+  margin: 8px 0 0;
+}
+
+.ldg-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: var(--bg-base, #f2f4f7);
+  border: 1px solid var(--border-color, #e2e5e9);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary, #111316);
+}
+
+.ldg-alert svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ldg-alert.error svg {
+  color: var(--color-danger, #b42318);
+}
+
+.ldg-alert.success svg {
+  color: var(--color-success, #157a3c);
+}
+
+.ldg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ldg-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ldg-label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-secondary, #5f636b);
+}
+
+.ldg-text-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary, #111316);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ldg-text-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.ldg-text-link:focus-visible {
+  outline: 2px solid var(--accent-primary, #141414);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.ldg-input-wrap {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.input-icon {
+.ldg-input-icon {
   position: absolute;
   left: 12px;
-  color: var(--text-secondary, #94a3b8);
+  color: var(--text-secondary, #5f636b);
   pointer-events: none;
 }
 
-.form-input {
+.ldg-input {
   width: 100%;
-  background: var(--input-bg, #090d16);
-  border: 1px solid var(--input-border, #1e293b);
-  border-radius: 8px;
-  padding: 10px 14px 10px 38px;
-  color: var(--input-color, #f8fafc);
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  min-height: 44px;
+  padding: 0 12px 0 38px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--input-border, #e2e5e9);
+  border-radius: 6px;
+  color: var(--text-primary, #111316);
   font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.form-input.has-toggle {
+.ldg-input.has-toggle {
   padding-right: 40px;
 }
 
-.form-input:focus {
-  border-color: var(--border-focus, #005afb);
-  box-shadow: 0 0 0 3px rgba(0, 90, 251, 0.18);
+.ldg-input:focus-visible {
+  border-color: var(--accent-primary, #141414);
+  outline: 2px solid var(--accent-primary, #141414);
+  outline-offset: 1px;
 }
 
-.form-input::placeholder {
-  color: var(--input-placeholder, #94a3b8);
+.ldg-input::placeholder {
+  color: var(--text-secondary, #5f636b);
+  opacity: 1;
 }
 
-.form-input:-webkit-autofill,
-.form-input:-webkit-autofill:hover,
-.form-input:-webkit-autofill:focus,
-.form-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px var(--input-bg, #090d16) inset !important;
-  box-shadow: 0 0 0 1000px var(--input-bg, #090d16) inset !important;
-  -webkit-text-fill-color: var(--input-color, #f8fafc) !important;
-  caret-color: var(--input-color, #f8fafc) !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-.toggle-pwd-btn {
-  position: absolute;
-  right: 10px;
-  background: transparent;
-  border: none;
-  color: var(--text-secondary, #94a3b8);
-  cursor: pointer;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  transition: color 0.15s ease;
-}
-
-.toggle-pwd-btn:hover {
-  color: var(--text-primary, #f8fafc);
-}
-
-/* Submit Button */
-.auth-submit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 11px 16px;
-  background: var(--accent-primary, #005afb);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  margin-top: 6px;
-  font-family: inherit;
-}
-
-.auth-submit-btn:hover:not(:disabled) {
-  background: var(--accent-primary-hover, #004ecc);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-.auth-submit-btn:active:not(:disabled) {
-  transform: scale(0.99);
-}
-
-.auth-submit-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 90, 251, 0.35);
-}
-
-.auth-submit-btn:disabled {
+.ldg-input:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #ffffff;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-
-/* Footer */
-.auth-card-footer {
-  margin-top: 24px;
-  text-align: center;
-  font-size: 13.5px;
-  color: #94a3b8;
-  border-top: 1px solid #1e293b;
-  padding-top: 18px;
-}
-
-.auth-card-footer p {
-  margin: 0;
-}
-
-.auth-link {
-  color: #818cf8;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.auth-link:hover {
-  color: #a5b4fc;
-  text-decoration: underline;
-}
-.auth-link:hover {
-  text-decoration: underline;
-}
-
-/* OAuth buttons - shared with login */
-.oauth-divider {
+.ldg-toggle {
+  position: absolute;
+  right: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin: 20px 0 14px;
-  font-size: 12.5px;
-  color: var(--text-secondary, #94a3b8);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--text-secondary, #5f636b);
+  cursor: pointer;
 }
-.oauth-divider::before,
-.oauth-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border-color, #1e293b);
+
+.ldg-toggle:hover {
+  background: var(--bg-base, #f2f4f7);
+  color: var(--text-primary, #111316);
 }
-.oauth-group {
-  display: flex;
-  gap: 10px;
+
+.ldg-toggle:focus-visible {
+  outline: 2px solid var(--accent-primary, #141414);
+  outline-offset: 1px;
 }
-.oauth-btn {
-  flex: 1;
+
+.ldg-submit {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 14px;
-  border-radius: 8px;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 4px;
+  padding: 0 16px;
+  background: var(--accent-primary, #141414);
+  border: 1px solid var(--accent-primary, #141414);
+  border-radius: 6px;
+  color: #ffffff;
   font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  background: var(--bg-surface, #0f172a);
-  border: 1px solid var(--border-color, #1f2a3f);
-  color: var(--text-primary, #f1f5f9);
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
-.oauth-btn:hover:not(:disabled) {
-  background: var(--bg-hover, #172136);
-  border-color: var(--border-subtle, #2d3b55);
+
+.ldg-submit:hover:not(:disabled) {
+  background: #000000;
+  border-color: #000000;
 }
-.oauth-btn:active:not(:disabled) {
-  transform: scale(0.99);
+
+.ldg-submit:focus-visible {
+  outline: 2px solid var(--accent-primary, #141414);
+  outline-offset: 2px;
 }
-.oauth-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.18);
-}
-.oauth-btn:disabled {
+
+.ldg-submit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-.oauth-btn svg {
+
+.ldg-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: ldg-spin 0.8s linear infinite;
+}
+
+@keyframes ldg-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ldg-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 12px;
+  font-size: 12px;
+  color: var(--text-secondary, #5f636b);
+}
+
+.ldg-divider::before,
+.ldg-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color, #e2e5e9);
+}
+
+.ldg-oauth-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ldg-oauth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 8px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e5e9);
+  border-radius: 6px;
+  color: var(--text-primary, #111316);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ldg-oauth-btn:hover:not(:disabled) {
+  background: var(--bg-base, #f2f4f7);
+}
+
+.ldg-oauth-btn:focus-visible {
+  outline: 2px solid var(--accent-primary, #141414);
+  outline-offset: 2px;
+}
+
+.ldg-oauth-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ldg-oauth-btn svg {
   flex-shrink: 0;
 }
-:global(html.light) .oauth-btn {
-  background: #ffffff;
-  border: 1px solid #d0d7e2;
-  color: #0f172a;
-  box-shadow: 0 1px 1px rgba(15, 23, 42, 0.02);
+
+.ldg-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color, #e2e5e9);
+  font-size: 12px;
+  color: var(--text-secondary, #5f636b);
 }
-:global(html.light) .oauth-btn:hover:not(:disabled) {
-  background: #f8fafc;
-  border-color: #cbd5e1;
-}
-:global(html.light) .oauth-btn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
-}
-.oauth-github .github-icon {
-  color: var(--text-primary, #f1f5f9);
-}
-:global(html.light) .oauth-github .github-icon {
-  color: #0f172a;
+
+.ldg-footer p {
+  margin: 0;
 }
 </style>

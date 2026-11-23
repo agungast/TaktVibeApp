@@ -1,14 +1,12 @@
 <template>
-  <div class="auth-card">
-    <div class="auth-card-header">
-      <h2 class="auth-card-title">Lupa Kata Sandi?</h2>
-      <p class="auth-card-desc">
-        Masukkan alamat email yang terdaftar. Kami akan mengirimkan tautan untuk mengatur ulang kata sandi Anda.
-      </p>
+  <div class="ldg-card">
+    <div class="ldg-header">
+      <h2 class="ldg-title">Lupa kata sandi</h2>
+      <p class="ldg-desc">Masukkan email terdaftar untuk menerima tautan reset.</p>
     </div>
 
     <!-- Alert Error / Success -->
-    <div v-if="authStore.authError" class="auth-alert error">
+    <div v-if="authStore.authError" class="ldg-alert error">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="12" y1="8" x2="12" y2="12"></line>
@@ -17,7 +15,7 @@
       <span>{{ authStore.authError }}</span>
     </div>
 
-    <div v-if="authStore.successMessage" class="auth-alert success">
+    <div v-if="authStore.successMessage" class="ldg-alert success">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
         <polyline points="22 4 12 14.01 9 11.01"></polyline>
@@ -26,11 +24,11 @@
     </div>
 
     <!-- Forgot Password Form -->
-    <form @submit.prevent="handleSubmit" class="auth-form">
-      <div class="form-group">
-        <label class="form-label" for="forgot-email">Alamat Email</label>
-        <div class="input-wrap">
-          <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <form @submit.prevent="handleSubmit" class="ldg-form">
+      <div class="ldg-group">
+        <label class="ldg-label" for="forgot-email">Email</label>
+        <div class="ldg-input-wrap">
+          <svg class="ldg-input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
@@ -40,31 +38,27 @@
             type="email"
             required
             placeholder="Masukkan email terdaftar"
-            class="form-input"
+            class="ldg-input"
             :disabled="authStore.loading"
           />
         </div>
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" class="auth-submit-btn" :disabled="authStore.loading || !email">
-        <span v-if="authStore.loading" class="spinner"></span>
-        <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13"></line>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-        </svg>
-        <span>{{ authStore.loading ? 'Mengirim Tautan...' : 'Kirim Tautan Reset' }}</span>
+      <button type="submit" class="ldg-submit" :disabled="authStore.loading || !email">
+        <span v-if="authStore.loading" class="ldg-spinner"></span>
+        <span>{{ authStore.loading ? 'Mengirim...' : 'Kirim tautan reset' }}</span>
       </button>
     </form>
 
     <!-- Back to Login Link -->
-    <div class="auth-card-footer">
-      <NuxtLink to="/login" class="back-link">
+    <div class="ldg-footer">
+      <NuxtLink to="/login" class="ldg-back-link">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
-        <span>Kembali ke Halaman Masuk</span>
+        <span>Kembali ke masuk</span>
       </NuxtLink>
     </div>
   </div>
@@ -92,202 +86,194 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
-.auth-card {
-  background: var(--card-bg, #0f1626);
-  border: 1px solid var(--border-color, #1e293b);
-  border-radius: 12px;
-  padding: 34px 28px;
-  box-shadow: var(--shadow-md, 0 1px 3px rgba(0, 0, 0, 0.4));
-  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.auth-card-header {
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.auth-card-title {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text-heading, #f8fafc);
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.auth-card-desc {
-  font-size: 13.5px;
-  color: var(--text-secondary, #94a3b8);
-  margin-top: 6px;
-  margin-bottom: 0;
-  line-height: 1.5;
-}
-
-/* Alert */
-.auth-alert {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+.ldg-card {
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--border-color, #e2e5e9);
   border-radius: 8px;
-  font-size: 13px;
-  line-height: 1.4;
-  margin-bottom: 20px;
+  padding: 24px;
+  color: var(--text-primary, #111316);
+  font-family: 'Outfit', sans-serif;
 }
 
-.auth-alert.error {
-  background: rgba(239, 68, 68, 0.08);
-  border: 1px solid rgba(239, 68, 68, 0.22);
-  color: #fca5a5;
+.ldg-header {
+  margin-bottom: 24px;
 }
 
-.auth-alert.success {
-  background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.22);
-  color: #86efac;
-}
-
-.auth-alert svg {
-  flex-shrink: 0;
-}
-
-/* Form */
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.form-label {
-  font-size: 13px;
+.ldg-title {
+  font-size: 24px;
   font-weight: 500;
-  color: var(--text-soft, #cbd5e1);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-primary, #111316);
+  margin: 0;
 }
 
-.input-wrap {
+.ldg-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary, #5f636b);
+  margin: 8px 0 0;
+}
+
+.ldg-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  margin-bottom: 20px;
+  background: var(--bg-base, #f2f4f7);
+  border: 1px solid var(--border-color, #e2e5e9);
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary, #111316);
+}
+
+.ldg-alert svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ldg-alert.error svg {
+  color: var(--color-danger, #b42318);
+}
+
+.ldg-alert.success svg {
+  color: var(--color-success, #157a3c);
+}
+
+.ldg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ldg-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ldg-label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-secondary, #5f636b);
+}
+
+.ldg-input-wrap {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.input-icon {
+.ldg-input-icon {
   position: absolute;
   left: 12px;
-  color: var(--text-secondary, #94a3b8);
+  color: var(--text-secondary, #5f636b);
   pointer-events: none;
 }
 
-.form-input {
+.ldg-input {
   width: 100%;
-  background: var(--input-bg, #090d16);
-  border: 1px solid var(--input-border, #1e293b);
-  border-radius: 8px;
-  padding: 10px 14px 10px 38px;
-  color: var(--input-color, #f8fafc);
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  min-height: 44px;
+  padding: 0 12px 0 38px;
+  background: var(--bg-surface, #ffffff);
+  border: 1px solid var(--input-border, #e2e5e9);
+  border-radius: 6px;
+  color: var(--text-primary, #111316);
   font-family: inherit;
-}
-
-.form-input:focus {
-  border-color: var(--border-focus, #005afb);
-  box-shadow: 0 0 0 3px rgba(0, 90, 251, 0.18);
-}
-
-.form-input::placeholder {
-  color: var(--input-placeholder, #94a3b8);
-}
-
-.form-input:-webkit-autofill,
-.form-input:-webkit-autofill:hover,
-.form-input:-webkit-autofill:focus,
-.form-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px var(--input-bg, #090d16) inset !important;
-  box-shadow: 0 0 0 1000px var(--input-bg, #090d16) inset !important;
-  -webkit-text-fill-color: var(--input-color, #f8fafc) !important;
-  caret-color: var(--input-color, #f8fafc) !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-/* Submit Button */
-.auth-submit-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 11px 16px;
-  background: var(--accent-primary, #005afb);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  color: #ffffff;
   font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  margin-top: 6px;
-  font-family: inherit;
+  line-height: 1.5;
 }
 
-.auth-submit-btn:hover:not(:disabled) {
-  background: var(--accent-primary-hover, #004ecc);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+.ldg-input:focus-visible {
+  border-color: var(--accent-primary, #141414);
+  outline: 2px solid var(--accent-primary, #141414);
+  outline-offset: 1px;
 }
 
-.auth-submit-btn:active:not(:disabled) {
-  transform: scale(0.99);
+.ldg-input::placeholder {
+  color: var(--text-secondary, #5f636b);
+  opacity: 1;
 }
 
-.auth-submit-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 90, 251, 0.35);
-}
-
-.auth-submit-btn:disabled {
+.ldg-input:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.spinner {
+.ldg-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 4px;
+  padding: 0 16px;
+  background: var(--accent-primary, #141414);
+  border: 1px solid var(--accent-primary, #141414);
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ldg-submit:hover:not(:disabled) {
+  background: #000000;
+  border-color: #000000;
+}
+
+.ldg-submit:focus-visible {
+  outline: 2px solid var(--accent-primary, #141414);
+  outline-offset: 2px;
+}
+
+.ldg-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ldg-spinner {
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   border-top-color: #ffffff;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: ldg-spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  100% { transform: rotate(360deg); }
+@keyframes ldg-spin {
+  to { transform: rotate(360deg); }
 }
 
-/* Footer */
-.auth-card-footer {
+.ldg-footer {
   margin-top: 24px;
-  text-align: center;
-  border-top: 1px solid #1e293b;
-  padding-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color, #e2e5e9);
 }
 
-.back-link {
+.ldg-back-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #818cf8;
-  font-size: 13.5px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.15s ease;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary, #111316);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-.back-link:hover {
-  color: #a5b4fc;
+.ldg-back-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.ldg-back-link:focus-visible {
+  outline: 2px solid var(--accent-primary, #141414);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 </style>

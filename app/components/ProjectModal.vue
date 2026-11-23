@@ -136,7 +136,7 @@ const presetColors = [
   { name: 'Amber', hex: '#f59e0b' },
   { name: 'Rose', hex: '#f43f5e' },
   { name: 'Violet', hex: '#8b5cf6' },
-  { name: 'Slate', hex: '#94a3b8' }
+  { name: 'Slate', hex: 'var(--text-secondary)' }
 ]
 
 const formName = ref<string>('')
@@ -218,7 +218,7 @@ async function handleSubmit(): Promise<void> {
 .project-modal-box {
   background: var(--modal-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   width: 100%;
   max-width: 440px;
   box-shadow: var(--shadow-elevated);
@@ -299,7 +299,7 @@ async function handleSubmit(): Promise<void> {
 .form-input {
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 9px 12px;
   color: var(--input-color);
   font-size: 13.5px;
@@ -322,7 +322,7 @@ async function handleSubmit(): Promise<void> {
 .icon-choice-btn {
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   font-size: 16px;
   padding: 6px 0;
   cursor: pointer;
@@ -352,7 +352,7 @@ async function handleSubmit(): Promise<void> {
 .color-choice-btn {
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 6px 8px;
   cursor: pointer;
   display: flex;
@@ -388,7 +388,7 @@ async function handleSubmit(): Promise<void> {
 .preview-box {
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 10px 14px;
   display: flex;
   align-items: center;
@@ -440,7 +440,7 @@ async function handleSubmit(): Promise<void> {
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   color: var(--text-soft);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 7px 14px;
   font-size: 12.5px;
   cursor: pointer;
@@ -457,7 +457,7 @@ async function handleSubmit(): Promise<void> {
   background: var(--accent-primary);
   border: 1px solid var(--accent-primary);
   color: #ffffff;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 7px 16px;
   font-size: 12.5px;
   font-weight: 500;

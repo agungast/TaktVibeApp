@@ -400,7 +400,7 @@ const focusStore = useFocusStore()
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: 1px solid transparent;
   background: transparent;
   color: var(--text-secondary);
@@ -465,7 +465,7 @@ const focusStore = useFocusStore()
   gap: 6px;
   background-color: var(--bg-elevated);
   padding: 4px;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   border: 1px solid var(--border-color);
   margin-bottom: 24px;
 }
@@ -475,12 +475,12 @@ const focusStore = useFocusStore()
   padding: 7px 10px;
   font-size: 12px;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   border: none;
   background: transparent;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 150ms cubic-bezier(0.16, 1, 0.3, 1), color 150ms cubic-bezier(0.16, 1, 0.3, 1), border-color 150ms cubic-bezier(0.16, 1, 0.3, 1), opacity 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mode-btn.active {
@@ -553,9 +553,9 @@ const focusStore = useFocusStore()
   font-weight: 700;
   font-size: 15px;
   border: 1px solid var(--accent-primary);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   cursor: pointer;
-  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 150ms cubic-bezier(0.16, 1, 0.3, 1), color 150ms cubic-bezier(0.16, 1, 0.3, 1), border-color 150ms cubic-bezier(0.16, 1, 0.3, 1), opacity 150ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-play-pause:hover {
@@ -574,14 +574,14 @@ const focusStore = useFocusStore()
   align-items: center;
   gap: 6px;
   padding: 11px 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   border: 1px solid var(--border-color);
   background-color: transparent;
   color: var(--text-secondary);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, opacity 150ms ease;
 }
 
 .btn-reset:hover, .btn-minimize-text:hover {

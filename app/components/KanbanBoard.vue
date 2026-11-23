@@ -152,7 +152,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 <style scoped>
 .kanban-wrapper {
   width: 100%;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: auto;
   padding: 16px 20px 24px;
   scrollbar-width: thin;
@@ -169,7 +169,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 .kanban-column {
   background: var(--bg-base);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   display: flex;
   flex-direction: column;
   min-height: 480px;
@@ -203,7 +203,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
   flex-shrink: 0;
 }
 
-.dot-backlog { background: #94a3b8; }
+.dot-backlog { background: var(--text-secondary); }
 .dot-todo { background: #60a5fa; }
 .dot-progress { background: #fbbf24; }
 .dot-done { background: #4ade80; }
@@ -222,7 +222,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   padding: 1px 7px;
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   min-width: 20px;
   text-align: center;
 }
@@ -249,7 +249,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 /* Empty Dropzone */
 .empty-dropzone {
   border: 1px dashed var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   height: 120px;
   display: flex;
   flex-direction: column;
@@ -259,7 +259,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
   color: var(--text-muted);
   font-size: 12px;
   font-weight: 500;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .kanban-column.is-drag-over .empty-dropzone {
@@ -277,7 +277,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
   height: 90px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   margin-bottom: 10px;
   animation: pulse-skeleton 1.5s ease-in-out infinite;
 }
@@ -294,7 +294,7 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 /* Transition Group Animations */
 .card-list-enter-active,
 .card-list-leave-active {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-list-enter-from {

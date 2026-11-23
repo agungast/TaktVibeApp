@@ -61,9 +61,9 @@ onMounted(async () => {
   justify-content: center;
   min-height: 100vh;
   gap: 12px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   text-align: center;
-  background-color: #0f172a; /* Opsional: beri warna background konsisten */
+  background-color: var(--bg-surface); /* Opsional: beri warna background konsisten */
 }
 
 .spinner {

@@ -122,7 +122,7 @@ onUnmounted(() => {
   justify-content: center;
   z-index: 99999;
   padding: 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Card */
@@ -204,7 +204,7 @@ onUnmounted(() => {
   padding: 12px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   cursor: pointer;
   text-align: left;
   transition: background-color 0.15s ease, border-color 0.15s ease;
@@ -265,7 +265,7 @@ onUnmounted(() => {
   padding: 6px 12px;
   background: var(--accent-primary);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 7px;
+  border-radius: var(--radius-control);
   color: #ffffff;
   font-size: 12px;
   font-weight: 600;
@@ -297,7 +297,7 @@ onUnmounted(() => {
   padding: 10px 16px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   color: var(--text-soft);
   font-size: 13.5px;
   font-weight: 600;

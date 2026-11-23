@@ -70,17 +70,16 @@
 
     <!-- ─── 2. CALM & CONFIDENT HERO ───────────────────────────────────────── -->
     <section class="hero-section">
-      <div class="hero-bg-grid" aria-hidden="true"></div>
       <div class="hero-content">
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
-          <span>Ruang Kerja Personal Minimalis</span>
+          <span>Ruang Kerja Personal</span>
         </div>
         <h1 class="hero-title">
           Ruang kerja personal untuk tugas dan catatan.
         </h1>
         <p class="hero-subtitle">
-          TaktVibe menyatukan tugas, tenggat, dan catatan dalam satu ruang kerja yang tenang.
+          Tugas, tenggat, dan catatan dalam satu ruang kerja.
         </p>
 
         <div class="hero-cta-wrap">
@@ -111,7 +110,6 @@
         <!-- Board Header -->
         <div class="board-header">
           <div class="board-heading-wrap">
-            <span class="board-dot"></span>
             <span class="board-title">Fokus Hari Ini</span>
             <span class="board-status">{{ completedCount }} dari {{ tasks.length }} selesai</span>
           </div>
@@ -205,7 +203,7 @@
 
         <!-- Subtle Board Note -->
         <div class="board-footnote">
-          <span>Sentuh atau klik kartu tugas mana saja untuk memperbarui status secara langsung.</span>
+          <span>Klik tugas untuk mengubah status.</span>
         </div>
       </div>
     </section>
@@ -215,10 +213,10 @@
       <!-- Story 1: Tiga Sudut Pandang -->
       <div class="story-item">
         <div class="story-narrative">
-          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 01 Tiga Sudut Pandang</span>
+          <p class="story-kicker">Tiga Sudut Pandang</p>
           <h2 class="story-title">Tiga tampilan untuk tugas Anda.</h2>
           <p class="story-desc">
-            Kadang Anda memerlukan papan Kanban visual saat memproses alur kerja harian. Di hari lain, Anda memerlukan kalender bulanan untuk mengantisipasi tenggat waktu, atau tabel ringkas untuk melihat puluhan tugas sekaligus.
+            Gunakan Kanban untuk alur kerja harian, kalender untuk tenggat, atau tabel untuk melihat banyak tugas sekaligus.
           </p>
         </div>
 
@@ -273,11 +271,11 @@
           <div v-else-if="previewView === 'calendar'" class="snippet-calendar">
             <div class="cal-mini-header">Oktober 2026</div>
             <div class="cal-mini-days">
-              <span class="cal-mini-cell">01</span>
-              <span class="cal-mini-cell active">02 <small>Deadline UI</small></span>
-              <span class="cal-mini-cell">03</span>
-              <span class="cal-mini-cell">04</span>
-              <span class="cal-mini-cell">05</span>
+              <span class="cal-mini-cell">Sen</span>
+              <span class="cal-mini-cell active">Sel <small>Deadline UI</small></span>
+              <span class="cal-mini-cell">Rab</span>
+              <span class="cal-mini-cell">Kam</span>
+              <span class="cal-mini-cell">Jum</span>
             </div>
           </div>
 
@@ -304,10 +302,10 @@
       <!-- Story 2: Lampiran Dokumen & Media -->
       <div class="story-item reverse">
         <div class="story-narrative">
-          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 02 Lampiran Terstruktur</span>
+          <p class="story-kicker">Lampiran Terstruktur</p>
           <h2 class="story-title">Lampiran tugas dalam satu tempat.</h2>
           <p class="story-desc">
-            Sematkan tangkapan layar, bukti pengerjaan, atau file pendukung langsung di dalam kartu tugas. Tidak perlu mencari tautan terpisah di aplikasi perpesanan.
+            Simpan tangkapan layar, bukti pengerjaan, atau file pendukung langsung di kartu tugas.
           </p>
         </div>
 
@@ -332,10 +330,10 @@
       <!-- Story 3: Kedaulatan & Keamanan Data -->
       <div id="kedaulatan" class="story-item">
         <div class="story-narrative">
-          <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 03 Kedaulatan Data</span>
+          <p class="story-kicker">Kedaulatan Data</p>
           <h2 class="story-title">Ekspor data tugas kapan saja.</h2>
           <p class="story-desc">
-            Tanpa keterikatan platform (*zero vendor lock-in*). Ekspor seluruh riwayat tugas Anda ke format CSV atau JSON kapan pun Anda inginkan.
+            Ekspor seluruh riwayat tugas ke CSV atau JSON kapan pun Anda butuhkan.
           </p>
         </div>
 
@@ -646,9 +644,7 @@ html.has-reveal .reveal.is-revealed {
 
 .site-header.scrolled {
   background: rgba(9, 13, 22, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom-color: var(--border-color);
+  -webkit-border-bottom-color: var(--border-color);
 }
 
 html.light .site-header.scrolled {
@@ -715,7 +711,7 @@ html.light .site-header.scrolled {
 .nav-item:focus-visible {
   outline: none;
   border-radius: 4px;
-  box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 4px var(--accent-primary);
+  outline: 2px solid var(--border-focus); outline-offset: 2px;
 }
 
 .header-actions {
@@ -817,24 +813,6 @@ html.light .site-header.scrolled {
   overflow: hidden;
 }
 
-.hero-bg-grid {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
-}
-
-html.light .hero-bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
-}
-
 .hero-content {
   position: relative;
   max-width: 900px;
@@ -853,7 +831,7 @@ html.light .hero-bg-grid {
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   margin-bottom: 24px;
-  box-shadow: var(--shadow-sm);
+  
   animation: hero-fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -936,7 +914,7 @@ html.light .hero-bg-grid {
   border-top: 2px solid var(--accent-primary);
   border-radius: 12px;
   /* NATURAL ELEVATION COMPLIANT WITH AGENTS.md (No giant 32px diffuse glow) */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+  
   overflow: hidden;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -944,15 +922,15 @@ html.light .hero-bg-grid {
 
 .focus-board:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.1);
+  
 }
 
 html.light .focus-board {
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04);
+  
 }
 
 html.light .focus-board:hover {
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.06);
+  
 }
 
 .board-header {
@@ -1203,16 +1181,7 @@ html.light .focus-board:hover {
   gap: 16px;
 }
 
-.story-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--text-secondary);
-  margin-bottom: -4px;
-}
+.story-label{font-size:12px;font-weight:500;color:var(--text-muted);margin:0 0 8px;}
 
 .story-eyebrow-dot {
   width: 6px;

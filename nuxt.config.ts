@@ -26,7 +26,8 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'TaktVibe - Personal Task & Knowledge Management System dengan Kanban, Kalender, Spaces, dan Markdown Notes.' }
+        { name: 'description', content: 'TaktVibe - Personal Task & Knowledge Management System dengan Kanban, Kalender, Spaces, dan Markdown Notes.' },
+        { name: 'theme-color', content: '#f2f4f7' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -94,8 +95,8 @@ export default defineNuxtConfig({
       name: 'TaktVibe',
       short_name: 'TaktVibe',
       description: 'Personal Task & Knowledge Management System',
-      theme_color: '#090d16',
-      background_color: '#090d16',
+      theme_color: '#f2f4f7',
+      background_color: '#f2f4f7',
       display: 'standalone',
       icons: [
         { src: '/images/logo-icon.png', sizes: '192x192', type: 'image/png' },

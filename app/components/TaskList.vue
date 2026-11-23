@@ -224,15 +224,15 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   justify-content: center;
   gap: 10px;
   padding: 36px 20px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-size: 13.5px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .pulse-spinner {
   width: 8px;
   height: 8px;
-  background: var(--accent-primary, #005afb);
+  background: var(--accent-primary, var(--accent-primary));
   border-radius: 50%;
   animation: pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
@@ -253,32 +253,32 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   gap: 10px;
   min-height: 380px;
   flex: 1;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .empty-icon {
   width: 52px;
   height: 52px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
-  border-radius: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin-bottom: 6px;
 }
 
 .empty-title {
   font-size: 15px;
   font-weight: 600;
-  color: #f1f5f9;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .empty-desc {
   font-size: 13px;
-  color: #cbd5e1;
+  color: var(--text-soft);
   margin: 0;
   max-width: 320px;
   line-height: 1.5;
@@ -291,9 +291,9 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   margin-top: 6px;
   padding: 8px 14px;
   min-height: 36px;
-  background: #005afb;
+  background: var(--accent-primary);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   color: #ffffff;
   font-family: inherit;
   font-size: 13px;
@@ -318,7 +318,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   justify-content: space-between;
   flex: 1;
   min-height: 0;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .table-scroll-container {
@@ -333,9 +333,9 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 }
 
 .data-table thead tr {
-  border-bottom: 1px solid #1f2a3f;
+  border-bottom: 1px solid var(--border-color);
   height: 44px;
-  background: #0d1422;
+  background: var(--bg-subtle);
 }
 
 .data-table tbody tr {
@@ -347,7 +347,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   text-align: left;
   font-size: 12px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--text-soft);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -367,8 +367,8 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   align-items: center;
   justify-content: space-between;
   padding: 16px 18px;
-  border-top: 1px solid #1f2a3f;
-  background: #0d1422;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-subtle);
   flex-wrap: wrap;
   gap: 12px;
 }
@@ -382,7 +382,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 
 .footer-info {
   font-size: 12.5px;
-  color: #cbd5e1;
+  color: var(--text-soft);
 }
 
 .text-highlight {
@@ -399,7 +399,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   font-size: 11px;
   font-weight: 600;
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
 }
 
 .stat-pill.done {
@@ -430,16 +430,16 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 
 .page-size-label {
   font-size: 11.5px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .page-size-group {
   display: flex;
   align-items: center;
-  background: #111726;
-  border: 1px solid #1f2a3f;
-  border-radius: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-control);
   padding: 2px;
   gap: 2px;
 }
@@ -447,7 +447,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 .size-pill-btn {
   background: transparent;
   border: none;
-  color: #cbd5e1;
+  color: var(--text-soft);
   font-size: 11.5px;
   font-weight: 600;
   padding: 3px 8px;
@@ -458,8 +458,8 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 }
 
 .size-pill-btn:hover:not(.active) {
-  color: #f1f5f9;
-  background: #172136;
+  color: var(--text-primary);
+  background: var(--bg-hover);
 }
 
 .size-pill-btn.active {
@@ -477,20 +477,20 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 .page-nav-btn {
   width: 28px;
   height: 28px;
-  border-radius: 6px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  border-radius: var(--radius-control);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .page-nav-btn:hover:not(:disabled) {
-  background: #172136;
-  border-color: var(--accent-primary, #005afb);
+  background: var(--bg-hover);
+  border-color: var(--accent-primary, var(--accent-primary));
   color: #ffffff;
 }
 
@@ -508,28 +508,28 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 .page-num-btn {
   width: 28px;
   height: 28px;
-  border-radius: 6px;
-  background: #111726;
-  border: 1px solid #1f2a3f;
-  color: #cbd5e1;
+  border-radius: var(--radius-control);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  color: var(--text-soft);
   font-size: 12px;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
   font-family: inherit;
 }
 
 .page-num-btn:hover:not(.active) {
   border-color: #2e3e5e;
-  color: #f1f5f9;
+  color: var(--text-primary);
 }
 
 .page-num-btn.active {
-  background: var(--accent-primary, #005afb);
-  border-color: var(--accent-primary, #005afb);
+  background: var(--accent-primary, var(--accent-primary));
+  border-color: var(--accent-primary, var(--accent-primary));
   color: #ffffff;
 }
 
@@ -585,7 +585,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
     gap: 8px 10px;
     height: auto;
     padding: 12px 14px;
-    border-bottom: 1px solid #172136;
+    border-bottom: 1px solid var(--bg-hover);
   }
 
   .data-table :deep(.table-row:last-child) {

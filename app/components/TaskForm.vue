@@ -431,7 +431,7 @@ defineExpose({
   display: flex;
   flex-direction: column;
   gap: 14px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Toggle untuk field opsional */
@@ -444,7 +444,7 @@ defineExpose({
   margin-left: -4px;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   color: var(--text-soft);
   font-family: inherit;
   font-size: 12.5px;
@@ -574,7 +574,7 @@ defineExpose({
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
   font-weight: 600;
 }
 
@@ -596,7 +596,7 @@ defineExpose({
   width: 100%;
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 10px 14px 10px 36px;
   color: var(--input-color);
   font-size: 13.5px;
@@ -628,14 +628,14 @@ defineExpose({
   gap: 6px;
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 8px 6px;
   font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .priority-btn:hover:not(:disabled) {
@@ -706,7 +706,7 @@ defineExpose({
   width: 100%;
   background: var(--input-bg);
   border: 1px solid var(--input-border);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 10px 32px 10px 14px;
   color: var(--input-color);
   font-size: 13.5px;
@@ -747,7 +747,7 @@ defineExpose({
   font-size: 11.5px;
   font-weight: 500;
   padding: 2px 8px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
 }
 
 .tag-del-btn {
@@ -769,7 +769,7 @@ defineExpose({
 /* Upload Area Drag & Drop */
 .upload-area {
   border: 1.5px dashed var(--border-subtle);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   padding: 14px 16px;
   cursor: pointer;
   background: var(--input-bg);
@@ -796,7 +796,7 @@ defineExpose({
 .upload-icon-wrap {
   width: 36px;
   height: 36px;
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
@@ -838,7 +838,7 @@ defineExpose({
   padding: 8px 12px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   transition: background 0.15s ease;
 }
 
@@ -850,7 +850,7 @@ defineExpose({
 .file-thumb {
   width: 36px;
   height: 36px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   overflow: hidden;
   background: var(--bg-elevated);
   display: flex;
@@ -936,7 +936,7 @@ defineExpose({
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .file-remove-btn:hover {
@@ -960,7 +960,7 @@ defineExpose({
   padding: 10px 16px;
   background: var(--accent-primary);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   color: #ffffff;
   font-size: 13.5px;
   font-weight: 600;

@@ -562,7 +562,7 @@ const openDayTasks = (cell: MonthCell) => {
   flex-direction: column;
   flex: 1;
   width: 100%;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text-primary);
   min-height: 480px;
 }
@@ -594,7 +594,7 @@ const openDayTasks = (cell: MonthCell) => {
 .cal-nav-btn {
   width: 28px;
   height: 28px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   color: var(--text-soft);
@@ -614,7 +614,7 @@ const openDayTasks = (cell: MonthCell) => {
 .cal-today-btn {
   padding: 4px 10px;
   height: 28px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   color: var(--text-soft);
@@ -652,7 +652,7 @@ const openDayTasks = (cell: MonthCell) => {
   align-items: center;
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 2px;
   gap: 2px;
 }
@@ -694,7 +694,7 @@ const openDayTasks = (cell: MonthCell) => {
   padding: 4px 9px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   font-size: 11.5px;
   color: var(--text-soft);
   font-weight: 500;
@@ -721,7 +721,7 @@ const openDayTasks = (cell: MonthCell) => {
   padding: 4px 10px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   font-size: 11.5px;
   color: var(--text-soft);
   font-weight: 500;
@@ -911,11 +911,11 @@ const openDayTasks = (cell: MonthCell) => {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #94a3b8;
+  background: var(--text-secondary);
   flex-shrink: 0;
 }
 
-.priority-low .chip-priority-dot { background: #94a3b8; }
+.priority-low .chip-priority-dot { background: var(--text-secondary); }
 .priority-medium .chip-priority-dot { background: #60a5fa; }
 .priority-high .chip-priority-dot { background: #fbbf24; }
 .priority-urgent .chip-priority-dot { background: #f87171; }
@@ -1014,7 +1014,7 @@ const openDayTasks = (cell: MonthCell) => {
 .week-empty-slot {
   height: 60px;
   border: 1px dashed var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1025,7 +1025,7 @@ const openDayTasks = (cell: MonthCell) => {
 .week-task-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 8px 10px;
   display: flex;
   flex-direction: column;
@@ -1192,7 +1192,7 @@ const openDayTasks = (cell: MonthCell) => {
 .tray-task-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   padding: 8px 10px;
   display: flex;
   flex-direction: column;
@@ -1228,7 +1228,7 @@ const openDayTasks = (cell: MonthCell) => {
   border-radius: 50%;
 }
 
-.tray-p-dot.p-low { background: #94a3b8; }
+.tray-p-dot.p-low { background: var(--text-secondary); }
 .tray-p-dot.p-medium { background: #60a5fa; }
 .tray-p-dot.p-high { background: var(--color-warning); }
 .tray-p-dot.p-urgent { background: var(--color-danger); }

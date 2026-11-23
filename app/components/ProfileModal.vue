@@ -418,7 +418,7 @@ const handleSaveProfile = async () => {
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Header */
@@ -441,7 +441,7 @@ const handleSaveProfile = async () => {
   width: 40px;
   height: 40px;
   background: var(--accent-primary);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -468,11 +468,11 @@ const handleSaveProfile = async () => {
   color: var(--text-secondary);
   cursor: pointer;
   padding: 6px;
-  border-radius: 6px;
+  border-radius: var(--radius-control);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .modal-close-btn:hover {
@@ -521,7 +521,7 @@ const handleSaveProfile = async () => {
   padding: 12px;
   background: var(--bg-subtle);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-card);
 }
 
 .avatar-preview-wrap {
@@ -602,7 +602,7 @@ const handleSaveProfile = async () => {
 
 .avatar-upload-btn {
   padding: 6px 12px;
-  border-radius: 7px;
+  border-radius: var(--radius-control);
   background: rgba(0, 90, 251, 0.12);
   border: 1px solid var(--accent-primary);
   color: var(--accent-primary);
@@ -610,7 +610,7 @@ const handleSaveProfile = async () => {
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .avatar-upload-btn:hover:not(.disabled) {
@@ -620,7 +620,7 @@ const handleSaveProfile = async () => {
 
 .avatar-remove-btn {
   padding: 6px 12px;
-  border-radius: 7px;
+  border-radius: var(--radius-control);
   background: transparent;
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
@@ -628,7 +628,7 @@ const handleSaveProfile = async () => {
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .avatar-remove-btn:hover:not(:disabled) {
@@ -682,7 +682,7 @@ const handleSaveProfile = async () => {
   font-family: inherit;
   font-size: 13px;
   outline: none;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .form-input:focus {
@@ -708,7 +708,7 @@ const handleSaveProfile = async () => {
   background: rgba(34, 197, 94, 0.12);
   border: 1px solid rgba(34, 197, 94, 0.25);
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: var(--radius-card);
 }
 
 .password-eye-btn {
@@ -737,7 +737,7 @@ const handleSaveProfile = async () => {
 /* Security Section */
 .security-section {
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-card);
   overflow: hidden;
   background: var(--bg-subtle);
 }
@@ -802,13 +802,13 @@ const handleSaveProfile = async () => {
   padding: 9px 16px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   color: var(--text-soft);
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
 }
 
 .btn-cancel:hover:not(:disabled) {
@@ -823,13 +823,13 @@ const handleSaveProfile = async () => {
   padding: 9px 18px;
   background: var(--accent-primary);
   border: 1px solid var(--accent-primary);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   color: #ffffff;
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
   box-shadow: none;
 }
 
