@@ -106,7 +106,7 @@
             <!-- Nomor Halaman -->
             <div class="page-numbers">
               <button
-                v-for="page in totalPages"
+                v-for="page in visiblePages"
                 :key="page"
                 class="page-num-btn"
                 :class="{ active: page === currentPage }"
@@ -161,6 +161,12 @@ const currentPage = ref<number>(1)
 
 const totalPages = computed<number>(() => {
   return Math.ceil(props.tasks.length / pageSize.value) || 1
+})
+
+const visiblePages = computed<number[]>(() => {
+  const max = 5
+  const start = Math.max(1, Math.min(currentPage.value - Math.floor(max / 2), totalPages.value - max + 1))
+  return Array.from({ length: Math.min(max, totalPages.value) }, (_, index) => start + index)
 })
 
 const paginatedTasks = computed<Task[]>(() => {
@@ -323,23 +329,23 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 .data-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13.5px;
+  font-size: 14px;
 }
 
 .data-table thead tr {
   border-bottom: 1px solid #1f2a3f;
-  height: 40px;
+  height: 44px;
   background: #0d1422;
 }
 
 .data-table tbody tr {
-  height: 54px;
+  height: 64px;
 }
 
 .data-table th {
-  padding: 10px 16px;
+  padding: 14px 18px;
   text-align: left;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: #cbd5e1;
   letter-spacing: 0.05em;
@@ -348,7 +354,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 }
 
 .col-no       { width: 44px; }
-.col-task     { min-width: 170px; }
+.col-task     { min-width: 240px; }
 .col-priority { width: 105px; }
 .col-due      { width: 105px; }
 .col-status   { width: 115px; }
@@ -360,7 +366,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 16px 18px;
   border-top: 1px solid #1f2a3f;
   background: #0d1422;
   flex-wrap: wrap;

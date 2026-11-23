@@ -77,10 +77,10 @@
           <span>Ruang Kerja Personal Minimalis</span>
         </div>
         <h1 class="hero-title">
-          Ruang tenang untuk menyelesaikan hal yang berarti.
+          Ruang kerja personal untuk tugas dan catatan.
         </h1>
         <p class="hero-subtitle">
-          TaktVibe adalah ruang kerja personal yang cepat dan bebas distraksi. Menggabungkan kemudahan papan Kanban, kalender tenggat, dan catatan terstruktur dalam satu tempat.
+          TaktVibe menyatukan tugas, tenggat, dan catatan dalam satu ruang kerja yang tenang.
         </p>
 
         <div class="hero-cta-wrap">
@@ -102,17 +102,12 @@
             </svg>
           </button>
         </div>
-
-        <!-- Auto Tour: Memoalkan cara kerja tiga fitur utama -->
-        <ClientOnly>
-          <component :is="FeatureTour" class="hero-tour" />
-        </ClientOnly>
       </div>
     </section>
 
     <!-- ─── 3. THE FOCUS CANVAS: GENUINE LIVE WORKBENCH ─────────────────────── -->
     <section id="demo" class="canvas-section">
-      <div class="focus-board reveal">
+      <div class="focus-board">
         <!-- Board Header -->
         <div class="board-header">
           <div class="board-heading-wrap">
@@ -201,6 +196,7 @@
             type="text"
             placeholder="Tambah tugas baru langsung di sini, lalu tekan Enter..."
             class="quick-add-input"
+            aria-label="Tambah tugas baru"
           />
           <button v-if="newTaskInput.trim()" type="submit" class="quick-add-btn">
             Tambah
@@ -217,15 +213,12 @@
     <!-- ─── 4. EDITORIAL STORY VIGNETTES (UNNESTED & CLEAN) ────────────────── -->
     <section id="fitur" class="stories-section">
       <!-- Story 1: Tiga Sudut Pandang -->
-      <div class="story-item reveal">
+      <div class="story-item">
         <div class="story-narrative">
           <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 01 Tiga Sudut Pandang</span>
-          <h2 class="story-title">Tiga cara melihat pekerjaan Anda.</h2>
+          <h2 class="story-title">Tiga tampilan untuk tugas Anda.</h2>
           <p class="story-desc">
             Kadang Anda memerlukan papan Kanban visual saat memproses alur kerja harian. Di hari lain, Anda memerlukan kalender bulanan untuk mengantisipasi tenggat waktu, atau tabel ringkas untuk melihat puluhan tugas sekaligus.
-          </p>
-          <p class="story-desc">
-            TaktVibe menyediakan ketiganya dalam satu data terpadu tanpa perlu menduplikasi catatan Anda.
           </p>
         </div>
 
@@ -309,15 +302,12 @@
       </div>
 
       <!-- Story 2: Lampiran Dokumen & Media -->
-      <div class="story-item reverse reveal">
+      <div class="story-item reverse">
         <div class="story-narrative">
           <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 02 Lampiran Terstruktur</span>
-          <h2 class="story-title">Lampiran dan dokumen di tempat yang tepat.</h2>
+          <h2 class="story-title">Lampiran tugas dalam satu tempat.</h2>
           <p class="story-desc">
             Sematkan tangkapan layar, bukti pengerjaan, atau file pendukung langsung di dalam kartu tugas. Tidak perlu mencari tautan terpisah di aplikasi perpesanan.
-          </p>
-          <p class="story-desc">
-            Dilengkapi penampil gambar Lightbox bawaan agar Anda dapat meninjau aset secara instan tanpa harus mengunduh ulang.
           </p>
         </div>
 
@@ -340,15 +330,12 @@
       </div>
 
       <!-- Story 3: Kedaulatan & Keamanan Data -->
-      <div id="kedaulatan" class="story-item reveal">
+      <div id="kedaulatan" class="story-item">
         <div class="story-narrative">
           <span class="story-eyebrow"><span class="story-eyebrow-dot"></span>Bab 03 Kedaulatan Data</span>
-          <h2 class="story-title">Data Anda sepenuhnya milik Anda.</h2>
+          <h2 class="story-title">Ekspor data tugas kapan saja.</h2>
           <p class="story-desc">
             Tanpa keterikatan platform (*zero vendor lock-in*). Ekspor seluruh riwayat tugas Anda ke format CSV atau JSON kapan pun Anda inginkan.
-          </p>
-          <p class="story-desc">
-            Setiap catatan dilindungi oleh isolasi akun mandiri (*Row-Level Security*), memastikan tidak ada orang lain yang dapat melihat tugas pribadi Anda.
           </p>
         </div>
 
@@ -434,14 +421,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, defineAsyncComponent } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useAuthStore } from '~/stores/authStore'
 import { useTheme } from '~/composables/useTheme'
-const FeatureTour = defineAsyncComponent(() => import('~/components/FeatureTour.vue'))
 
 definePageMeta({
   title: 'Personal Task & Knowledge Management',
   layout: false
+})
+
+useHead({
+  title: 'Personal Task & Knowledge Management'
 })
 
 const authStore = useAuthStore()
@@ -822,7 +812,7 @@ html.light .site-header.scrolled {
 /* ─── 2. HERO SECTION ────────────────────────────────────────────────────── */
 .hero-section {
   position: relative;
-  padding: 88px 24px 52px;
+  padding: 104px 24px 88px;
   text-align: center;
   overflow: hidden;
 }
@@ -849,12 +839,6 @@ html.light .hero-bg-grid {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
-}
-
-.hero-tour {
-  margin-top: 52px;
-  text-align: left;
-  animation: hero-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.34s both;
 }
 
 .hero-badge {
@@ -933,8 +917,7 @@ html.light .hero-bg-grid {
   .hero-badge,
   .hero-title,
   .hero-subtitle,
-  .hero-cta-wrap,
-  .hero-tour {
+  .hero-cta-wrap {
     animation: none;
   }
 }
@@ -1157,6 +1140,11 @@ html.light .focus-board:hover {
   outline: none;
 }
 
+.quick-add-input:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
 .quick-add-input::placeholder {
   color: var(--text-muted);
 }
@@ -1177,7 +1165,7 @@ html.light .focus-board:hover {
   background: var(--bg-surface);
   border-top: 1px solid var(--border-color);
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-align: center;
   line-height: 1.5;
 }
@@ -1545,7 +1533,7 @@ html.light .focus-board:hover {
 .invitation-desc {
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   margin: 0 auto 32px;
 }
 
@@ -1644,6 +1632,12 @@ html.light .focus-board:hover {
   .board-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .filter-pill,
+  .quick-add-input,
+  .brand-link {
+    min-height: 44px;
   }
 
   .footer-inner {

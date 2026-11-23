@@ -7,8 +7,12 @@
 
 <script setup lang="ts">
 definePageMeta({
-  title: 'Callback',
+  title: 'Autentikasi',
   layout: false
+})
+
+useHead({
+  title: 'Autentikasi'
 })
 
 const supabase = useSupabaseClient()

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { useToastStore } from '~/stores/toastStore'
+import { logError, logWarn } from '~/utils/logger'
 import type {
   Task,
   TaskPayload,
@@ -83,7 +84,7 @@ export const useTaskStore = defineStore('task', () => {
         .createSignedUrl(path, SIGNED_URL_TTL_SECONDS)
 
       if (error) {
-        console.error('Error creating signed URL:', error.message)
+        logError('Error creating signed URL:', error.message)
         return null
       }
       if (data?.signedUrl) {
@@ -273,7 +274,7 @@ export const useTaskStore = defineStore('task', () => {
 
       // Resilient fallback jika tabel subtasks belum dimigrasi di remote Supabase
       if (error && (error.message?.includes('subtasks') || error.code === 'PGRST204' || error.message?.includes('relation'))) {
-        console.warn('Tabel subtasks belum dibuat di Supabase remote. Mengambil data tugas tanpa relasi subtasks.')
+        logWarn('Tabel subtasks belum dibuat di Supabase remote. Mengambil data tugas tanpa relasi subtasks.')
         let fallbackQuery: any = supabase
           .from('todos')
           .select('*, task_attachments(*)')
@@ -287,7 +288,7 @@ export const useTaskStore = defineStore('task', () => {
       }
 
       if (error) {
-        console.error('Error fetching tasks:', error)
+        logError('Error fetching tasks:', error)
       } else {
         tasks.value = (data ?? []).map((t: any) => {
           const rawAtts: TaskAttachment[] = t.task_attachments ?? []
@@ -320,7 +321,7 @@ export const useTaskStore = defineStore('task', () => {
         }) as Task[]
       }
     } catch (err) {
-      console.error('Unexpected error fetching tasks:', err)
+      logError('Unexpected error fetching tasks:', err)
     } finally {
       pending.value = false
     }
@@ -427,12 +428,12 @@ export const useTaskStore = defineStore('task', () => {
         .createSignedUrl(path, expiresIn)
 
       if (error) {
-        console.error('Error creating signed URL:', error.message)
+        logError('Error creating signed URL:', error.message)
         return null
       }
       return data.signedUrl
     } catch (err) {
-      console.error('Signed URL exception:', err)
+      logError('Signed URL exception:', err)
       return null
     }
   }
@@ -492,7 +493,7 @@ export const useTaskStore = defineStore('task', () => {
       })
 
     if (error) {
-      console.error('Error uploading file to storage:', error)
+      logError('Error uploading file to storage:', error)
       throw error
     }
 
@@ -587,7 +588,7 @@ export const useTaskStore = defineStore('task', () => {
 
       // Resilient fallback jika kolom alur kerja SoloFlow (priority, status, dll.) belum dieksekusi di database
       if (taskError && (taskError.message?.includes('column') || taskError.code === 'PGRST204' || taskError.message?.includes('schema cache'))) {
-        console.warn('Kolom alur kerja SoloFlow belum ada di database Supabase. Menggunakan fallback:', taskError.message)
+        logWarn('Kolom alur kerja SoloFlow belum ada di database Supabase. Menggunakan fallback:', taskError.message)
         const minimalPayload: any = {
           task: taskText,
           is_completed: status === 'DONE'
@@ -605,7 +606,7 @@ export const useTaskStore = defineStore('task', () => {
       }
 
       if (taskError) {
-        console.error('Error inserting task:', taskError)
+        logError('Error inserting task:', taskError)
         toast.error('Gagal menambahkan tugas: ' + taskError.message)
         // Bersihkan file yang sudah terupload sebelum insert gagal, agar tidak
         // menumpuk sebagai file yatim di Storage.
@@ -650,7 +651,7 @@ export const useTaskStore = defineStore('task', () => {
         if (!attError && attData) {
           newTask.task_attachments = attData as TaskAttachment[]
         } else if (attError) {
-          console.warn('Gagal menyimpan lampiran metadata:', attError.message)
+          logWarn('Gagal menyimpan lampiran metadata:', attError.message)
         }
       }
 
@@ -661,7 +662,7 @@ export const useTaskStore = defineStore('task', () => {
       toast.success('Tugas baru berhasil ditambahkan!')
       return true
     } catch (err: any) {
-      console.error('Unexpected error adding task:', err)
+      logError('Unexpected error adding task:', err)
       toast.error('Terjadi kesalahan saat menambahkan tugas: ' + (err.message || err))
       return false
     } finally {
@@ -782,7 +783,7 @@ export const useTaskStore = defineStore('task', () => {
       // Tambahkan ke Activity Log
       toast.success(`Lampiran '${attachment.file_name}' berhasil dihapus!`)
     } catch (err: any) {
-      console.error('Error deleting attachment:', err)
+      logError('Error deleting attachment:', err)
       toast.error('Terjadi kesalahan saat menghapus lampiran: ' + err.message)
     }
   }
@@ -802,7 +803,7 @@ export const useTaskStore = defineStore('task', () => {
       .eq('id', task.id)
 
     if (error) {
-      console.error('Error toggling task:', error)
+      logError('Error toggling task:', error)
       toast.error('Gagal memperbarui status tugas')
       if (targetIdx !== -1 && tasks.value[targetIdx]) {
         tasks.value[targetIdx].status = previousStatus
@@ -830,7 +831,7 @@ export const useTaskStore = defineStore('task', () => {
       .eq('id', task.id)
 
     if (error && (error.message?.includes('column') || error.code === 'PGRST204' || error.message?.includes('schema cache'))) {
-      console.warn('Kolom status belum ada di database Supabase. Menggunakan fallback status penyelesaian.')
+      logWarn('Kolom status belum ada di database Supabase. Menggunakan fallback status penyelesaian.')
       const fallback = await (supabase.from('todos') as any)
         .update({ is_completed: newStatus === 'DONE' })
         .eq('id', task.id)
@@ -838,7 +839,7 @@ export const useTaskStore = defineStore('task', () => {
     }
 
     if (error) {
-      console.error('Error updating status:', error)
+      logError('Error updating status:', error)
       toast.error('Gagal memperbarui status tugas')
       if (targetIdx !== -1 && tasks.value[targetIdx]) {
         tasks.value[targetIdx].status = oldStatus
@@ -890,7 +891,7 @@ export const useTaskStore = defineStore('task', () => {
       .eq('id', task.id)
 
     if (error && (error.message?.includes('column') || error.code === 'PGRST204' || error.message?.includes('schema cache'))) {
-      console.warn('Kolom atribut SoloFlow belum ada di database Supabase. Menggunakan fallback pembaruan kolom task bawaan.')
+      logWarn('Kolom atribut SoloFlow belum ada di database Supabase. Menggunakan fallback pembaruan kolom task bawaan.')
       const fallback = await (supabase.from('todos') as any)
         .update({ task: newTitle, is_completed: newStatus === 'DONE' })
         .eq('id', task.id)
@@ -898,7 +899,7 @@ export const useTaskStore = defineStore('task', () => {
     }
 
     if (error) {
-      console.error('Error editing task:', error)
+      logError('Error editing task:', error)
       toast.error('Gagal mengubah tugas: ' + error.message)
       if (targetIdx !== -1 && tasks.value[targetIdx]) {
         Object.assign(tasks.value[targetIdx], oldTask)
@@ -927,12 +928,12 @@ export const useTaskStore = defineStore('task', () => {
         .eq('id', taskId)
 
       if (error) {
-        console.warn('Gagal menyimpan actual_hours ke Supabase:', error.message)
+        logWarn('Gagal menyimpan actual_hours ke Supabase:', error.message)
       } else {
         toast.success(`Waktu fokus ${minutesSpent} menit (+${hoursToAdd} jam) berhasil dicatat ke tugas!`)
       }
     } catch (err: any) {
-      console.warn('Error saat update actual_hours:', err)
+      logWarn('Error saat update actual_hours:', err)
     }
   }
 
@@ -947,7 +948,7 @@ export const useTaskStore = defineStore('task', () => {
       .eq('id', task.id)
 
     if (error) {
-      console.error('Error deleting task:', error)
+      logError('Error deleting task:', error)
       toast.error('Gagal menghapus tugas: ' + error.message)
       tasks.value = oldTasks
       return
@@ -961,7 +962,7 @@ export const useTaskStore = defineStore('task', () => {
       try {
         await removeStoragePaths(paths)
       } catch (err) {
-        console.warn('Error batch deleting storage files:', err)
+        logWarn('Error batch deleting storage files:', err)
       }
     } else if (task.cover_image_url) {
       // Legacy cleanup — path lama `public/{fileName}` tidak punya segmen userId,
@@ -972,7 +973,7 @@ export const useTaskStore = defineStore('task', () => {
         const fileName = parts[parts.length - 1]
         await supabase.storage.from(PUBLIC_BUCKET).remove([`public/${fileName}`])
       } catch (err) {
-        console.error('Error parsing image URL:', err)
+        logError('Error parsing image URL:', err)
       }
     }
   }
@@ -995,7 +996,7 @@ export const useTaskStore = defineStore('task', () => {
         .eq('id', task.id)
 
       if (error) {
-        console.warn('Gagal mengubah batas waktu tugas di database:', error.message)
+        logWarn('Gagal mengubah batas waktu tugas di database:', error.message)
         if (targetIdx !== -1 && tasks.value[targetIdx]) {
           tasks.value[targetIdx].due_date = oldDueDate
         }
@@ -1007,7 +1008,7 @@ export const useTaskStore = defineStore('task', () => {
       toast.info(dueDate ? 'Batas waktu tugas berhasil diperbarui' : 'Batas waktu tugas dihapus')
       return true
     } catch (err) {
-      console.warn('Error updating due date:', err)
+      logWarn('Error updating due date:', err)
       if (targetIdx !== -1 && tasks.value[targetIdx]) {
         tasks.value[targetIdx].due_date = oldDueDate
       }
@@ -1065,7 +1066,7 @@ export const useTaskStore = defineStore('task', () => {
         }
       }
     } catch (err) {
-      console.warn('Subtasks fetch error:', err)
+      logWarn('Subtasks fetch error:', err)
     }
   }
 
@@ -1085,13 +1086,13 @@ export const useTaskStore = defineStore('task', () => {
         .eq('id', taskId)
 
       if (error) {
-        console.warn('Simpan deskripsi markdown gagal:', error.message)
+        logWarn('Simpan deskripsi markdown gagal:', error.message)
         return false
       }
       toast.success('Catatan tugas berhasil disimpan!')
       return true
     } catch (err: any) {
-      console.error('Error save description:', err)
+      logError('Error save description:', err)
       return false
     }
   }
@@ -1137,7 +1138,7 @@ export const useTaskStore = defineStore('task', () => {
         .single()
 
       if (error) {
-        console.warn('Simpan subtask ke database gagal (migrasi 06 mungkin belum dijalankan):', error.message)
+        logWarn('Simpan subtask ke database gagal (migrasi 06 mungkin belum dijalankan):', error.message)
         return tempSubtask
       }
 
@@ -1155,7 +1156,7 @@ export const useTaskStore = defineStore('task', () => {
         return data as Subtask
       }
     } catch (err) {
-      console.warn('Error adding subtask:', err)
+      logWarn('Error adding subtask:', err)
     }
     toast.success('Subtask berhasil ditambahkan!')
     return tempSubtask
@@ -1173,7 +1174,7 @@ export const useTaskStore = defineStore('task', () => {
           .eq('id', subtask.id)
       }
     } catch (err) {
-      console.warn('Error toggling subtask:', err)
+      logWarn('Error toggling subtask:', err)
     }
   }
 
@@ -1194,7 +1195,7 @@ export const useTaskStore = defineStore('task', () => {
           .eq('id', subtaskId)
       }
     } catch (err) {
-      console.warn('Error deleting subtask:', err)
+      logWarn('Error deleting subtask:', err)
     }
     toast.info('Subtask berhasil dihapus')
   }
@@ -1210,11 +1211,11 @@ export const useTaskStore = defineStore('task', () => {
 
       if (error) {
         if (error.message?.includes('projects') || error.code === 'PGRST204' || error.message?.includes('relation')) {
-          console.warn('Tabel projects belum dibuat di Supabase remote.')
+          logWarn('Tabel projects belum dibuat di Supabase remote.')
           projects.value = []
           return
         }
-        console.error('Error fetching projects:', error)
+        logError('Error fetching projects:', error)
       } else if (data) {
         projects.value = data as Project[]
         // Hubungkan relasi project pada tasks yang sudah dimuat
@@ -1225,7 +1226,7 @@ export const useTaskStore = defineStore('task', () => {
         })
       }
     } catch (err) {
-      console.warn('Unexpected error fetching projects:', err)
+      logWarn('Unexpected error fetching projects:', err)
     } finally {
       projectsLoading.value = false
     }
@@ -1272,7 +1273,7 @@ export const useTaskStore = defineStore('task', () => {
         .single()
 
       if (error) {
-        console.warn('Gagal menyimpan project ke Supabase (migrasi 07 mungkin belum dijalankan):', error.message)
+        logWarn('Gagal menyimpan project ke Supabase (migrasi 07 mungkin belum dijalankan):', error.message)
         return tempProject
       }
 
@@ -1285,7 +1286,7 @@ export const useTaskStore = defineStore('task', () => {
         return data as Project
       }
     } catch (err) {
-      console.warn('Error creating project:', err)
+      logWarn('Error creating project:', err)
     }
     toast.success(`Ruang kerja '${trimmedName}' berhasil dibuat!`)
     return tempProject
@@ -1328,14 +1329,14 @@ export const useTaskStore = defineStore('task', () => {
         .eq('id', id)
 
       if (error) {
-        console.warn('Gagal memperbarui project:', error.message)
+        logWarn('Gagal memperbarui project:', error.message)
         projects.value[idx] = oldProj
         return false
       }
       toast.success(`Ruang kerja '${updatedProj.name}' berhasil diperbarui!`)
       return true
     } catch (err) {
-      console.warn('Error updating project:', err)
+      logWarn('Error updating project:', err)
       projects.value[idx] = oldProj
       return false
     }
@@ -1364,14 +1365,14 @@ export const useTaskStore = defineStore('task', () => {
         .eq('id', id)
 
       if (error) {
-        console.warn('Gagal menghapus project di database:', error.message)
+        logWarn('Gagal menghapus project di database:', error.message)
         projects.value = oldProjects
         return false
       }
       toast.success('Ruang kerja berhasil dihapus!')
       return true
     } catch (err) {
-      console.warn('Error deleting project:', err)
+      logWarn('Error deleting project:', err)
       projects.value = oldProjects
       return false
     }
@@ -1401,13 +1402,13 @@ export const useTaskStore = defineStore('task', () => {
         .eq('id', taskId)
 
       if (error) {
-        console.warn('Update task project gagal (kolom project_id mungkin belum ada):', error.message)
+        logWarn('Update task project gagal (kolom project_id mungkin belum ada):', error.message)
         return false
       }
       toast.info(matchedProject ? `Tugas dipindahkan ke '${matchedProject.name}'` : 'Tugas dikeluarkan dari ruang kerja')
       return true
     } catch (err) {
-      console.warn('Error updating task project:', err)
+      logWarn('Error updating task project:', err)
       return false
     }
   }
@@ -1469,13 +1470,13 @@ export const useTaskStore = defineStore('task', () => {
         .order('created_at', { ascending: false })
 
       if (error) {
-        console.error('Error fetching task templates:', error)
+        logError('Error fetching task templates:', error)
         templates.value = []
         return
       }
       templates.value = (data ?? []) as TaskTemplate[]
     } catch (err) {
-      console.error('Unexpected error fetching task templates:', err)
+      logError('Unexpected error fetching task templates:', err)
       templates.value = []
     }
   }
@@ -1499,12 +1500,12 @@ export const useTaskStore = defineStore('task', () => {
     try {
       const { error } = await supabase.from('task_templates').delete().eq('id', id)
       if (error) {
-        console.error('Error deleting task template:', error)
+        logError('Error deleting task template:', error)
         return
       }
       templates.value = templates.value.filter(t => t.id !== id)
     } catch (err) {
-      console.error('Unexpected error deleting task template:', err)
+      logError('Unexpected error deleting task template:', err)
     }
   }
 
@@ -1529,13 +1530,13 @@ export const useTaskStore = defineStore('task', () => {
         .order('updated_at', { ascending: false })
 
       if (error) {
-        console.warn('Gagal mengambil catatan project:', error.message)
+        logWarn('Gagal mengambil catatan project:', error.message)
         projectNotes.value = []
         return
       }
       projectNotes.value = (data ?? []) as ProjectNote[]
     } catch (err) {
-      console.warn('Error fetching project notes:', err)
+      logWarn('Error fetching project notes:', err)
       projectNotes.value = []
     } finally {
       projectNotesLoading.value = false
@@ -1562,7 +1563,7 @@ export const useTaskStore = defineStore('task', () => {
         .single()
 
       if (error) {
-        console.warn('Gagal membuat catatan project:', error.message)
+        logWarn('Gagal membuat catatan project:', error.message)
         toast.error('Gagal membuat catatan.')
         return null
       }
@@ -1571,7 +1572,7 @@ export const useTaskStore = defineStore('task', () => {
       toast.success('Catatan berhasil dibuat!')
       return note
     } catch (err) {
-      console.warn('Error creating project note:', err)
+      logWarn('Error creating project note:', err)
       toast.error('Gagal membuat catatan.')
       return null
     }
@@ -1590,7 +1591,7 @@ export const useTaskStore = defineStore('task', () => {
         .eq('id', id)
 
       if (error) {
-        console.warn('Gagal memperbarui catatan project:', error.message)
+        logWarn('Gagal memperbarui catatan project:', error.message)
         if (oldNote && idx !== -1) projectNotes.value[idx] = oldNote
         toast.error('Gagal menyimpan catatan.')
         return false
@@ -1598,7 +1599,7 @@ export const useTaskStore = defineStore('task', () => {
       toast.success('Catatan tersimpan.')
       return true
     } catch (err) {
-      console.warn('Error updating project note:', err)
+      logWarn('Error updating project note:', err)
       if (oldNote && idx !== -1) projectNotes.value[idx] = oldNote
       toast.error('Gagal menyimpan catatan.')
       return false
@@ -1615,7 +1616,7 @@ export const useTaskStore = defineStore('task', () => {
         .eq('id', id)
 
       if (error) {
-        console.warn('Gagal menghapus catatan project:', error.message)
+        logWarn('Gagal menghapus catatan project:', error.message)
         projectNotes.value = oldNotes
         toast.error('Gagal menghapus catatan.')
         return false
@@ -1623,7 +1624,7 @@ export const useTaskStore = defineStore('task', () => {
       toast.success('Catatan dihapus.')
       return true
     } catch (err) {
-      console.warn('Error deleting project note:', err)
+      logWarn('Error deleting project note:', err)
       projectNotes.value = oldNotes
       toast.error('Gagal menghapus catatan.')
       return false

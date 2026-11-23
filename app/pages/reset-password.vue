@@ -108,7 +108,12 @@
 import { useAuthStore } from '~/stores/authStore'
 
 definePageMeta({
+  title: 'Reset Kata Sandi',
   layout: 'auth'
+})
+
+useHead({
+  title: 'Reset Kata Sandi'
 })
 
 const route = useRoute()

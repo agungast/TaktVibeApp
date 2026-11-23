@@ -1,10 +1,23 @@
 ﻿import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
-serve(async () => {
+serve(async (req) => {
+  // ─── Auth check ──────────────────────────────────────────────────
+  // Hanya izinkan request yang membawa header Authorization
+  // dengan nilai "Bearer <SERVICE_ROLE_KEY>". Ini mencegah
+  // pemanggilan anon/anonim ke endpoint backup.
+  const authHeader = req.headers.get('Authorization')
+  const expectedKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
+  if (!authHeader || authHeader !== `Bearer ${expectedKey}`) {
+    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' }
+    })
+  }
+
   const supabase = createClient(
     Deno.env.get('SUPABASE_URL')!,
-    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    expectedKey!
   )
 
   // 1. Ambil semua data todos

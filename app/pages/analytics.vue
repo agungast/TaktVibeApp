@@ -52,6 +52,15 @@
 
 <script setup lang="ts">
 import { useTaskStore } from '~/stores/taskStore'
+
+definePageMeta({
+  title: 'Analitik'
+})
+
+useHead({
+  title: 'Analitik'
+})
+
 const taskStore = useTaskStore()
 await taskStore.fetchTasks()
 

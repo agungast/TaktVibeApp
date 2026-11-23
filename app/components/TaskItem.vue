@@ -45,26 +45,6 @@
             {{ completedSubtasksCount }}/{{ task.subtasks.length }}
           </span>
 
-          <!-- Markdown Doc Badge -->
-          <span 
-            v-if="task.description_markdown"
-            class="meta-doc-badge"
-            @click.stop="taskStore.openDetailModal(task)"
-            title="Memiliki catatan markdown"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-            Doc
-          </span>
-
-          <!-- Focus Hours Badge -->
-          <span
-            v-if="task.actual_hours || task.estimated_hours"
-            class="meta-focus-badge"
-            :title="`Jam aktual: ${task.actual_hours || 0}h / Estimasi: ${task.estimated_hours || 0}h`"
-          >
-            ⏱️ {{ task.actual_hours || 0 }}h / {{ task.estimated_hours || 0 }}h
-          </span>
-
           <span v-for="tag in task.tags" :key="tag" class="meta-tag-badge">#{{ tag }}</span>
         </div>
       </div>
@@ -667,7 +647,7 @@ const confirmEdit = (): void => {
 }
 
 td {
-  padding: 12px 16px;
+  padding: 15px 18px;
   vertical-align: middle;
 }
 
@@ -731,8 +711,8 @@ td {
   display: block;
   flex: 1 1 auto;
   min-width: 0;
-  font-size: 13.5px;
-  color: #f8fafc;
+  font-size: 14px;
+  color: var(--text-heading, #f8fafc);
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -766,32 +746,12 @@ td {
   border-color: rgba(34, 197, 94, 0.4);
 }
 
-.meta-doc-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #93c5fd;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  padding: 1px 6px;
-  border-radius: 4px;
-  line-height: 1.3;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.meta-doc-badge:hover {
-  background: rgba(59, 130, 246, 0.18);
-  border-color: rgba(59, 130, 246, 0.4);
-}
-
 .task-meta-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 4px 10px;
+  margin-top: 4px;
 }
 
 .meta-project-badge {
@@ -818,13 +778,9 @@ td {
 }
 
 .meta-tag-badge {
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #94a3b8;
-  background: #090d16;
-  border: 1px solid #1f2a3f;
-  padding: 2px 7px;
-  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-secondary);
   line-height: 1.3;
 }
 
@@ -839,7 +795,7 @@ td {
   gap: 5px;
   padding: 3px 7px;
   border-radius: 6px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
   letter-spacing: 0.01em;
@@ -891,7 +847,7 @@ td {
   background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   color: var(--text-soft);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -913,7 +869,7 @@ td {
   gap: 6px;
   padding: 3px 8px;
   border-radius: 12px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   border: 1px solid transparent;
   cursor: pointer;

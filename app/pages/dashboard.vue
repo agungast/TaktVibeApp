@@ -23,20 +23,6 @@
             <span>Quick Add</span>
           </button>
           <button
-            type="button"
-            class="ghost-btn"
-            @click="focusStore.openFocusWidget()"
-            title="Buka timer fokus"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="13" r="8"></circle>
-              <polyline points="12 9 12 13 14 15"></polyline>
-              <line x1="9" y1="2" x2="15" y2="2"></line>
-            </svg>
-            <span>Timer fokus</span>
-          </button>
-
-          <button
             id="open-composer-btn"
             type="button"
             class="primary-btn"
@@ -126,9 +112,6 @@
     <!-- Card: Daftar Tugas -->
     <section class="content-card table-card">
       <div class="card-header">
-        <div class="card-title-group">
-          <h2 class="card-title">Daftar Tugas</h2>
-        </div>
         <div class="card-header-actions">
           <div class="view-switcher-group" role="group" aria-label="Pilih tampilan">
             <button
@@ -223,7 +206,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useTaskStore } from '~/stores/taskStore'
-import { useFocusStore } from '~/stores/focusStore'
 import TaskTemplateModal from '~/components/TaskTemplateModal.vue'
 import type { Task, TaskFormSubmitPayload, TaskEditPayload, TaskStatus } from '~/types/task'
 
@@ -235,7 +217,6 @@ definePageMeta({
 
 // ─── Pinia Store ────────────────────────────────────────────────────────────
 const taskStore = useTaskStore()
-const focusStore = useFocusStore()
 const {
   pending,
   uploading,
@@ -414,10 +395,10 @@ onMounted(async () => {
 /* ─── PAGE ────────────────────────────────────────────────────────────────── */
 .page-content {
   flex: 1;
-  padding: 24px;
+  padding: 28px 32px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   background: var(--bg-base, #090d16);
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -459,8 +440,7 @@ onMounted(async () => {
   flex-shrink: 0;
 }
 
-.primary-btn,
-.ghost-btn {
+.primary-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -483,17 +463,6 @@ onMounted(async () => {
 
 .primary-btn:hover {
   background: var(--accent-primary-hover);
-}
-
-.ghost-btn {
-  background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--text-soft);
-}
-
-.ghost-btn:hover {
-  background: var(--bg-elevated);
-  color: var(--text-primary);
 }
 
 /* ─── Quick Input Button (Sprint 3) ─────────────────────────────────── */
@@ -533,7 +502,6 @@ onMounted(async () => {
 }
 
 .primary-btn:focus-visible,
-.ghost-btn:focus-visible,
 .filter-btn:focus-visible,
 .view-switch-btn:focus-visible,
 .icon-btn:focus-visible,
@@ -660,18 +628,12 @@ onMounted(async () => {
 
 .filter-count {
   font-size: 12px;
-  font-weight: 600;
-  color: var(--text-soft);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  padding: 0 6px;
-  line-height: 17px;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
 .filter-btn.active .filter-count {
   color: var(--text-primary);
-  border-color: var(--border-subtle);
 }
 
 .toolbar-meta {
@@ -804,8 +766,7 @@ onMounted(async () => {
     width: 100%;
   }
 
-  .page-actions .primary-btn,
-  .page-actions .ghost-btn {
+  .page-actions .primary-btn {
     flex: 1 1 0;
   }
 
@@ -859,7 +820,6 @@ onMounted(async () => {
 @media (prefers-reduced-motion: reduce) {
   .page-content,
   .primary-btn,
-  .ghost-btn,
   .filter-btn,
   .view-switch-btn,
   .icon-btn,
