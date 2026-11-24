@@ -431,7 +431,6 @@ defineExpose({
   display: flex;
   flex-direction: column;
   gap: 14px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Toggle untuk field opsional */
@@ -874,7 +873,7 @@ defineExpose({
 }
 
 .doc-icon.pdf { color: var(--color-danger); }
-.doc-icon.word { color: #60a5fa; }
+.doc-icon.word { color: var(--accent-violet); }
 .doc-icon.zip { color: var(--color-warning); }
 
 .file-ext {

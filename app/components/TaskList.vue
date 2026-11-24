@@ -226,7 +226,6 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   padding: 36px 20px;
   color: var(--text-soft);
   font-size: 13.5px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .pulse-spinner {
@@ -253,7 +252,6 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   gap: 10px;
   min-height: 380px;
   flex: 1;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .empty-icon {
@@ -303,7 +301,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 }
 
 .empty-cta:hover {
-  background: #0047c7;
+  background: var(--accent-primary-hover);
 }
 
 .empty-cta:focus-visible {
@@ -318,7 +316,6 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
   justify-content: space-between;
   flex: 1;
   min-height: 0;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .table-scroll-container {
@@ -340,6 +337,11 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 
 .data-table tbody tr {
   height: 64px;
+  transition: background-color 150ms ease;
+}
+.data-table tbody tr:hover,
+.data-table :deep(.table-row:hover) {
+  background: var(--bg-subtle);
 }
 
 .data-table th {
@@ -386,7 +388,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 }
 
 .text-highlight {
-  color: #f8fafc;
+  color: var(--text-heading);
   font-weight: 600;
 }
 
@@ -404,13 +406,13 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 
 .stat-pill.done {
   background: rgba(34, 197, 94, 0.12);
-  color: #4ade80;
+  color: var(--color-success);
   border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
 .stat-pill.active {
   background: rgba(245, 158, 11, 0.12);
-  color: #fbbf24;
+  color: var(--color-warning);
   border: 1px solid rgba(245, 158, 11, 0.25);
 }
 
@@ -463,7 +465,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 }
 
 .size-pill-btn.active {
-  background: #2563eb;
+  background: var(--accent-primary);
   color: #ffffff;
 }
 
@@ -523,7 +525,7 @@ const activeCount = computed<number>(() => props.tasks.filter((t: Task) => t.sta
 }
 
 .page-num-btn:hover:not(.active) {
-  border-color: #2e3e5e;
+  border-color: var(--border-subtle);
   color: var(--text-primary);
 }
 

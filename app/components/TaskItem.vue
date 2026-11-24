@@ -635,11 +635,10 @@ const confirmEdit = (): void => {
 .table-row {
   border-bottom: 1px solid var(--bg-hover);
   transition: background 0.15s ease;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .table-row:hover {
-  background: #0d1424;
+  background: var(--bg-subtle);
 }
 
 .table-row:last-child {
@@ -694,13 +693,13 @@ td {
   border-radius: 50%;
   background: rgba(34, 197, 94, 0.16);
   border: 1px solid rgba(34, 197, 94, 0.35);
-  color: #4ade80;
+  color: var(--color-success);
 }
 
 .task-text-btn:focus-visible {
   outline: none;
   border-radius: 4px;
-  box-shadow: 0 0 0 3px rgba(0, 90, 251, 0.35);
+  box-shadow: 0 0 0 3px rgba(29,95,191,0.18);
 }
 
 .task-text-btn:hover .task-text:not(.completed-text) {
@@ -712,7 +711,7 @@ td {
   flex: 1 1 auto;
   min-width: 0;
   font-size: 14px;
-  color: var(--text-heading, #f8fafc);
+  color: var(--text-heading, var(--text-heading));
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -731,7 +730,7 @@ td {
   gap: 3px;
   font-size: 11.5px;
   font-weight: 600;
-  color: #4ade80;
+  color: var(--color-success);
   background: rgba(34, 197, 94, 0.1);
   border: 1px solid rgba(34, 197, 94, 0.25);
   padding: 1px 6px;
@@ -817,7 +816,7 @@ td {
 
 .priority-badge.p-medium {
   background: rgba(59, 130, 246, 0.12);
-  color: #60a5fa;
+  color: var(--accent-primary);
   border: 1px solid rgba(59, 130, 246, 0.25);
 }
 
@@ -892,7 +891,7 @@ td {
 .status-todo {
   background: rgba(59, 130, 246, 0.12);
   border-color: rgba(59, 130, 246, 0.25);
-  color: #93c5fd;
+  color: var(--accent-primary);
 }
 
 .status-todo:hover {
@@ -1011,7 +1010,7 @@ td {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #f59e0b;
+  background: var(--color-warning);
 }
 
 .add-att-quick-btn {
@@ -1076,7 +1075,7 @@ td {
 
 .menu-trigger:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 90, 251, 0.35);
+  box-shadow: 0 0 0 3px rgba(29,95,191,0.18);
 }
 
 .menu-panel-fixed {
@@ -1129,7 +1128,7 @@ td {
 .menu-item:focus-visible {
   outline: none;
   background: var(--bg-active);
-  box-shadow: inset 0 0 0 2px rgba(0, 90, 251, 0.5);
+  box-shadow: inset 0 0 0 2px rgba(29,95,191,0.35);
 }
 
 .menu-item-danger {
@@ -1151,7 +1150,6 @@ td {
   justify-content: center;
   z-index: 9999;
   padding: 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .modal-box {
@@ -1227,7 +1225,7 @@ td {
   padding: 9px 16px;
   border-radius: var(--radius-control);
   border: none;
-  background: #ef4444;
+  background: var(--color-danger);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -1237,7 +1235,7 @@ td {
 }
 
 .btn-confirm:hover {
-  background: #dc2626;
+  background: var(--color-danger-hover);
   box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
 }
 
@@ -1368,15 +1366,15 @@ td {
 }
 
 .dot-medium .p-dot {
-  background: #60a5fa;
+  background: var(--accent-primary);
 }
 
 .dot-high .p-dot {
-  background: #fbbf24;
+  background: var(--color-warning);
 }
 
 .dot-urgent .p-dot {
-  background: #f87171;
+  background: var(--color-danger);
 }
 
 .edit-grid-2col {
@@ -1407,7 +1405,7 @@ td {
 .edit-input:focus,
 .edit-select:focus {
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 2px rgba(0, 90, 251, 0.2);
+  box-shadow: 0 0 0 3px rgba(29,95,191,0.14);
 }
 
 .edit-tags-list {

@@ -61,16 +61,17 @@ onMounted(async () => {
   justify-content: center;
   min-height: 100vh;
   gap: 12px;
-  color: var(--text-soft);
+  color: var(--text-secondary);
   text-align: center;
-  background-color: var(--bg-surface); /* Opsional: beri warna background konsisten */
+  background: var(--bg-base);
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .spinner {
   width: 28px;
   height: 28px;
-  border: 3px solid rgba(255, 255, 255, 0.18);
-  border-top-color: #ffffff;
+  border: 2px solid var(--border-color);
+  border-top-color: var(--text-primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }

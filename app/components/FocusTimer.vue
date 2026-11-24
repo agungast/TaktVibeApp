@@ -343,8 +343,7 @@ const focusStore = useFocusStore()
   justify-content: center;
   padding: 16px;
   background-color: var(--modal-backdrop-bg);
-  backdrop-filter: blur(6px);
-}
+  }
 
 .focus-modal-card {
   width: 100%;
@@ -445,7 +444,7 @@ const focusStore = useFocusStore()
 }
 
 .priority-badge.low { background-color: rgba(148, 163, 184, 0.15); color: var(--text-soft); }
-.priority-badge.medium { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.priority-badge.medium { background-color: rgba(59, 130, 246, 0.15); color: var(--accent-violet); }
 .priority-badge.high { background-color: rgba(245, 158, 11, 0.15); color: var(--color-warning); }
 .priority-badge.urgent { background-color: rgba(239, 68, 68, 0.15); color: var(--color-danger); }
 

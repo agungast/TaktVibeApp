@@ -96,7 +96,6 @@ onUnmounted(() => {
   justify-content: center;
   z-index: 99999;
   padding: 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Card */
@@ -191,7 +190,7 @@ onUnmounted(() => {
   justify-content: center;
   gap: 8px;
   padding: 10px 16px;
-  background: #dc2626;
+  background: var(--color-danger);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-control);
   color: #ffffff;
@@ -204,7 +203,7 @@ onUnmounted(() => {
 }
 
 .btn-confirm-logout:hover:not(:disabled) {
-  background: #b91c1c;
+  background: var(--color-danger-hover);
   box-shadow: var(--shadow-md);
 }
 

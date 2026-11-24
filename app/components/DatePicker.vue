@@ -353,7 +353,7 @@ onBeforeUnmount(() => {
   text-align: center;
   font-size: 10.5px;
   font-weight: 600;
-  color: var(--text-muted, #64748b);
+  color: var(--text-muted, var(--text-muted));
   padding: 4px 0;
 }
 
@@ -378,7 +378,7 @@ onBeforeUnmount(() => {
 }
 
 .dp-day.is-other {
-  color: var(--text-muted, #64748b);
+  color: var(--text-muted, var(--text-muted));
 }
 
 .dp-day.is-today {

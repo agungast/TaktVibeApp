@@ -49,20 +49,20 @@ const results = computed<Item[]>(() => {
   const q = query.value.trim().toLowerCase()
   const items: Item[] = []
 
-  items.push({ key: 'new-task', icon: '➕', title: 'Buat Tugas Baru', shortcut: 'c', action: () => { taskStore.showTemplateModal ? taskStore.openTemplateModal() : null; close(); router.push('/dashboard') } })
-  items.push({ key: 'quick-add', icon: '⚡', title: 'Quick Add (Template)', action: () => { taskStore.openTemplateModal(); close() } })
-  items.push({ key: 'toggle-theme', icon: isDark.value ? '🌞' : '🌙', title: isDark.value ? 'Ganti ke Mode Terang' : 'Ganti ke Mode Gelap', action: () => { toggleTheme(); close() } })
-  items.push({ key: 'view-table', icon: '📋', title: 'Tampilan Tabel', action: () => { taskStore.setViewMode('table'); close(); router.push('/dashboard') } })
-  items.push({ key: 'view-kanban', icon: '🗂️', title: 'Tampilan Kanban', action: () => { taskStore.setViewMode('kanban'); close(); router.push('/dashboard') } })
-  items.push({ key: 'view-calendar', icon: '📅', title: 'Tampilan Kalender', action: () => { taskStore.setViewMode('calendar'); close(); router.push('/dashboard') } })
-  items.push({ key: 'all-spaces', icon: '🌐', title: 'Semua Ruang Kerja', action: () => { taskStore.setActiveProject(null); close(); router.push('/dashboard') } })
+  items.push({ key: 'new-task', icon: '+', title: 'Buat Tugas Baru', shortcut: 'c', action: () => { taskStore.showTemplateModal ? taskStore.openTemplateModal() : null; close(); router.push('/dashboard') } })
+  items.push({ key: 'quick-add', icon: '!', title: 'Quick Add (Template)', action: () => { taskStore.openTemplateModal(); close() } })
+  items.push({ key: 'toggle-theme', icon: isDark.value ? '' : '�', title: isDark.value ? 'Ganti ke Mode Terang' : 'Ganti ke Mode Gelap', action: () => { toggleTheme(); close() } })
+  items.push({ key: 'view-table', icon: '', title: 'Tampilan Tabel', action: () => { taskStore.setViewMode('table'); close(); router.push('/dashboard') } })
+  items.push({ key: 'view-kanban', icon: '�', title: 'Tampilan Kanban', action: () => { taskStore.setViewMode('kanban'); close(); router.push('/dashboard') } })
+  items.push({ key: 'view-calendar', icon: '�', title: 'Tampilan Kalender', action: () => { taskStore.setViewMode('calendar'); close(); router.push('/dashboard') } })
+  items.push({ key: 'all-spaces', icon: '�', title: 'Semua Ruang Kerja', action: () => { taskStore.setActiveProject(null); close(); router.push('/dashboard') } })
 
   for (const p of taskStore.projects || []) {
     items.push({ key: `proj-${p.id}`, icon: p.icon, title: p.name, subtitle: 'Ruang Kerja', action: () => { taskStore.setActiveProject(p.id); close(); router.push('/dashboard') } })
   }
 
   for (const t of taskStore.tasks || []) {
-    items.push({ key: `task-${t.id}`, icon: '📝', title: t.title, subtitle: t.status, action: async () => { await taskStore.openDetailModal(t); close() } })
+    items.push({ key: `task-${t.id}`, icon: '�', title: t.title, subtitle: t.status, action: async () => { await taskStore.openDetailModal(t); close() } })
   }
 
   if (!q) return items.slice(0, 12)

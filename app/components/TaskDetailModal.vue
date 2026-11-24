@@ -199,7 +199,7 @@
             <div v-if="aiSuggestedSubtasks.length > 0" class="ai-suggestion-card">
               <div class="ai-card-header">
                 <div class="ai-header-left">
-                  <span class="ai-sparkle">✨</span>
+                  <span class="ai-sparkle" aria-hidden="true">AI</span>
                   <span class="ai-card-title">Rekomendasi Subtask dari AI</span>
                 </div>
                 <button type="button" class="ai-close-preview" @click="cancelAiSubtasks" title="Tutup Rekomendasi">&times;</button>
@@ -411,7 +411,7 @@
                   <span class="pulse-dot"></span> Menyimpan catatan...
                 </span>
                 <span v-else-if="descSavedRecently" class="save-state saved">
-                  ✓ Catatan tersimpan
+                  Catatan tersimpan
                 </span>
                 <span v-else class="save-state idle">
                   Format Markdown didukung
@@ -737,13 +737,11 @@ const handleClose = () => {
   position: fixed;
   inset: 0;
   background: var(--modal-backdrop-bg);
-  backdrop-filter: blur(4px);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-y: auto;
 }
 
@@ -782,7 +780,7 @@ const handleClose = () => {
 }
 
 .detail-badge-id {
-  font-family: monospace;
+  font-family: inherit; font-variant-numeric: tabular-nums;
   color: var(--text-secondary);
   background: var(--bg-elevated);
   padding: 2px 6px;
@@ -801,7 +799,7 @@ const handleClose = () => {
 }
 
 .status-backlog { color: var(--text-secondary); }
-.status-todo { color: #60a5fa; }
+.status-todo { color: var(--accent-primary); }
 .status-in_progress { color: var(--color-warning); }
 .status-done { color: var(--color-success); }
 
@@ -925,8 +923,8 @@ const handleClose = () => {
 }
 
 .dot-low .p-dot { background: var(--text-secondary); }
-.dot-medium .p-dot { background: #38bdf8; }
-.dot-high .p-dot { background: #fb923c; }
+.dot-medium .p-dot { background: var(--accent-violet); }
+.dot-high .p-dot { background: var(--color-warning); }
 .dot-urgent .p-dot { background: var(--color-danger); }
 
 .attr-select {
@@ -1314,7 +1312,7 @@ const handleClose = () => {
   font-style: italic;
 }
 :deep(.md-inline-code) {
-  font-family: monospace;
+  font-family: inherit; font-variant-numeric: tabular-nums;
   font-size: 12px;
   background: var(--bg-elevated);
   color: var(--text-soft);
@@ -1336,18 +1334,18 @@ const handleClose = () => {
   font-size: 10.5px;
   color: var(--text-muted);
   text-transform: uppercase;
-  font-family: monospace;
+  font-family: inherit; font-variant-numeric: tabular-nums;
 }
 :deep(.md-code-block pre) {
   margin: 0;
   padding: 12px 14px;
-  font-family: monospace;
+  font-family: inherit; font-variant-numeric: tabular-nums;
   font-size: 12px;
   line-height: 1.5;
   color: var(--text-soft);
 }
 :deep(.md-link) {
-  color: #60a5fa;
+  color: var(--accent-primary);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

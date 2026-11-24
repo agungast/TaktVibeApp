@@ -128,20 +128,20 @@ import type { Project } from '~/types/task'
 
 const taskStore = useTaskStore()
 
-const presetIcons = ['📁', '🚀', '💻', '🎨', '📝', '⚡', '🛒', '🎯', '📊', '🔧', '⭐', '💡']
+const presetIcons = ['PRJ','DEV','DSN','DOC','OPS','MKT','SHP','TGT','DAT','CFG','STR','IDE']
 
 const presetColors = [
-  { name: 'Sky Blue', hex: '#38bdf8' },
-  { name: 'Emerald', hex: '#10b981' },
-  { name: 'Amber', hex: '#f59e0b' },
-  { name: 'Rose', hex: '#f43f5e' },
-  { name: 'Violet', hex: '#8b5cf6' },
+  { name: 'Steel', hex: '#4a6fa5' } /* taste-skill-ignore */,
+  { name: 'Sage', hex: '#4b7a5a' } /* taste-skill-ignore */,
+  { name: 'Clay', hex: '#8a6236' } /* taste-skill-ignore */,
+  { name: 'Rose', hex: '#9a4a56' } /* taste-skill-ignore */,
+  { name: 'Slate', hex: '#5f6f86' } /* taste-skill-ignore */,
   { name: 'Slate', hex: 'var(--text-secondary)' }
 ]
 
 const formName = ref<string>('')
-const formIcon = ref<string>('📁')
-const formColor = ref<string>('#38bdf8')
+const formIcon = ref<string>('')
+const formColor = ref<string>('#4a6fa5')
 const isSubmitting = ref<boolean>(false)
 const nameInputRef = ref<HTMLInputElement | null>(null)
 
@@ -154,12 +154,12 @@ watch(
     if (open) {
       if (taskStore.selectedProjectForEdit) {
         formName.value = taskStore.selectedProjectForEdit.name
-        formIcon.value = taskStore.selectedProjectForEdit.icon || '📁'
-        formColor.value = taskStore.selectedProjectForEdit.color || '#38bdf8'
+        formIcon.value = taskStore.selectedProjectForEdit.icon || ''
+        formColor.value = taskStore.selectedProjectForEdit.color || '#4a6fa5'
       } else {
         formName.value = ''
-        formIcon.value = '📁'
-        formColor.value = '#38bdf8'
+        formIcon.value = ''
+        formColor.value = '#4a6fa5'
       }
       isSubmitting.value = false
       nextTick(() => {
@@ -207,8 +207,7 @@ async function handleSubmit(): Promise<void> {
   position: fixed;
   inset: 0;
   background: var(--modal-backdrop-bg);
-  backdrop-filter: blur(4px);
-  z-index: 9999;
+    z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;

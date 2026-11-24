@@ -208,7 +208,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
 <style scoped>
 .ldg-card {
   background: var(--bg-surface, #ffffff);
-  border: 1px solid var(--border-color, #e2e5e9);
+  border: 1px solid var(--border-color, var(--bg-active));
   border-radius: 8px;
   padding: 24px;
   color: var(--text-primary, #111316);
@@ -231,7 +231,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
 .ldg-desc {
   font-size: 14px;
   line-height: 1.5;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
   margin: 8px 0 0;
 }
 
@@ -243,7 +243,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   padding: 12px;
   margin-bottom: 20px;
   background: var(--bg-base, #f2f4f7);
-  border: 1px solid var(--border-color, #e2e5e9);
+  border: 1px solid var(--border-color, var(--bg-active));
   border-radius: 6px;
   font-size: 14px;
   line-height: 1.5;
@@ -256,15 +256,15 @@ const handleOAuth = async (provider: 'google' | 'github') => {
 }
 
 .ldg-alert.error svg {
-  color: var(--color-danger, #b42318);
+  color: var(--color-danger, var(--color-danger));
 }
 
 .ldg-alert.success svg {
-  color: var(--color-success, #157a3c);
+  color: var(--color-success, var(--color-success));
 }
 
 .ldg-alert.info svg {
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 /* Form */
@@ -291,7 +291,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 .ldg-text-link {
@@ -321,7 +321,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
 .ldg-input-icon {
   position: absolute;
   left: 12px;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
   pointer-events: none;
 }
 
@@ -330,7 +330,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   min-height: 44px;
   padding: 0 12px 0 38px;
   background: var(--bg-surface, #ffffff);
-  border: 1px solid var(--input-border, #e2e5e9);
+  border: 1px solid var(--input-border, var(--bg-active));
   border-radius: 6px;
   color: var(--text-primary, #111316);
   font-family: inherit;
@@ -349,7 +349,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
 }
 
 .ldg-input::placeholder {
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
   opacity: 1;
 }
 
@@ -370,7 +370,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   background: transparent;
   border: 0;
   border-radius: 6px;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
   cursor: pointer;
 }
 
@@ -439,7 +439,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   gap: 12px;
   margin: 24px 0 12px;
   font-size: 12px;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 .ldg-divider::before,
@@ -447,7 +447,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--border-color, #e2e5e9);
+  background: var(--border-color, var(--bg-active));
 }
 
 .ldg-oauth-group {
@@ -464,7 +464,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   min-height: 44px;
   padding: 0 8px;
   background: var(--bg-surface, #ffffff);
-  border: 1px solid var(--border-color, #e2e5e9);
+  border: 1px solid var(--border-color, var(--bg-active));
   border-radius: 6px;
   color: var(--text-primary, #111316);
   font-family: inherit;
@@ -495,9 +495,9 @@ const handleOAuth = async (provider: 'google' | 'github') => {
 .ldg-footer {
   margin-top: 24px;
   padding-top: 16px;
-  border-top: 1px solid var(--border-color, #e2e5e9);
+  border-top: 1px solid var(--border-color, var(--bg-active));
   font-size: 12px;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 .ldg-footer p {

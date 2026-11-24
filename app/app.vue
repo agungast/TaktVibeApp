@@ -44,7 +44,7 @@ onMounted(() => {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg-base);
   color: var(--text-primary);
   min-height: 100vh;

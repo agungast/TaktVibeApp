@@ -212,7 +212,7 @@ const handleRegister = async () => {
 <style scoped>
 .ldg-card {
   background: var(--bg-surface, #ffffff);
-  border: 1px solid var(--border-color, #e2e5e9);
+  border: 1px solid var(--border-color, var(--bg-active));
   border-radius: 8px;
   padding: 24px;
   color: var(--text-primary, #111316);
@@ -235,7 +235,7 @@ const handleRegister = async () => {
 .ldg-desc {
   font-size: 14px;
   line-height: 1.5;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
   margin: 8px 0 0;
 }
 
@@ -246,7 +246,7 @@ const handleRegister = async () => {
   padding: 12px;
   margin-bottom: 20px;
   background: var(--bg-base, #f2f4f7);
-  border: 1px solid var(--border-color, #e2e5e9);
+  border: 1px solid var(--border-color, var(--bg-active));
   border-radius: 6px;
   font-size: 14px;
   line-height: 1.5;
@@ -259,11 +259,11 @@ const handleRegister = async () => {
 }
 
 .ldg-alert.error svg {
-  color: var(--color-danger, #b42318);
+  color: var(--color-danger, var(--color-danger));
 }
 
 .ldg-alert.success svg {
-  color: var(--color-success, #157a3c);
+  color: var(--color-success, var(--color-success));
 }
 
 .ldg-form {
@@ -282,7 +282,7 @@ const handleRegister = async () => {
   font-size: 12px;
   font-weight: 500;
   line-height: 1.5;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 .ldg-text-link {
@@ -312,7 +312,7 @@ const handleRegister = async () => {
 .ldg-input-icon {
   position: absolute;
   left: 12px;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
   pointer-events: none;
 }
 
@@ -321,7 +321,7 @@ const handleRegister = async () => {
   min-height: 44px;
   padding: 0 12px 0 38px;
   background: var(--bg-surface, #ffffff);
-  border: 1px solid var(--input-border, #e2e5e9);
+  border: 1px solid var(--input-border, var(--bg-active));
   border-radius: 6px;
   color: var(--text-primary, #111316);
   font-family: inherit;
@@ -340,7 +340,7 @@ const handleRegister = async () => {
 }
 
 .ldg-input::placeholder {
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
   opacity: 1;
 }
 
@@ -361,7 +361,7 @@ const handleRegister = async () => {
   background: transparent;
   border: 0;
   border-radius: 6px;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
   cursor: pointer;
 }
 
@@ -428,7 +428,7 @@ const handleRegister = async () => {
   gap: 12px;
   margin: 24px 0 12px;
   font-size: 12px;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 .ldg-divider::before,
@@ -436,7 +436,7 @@ const handleRegister = async () => {
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--border-color, #e2e5e9);
+  background: var(--border-color, var(--bg-active));
 }
 
 .ldg-oauth-group {
@@ -453,7 +453,7 @@ const handleRegister = async () => {
   min-height: 44px;
   padding: 0 8px;
   background: var(--bg-surface, #ffffff);
-  border: 1px solid var(--border-color, #e2e5e9);
+  border: 1px solid var(--border-color, var(--bg-active));
   border-radius: 6px;
   color: var(--text-primary, #111316);
   font-family: inherit;
@@ -483,9 +483,9 @@ const handleRegister = async () => {
 .ldg-footer {
   margin-top: 24px;
   padding-top: 16px;
-  border-top: 1px solid var(--border-color, #e2e5e9);
+  border-top: 1px solid var(--border-color, var(--bg-active));
   font-size: 12px;
-  color: var(--text-secondary, #5f636b);
+  color: var(--text-secondary, var(--text-secondary));
 }
 
 .ldg-footer p {

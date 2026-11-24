@@ -154,9 +154,7 @@ onUnmounted(() => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(3, 7, 18, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(17, 19, 22, 0.94);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -173,10 +171,9 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
-  background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(51, 65, 85, 0.6);
+  background: rgba(36, 39, 46, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-card);
-  backdrop-filter: blur(8px);
 }
 
 .toolbar-info {
@@ -196,9 +193,9 @@ onUnmounted(() => {
 }
 
 .toolbar-counter {
-  color: #818cf8;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #f2f4f7;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   padding: 2px 8px;
   border-radius: var(--radius-card);
   font-size: 12px;
@@ -217,25 +214,29 @@ onUnmounted(() => {
   border-radius: var(--radius-control);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #e2e8f0;
+  color: #f2f4f7;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
   text-decoration: none;
 }
 
 .toolbar-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.16);
   color: #ffffff;
-  transform: translateY(-1px);
+}
+.toolbar-btn:focus-visible,
+.nav-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 95, 191, 0.35);
 }
 
 .close-btn:hover {
   background: rgba(239, 68, 68, 0.2);
   border-color: rgba(239, 68, 68, 0.4);
-  color: #f87171;
+  color: var(--color-danger);
 }
 
 /* Stage */
@@ -263,7 +264,6 @@ onUnmounted(() => {
   max-height: 80vh;
   object-fit: contain;
   border-radius: var(--radius-card);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -275,16 +275,15 @@ onUnmounted(() => {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(30, 41, 59, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(36, 39, 46, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  transition: background-color 150ms ease, border-color 150ms ease;
   z-index: 10;
-  backdrop-filter: blur(8px);
 }
 
 .prev-btn {
@@ -296,10 +295,8 @@ onUnmounted(() => {
 }
 
 .nav-btn:hover {
-  background: var(--accent-primary);
-  border-color: #818cf8;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 0 16px rgba(99, 102, 241, 0.5);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 /* Transition */

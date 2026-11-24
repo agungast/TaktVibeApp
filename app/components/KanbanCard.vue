@@ -511,7 +511,6 @@ const confirmEdit = (): void => {
   cursor: grab;
   user-select: none;
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -606,7 +605,7 @@ const confirmEdit = (): void => {
 
 .priority-badge.p-medium {
   background: rgba(59, 130, 246, 0.12);
-  color: #60a5fa;
+  color: var(--accent-violet);
   border: 1px solid rgba(59, 130, 246, 0.25);
 }
 
@@ -802,7 +801,7 @@ const confirmEdit = (): void => {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #f59e0b;
+  background: var(--color-warning);
 }
 
 .att-add-quick-btn {
@@ -836,7 +835,6 @@ const confirmEdit = (): void => {
   justify-content: center;
   z-index: 9999;
   padding: 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .modal-box {
@@ -1017,9 +1015,9 @@ const confirmEdit = (): void => {
 }
 
 .dot-low .p-dot { background: var(--text-secondary); }
-.dot-medium .p-dot { background: #60a5fa; }
-.dot-high .p-dot { background: #fbbf24; }
-.dot-urgent .p-dot { background: #f87171; }
+.dot-medium .p-dot { background: var(--accent-violet); }
+.dot-high .p-dot { background: var(--color-warning); }
+.dot-urgent .p-dot { background: var(--color-danger); }
 
 .edit-grid-2col {
   display: grid;

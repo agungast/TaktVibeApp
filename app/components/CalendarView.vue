@@ -562,7 +562,6 @@ const openDayTasks = (cell: MonthCell) => {
   flex-direction: column;
   flex: 1;
   width: 100%;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text-primary);
   min-height: 480px;
 }
@@ -916,9 +915,9 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .priority-low .chip-priority-dot { background: var(--text-secondary); }
-.priority-medium .chip-priority-dot { background: #60a5fa; }
-.priority-high .chip-priority-dot { background: #fbbf24; }
-.priority-urgent .chip-priority-dot { background: #f87171; }
+.priority-medium .chip-priority-dot { background: var(--accent-violet); }
+.priority-high .chip-priority-dot { background: var(--color-warning); }
+.priority-urgent .chip-priority-dot { background: var(--color-danger); }
 
 .chip-title {
   overflow: hidden;
@@ -1076,7 +1075,7 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .week-priority-badge.p-low { background: rgba(148, 163, 184, 0.15); color: var(--text-soft); }
-.week-priority-badge.p-medium { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.week-priority-badge.p-medium { background: rgba(59, 130, 246, 0.15); color: var(--accent-violet); }
 .week-priority-badge.p-high { background: rgba(245, 158, 11, 0.15); color: var(--color-warning); }
 .week-priority-badge.p-urgent { background: rgba(239, 68, 68, 0.15); color: var(--color-danger); }
 
@@ -1229,7 +1228,7 @@ const openDayTasks = (cell: MonthCell) => {
 }
 
 .tray-p-dot.p-low { background: var(--text-secondary); }
-.tray-p-dot.p-medium { background: #60a5fa; }
+.tray-p-dot.p-medium { background: var(--accent-violet); }
 .tray-p-dot.p-high { background: var(--color-warning); }
 .tray-p-dot.p-urgent { background: var(--color-danger); }
 

@@ -762,18 +762,17 @@ html.light .site-header.scrolled {
   border-radius: 8px;
   font-size: 0.875rem;
   font-weight: 600;
-  background: var(--accent-primary);
+  background: #141414;
   color: #ffffff;
-  border: 1px solid var(--accent-primary);
+  border: 1px solid #141414;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 150ms ease, border-color 150ms ease;
 }
 
 .btn-primary:hover {
-  background: var(--accent-primary-hover);
-  border-color: var(--accent-primary-hover);
+  background: #292929;
+  border-color: #292929;
 }
 
 .btn-ghost {

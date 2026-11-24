@@ -134,7 +134,6 @@ const toastStore = useToastStore()
   pointer-events: none;
   width: 100%;
   max-width: 360px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .toast-stack {
@@ -159,26 +158,11 @@ const toastStore = useToastStore()
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
 }
 
-/* Subtle Semantic Tints (Without neon glow) */
-.toast-card.toast-success {
-  border-color: rgba(16, 185, 129, 0.35);
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.07) 0%, var(--bg-elevated) 60%);
-}
-
-.toast-card.toast-error {
-  border-color: rgba(239, 68, 68, 0.35);
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.07) 0%, var(--bg-elevated) 60%);
-}
-
-.toast-card.toast-warning {
-  border-color: rgba(245, 158, 11, 0.35);
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.07) 0%, var(--bg-elevated) 60%);
-}
-
-.toast-card.toast-info {
-  border-color: rgba(59, 130, 246, 0.35);
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.07) 0%, var(--bg-elevated) 60%);
-}
+/* Semantic border tints */
+.toast-card.toast-success { border-color: rgba(16, 185, 129, 0.35); }
+.toast-card.toast-error { border-color: rgba(239, 68, 68, 0.35); }
+.toast-card.toast-warning { border-color: rgba(245, 158, 11, 0.35); }
+.toast-card.toast-info { border-color: rgba(29, 95, 191, 0.35); }
 
 /* Icons */
 .toast-icon-wrap {
@@ -194,22 +178,22 @@ const toastStore = useToastStore()
 
 .toast-icon-wrap.icon-success {
   background: rgba(16, 185, 129, 0.15);
-  color: #10b981;
+  color: var(--color-success);
 }
 
 .toast-icon-wrap.icon-error {
   background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
+  color: var(--color-danger);
 }
 
 .toast-icon-wrap.icon-warning {
   background: rgba(245, 158, 11, 0.15);
-  color: #f59e0b;
+  color: var(--color-warning);
 }
 
 .toast-icon-wrap.icon-info {
-  background: rgba(59, 130, 246, 0.15);
-  color: #3b82f6;
+  background: rgba(29, 95, 191, 0.12);
+  color: var(--accent-primary);
 }
 
 /* Body */
@@ -274,10 +258,10 @@ const toastStore = useToastStore()
   opacity: 0.35;
 }
 
-.toast-success .toast-progress-bar { color: #10b981; }
-.toast-error .toast-progress-bar { color: #ef4444; }
-.toast-warning .toast-progress-bar { color: #f59e0b; }
-.toast-info .toast-progress-bar { color: #3b82f6; }
+.toast-success .toast-progress-bar { color: var(--color-success); }
+.toast-error .toast-progress-bar { color: var(--color-danger); }
+.toast-warning .toast-progress-bar { color: var(--color-warning); }
+.toast-info .toast-progress-bar { color: var(--accent-primary); }
 
 @keyframes toastTimer {
   from {

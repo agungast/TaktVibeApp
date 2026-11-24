@@ -272,8 +272,7 @@ const handleUploadNewFiles = async () => {
   position: fixed;
   inset: 0;
   background: var(--modal-backdrop-bg);
-  backdrop-filter: blur(8px);
-  display: flex;
+    display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
@@ -421,7 +420,7 @@ const handleUploadNewFiles = async () => {
 }
 
 .pdf-doc { color: var(--color-danger); }
-.word-doc { color: #60a5fa; }
+.word-doc { color: var(--accent-violet); }
 .zip-doc { color: var(--color-warning); }
 
 .ext-badge {

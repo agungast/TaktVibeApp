@@ -234,7 +234,7 @@
                       />
                     </div>
                     <span v-if="form.newPassword && form.confirmPassword && form.newPassword !== form.confirmPassword" class="password-mismatch-msg">
-                      ⚠️ Kata sandi konfirmasi tidak cocok.
+                      Kata sandi konfirmasi tidak cocok.
                     </span>
                   </div>
                 </div>
@@ -397,9 +397,7 @@ const handleSaveProfile = async () => {
   position: fixed;
   inset: 0;
   background: var(--modal-backdrop-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
+    display: flex;
   align-items: center;
   justify-content: center;
   z-index: 99999;
@@ -418,7 +416,6 @@ const handleSaveProfile = async () => {
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Header */

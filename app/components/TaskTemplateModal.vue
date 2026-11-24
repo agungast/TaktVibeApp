@@ -122,7 +122,6 @@ onUnmounted(() => {
   justify-content: center;
   z-index: 99999;
   padding: 16px;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Card */

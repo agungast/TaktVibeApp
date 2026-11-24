@@ -152,7 +152,6 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 <style scoped>
 .kanban-wrapper {
   width: 100%;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: auto;
   padding: 16px 20px 24px;
   scrollbar-width: thin;
@@ -204,9 +203,9 @@ const onDrop = (targetStatus: TaskStatus, event: DragEvent) => {
 }
 
 .dot-backlog { background: var(--text-secondary); }
-.dot-todo { background: #60a5fa; }
-.dot-progress { background: #fbbf24; }
-.dot-done { background: #4ade80; }
+.dot-todo { background: var(--accent-violet); }
+.dot-progress { background: var(--color-warning); }
+.dot-done { background: var(--color-success); }
 
 .column-title {
   font-size: 13.5px;

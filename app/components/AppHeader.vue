@@ -248,7 +248,6 @@ onUnmounted(() => {
   position: sticky;
   top: 0;
   z-index: 100;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 .topbar-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .toggle-btn, .theme-toggle-btn, .topbar-avatar {

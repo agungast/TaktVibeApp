@@ -257,7 +257,6 @@ onBeforeUnmount(() => {
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 html.light .tour {
