@@ -1,7 +1,7 @@
 <template>
   <div class="ldg-card">
     <div class="ldg-header">
-      <h2 class="ldg-title">Lupa kata sandi</h2>
+      <h1 class="ldg-title">Lupa kata sandi</h1>
       <p class="ldg-desc">Masukkan email terdaftar untuk menerima tautan reset.</p>
     </div>
 
@@ -155,7 +155,7 @@ const handleSubmit = async () => {
 }
 
 .ldg-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.5;
   color: var(--text-secondary, var(--text-secondary));
@@ -233,7 +233,10 @@ const handleSubmit = async () => {
 }
 
 .ldg-submit:disabled {
-  opacity: 0.5;
+  background: var(--bg-active);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+  opacity: 1;
   cursor: not-allowed;
 }
 
@@ -260,7 +263,7 @@ const handleSubmit = async () => {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-primary, #111316);
   text-decoration: underline;

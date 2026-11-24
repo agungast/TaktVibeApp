@@ -1,7 +1,7 @@
 <template>
   <div class="ldg-card">
     <div class="ldg-header">
-      <h2 class="ldg-title">Masuk</h2>
+      <h1 class="ldg-title">Masuk</h1>
       <p class="ldg-desc">Masuk dengan email dan kata sandi Anda.</p>
     </div>
 
@@ -288,14 +288,14 @@ const handleOAuth = async (provider: 'google' | 'github') => {
 }
 
 .ldg-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.5;
   color: var(--text-secondary, var(--text-secondary));
 }
 
 .ldg-text-link {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-primary, #111316);
   text-decoration: underline;
@@ -415,7 +415,10 @@ const handleOAuth = async (provider: 'google' | 'github') => {
 }
 
 .ldg-submit:disabled {
-  opacity: 0.5;
+  background: var(--bg-active);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+  opacity: 1;
   cursor: not-allowed;
 }
 
@@ -438,7 +441,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   align-items: center;
   gap: 12px;
   margin: 24px 0 12px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary, var(--text-secondary));
 }
 
@@ -468,7 +471,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   border-radius: 6px;
   color: var(--text-primary, #111316);
   font-family: inherit;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
 }
@@ -496,7 +499,7 @@ const handleOAuth = async (provider: 'google' | 'github') => {
   margin-top: 24px;
   padding-top: 16px;
   border-top: 1px solid var(--border-color, var(--bg-active));
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary, var(--text-secondary));
 }
 

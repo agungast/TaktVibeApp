@@ -76,10 +76,10 @@
           <span>Ruang Kerja Personal</span>
         </div>
         <h1 class="hero-title">
-          Ruang kerja personal untuk tugas dan catatan.
+          Tugas dan catatan, satu ruang.
         </h1>
         <p class="hero-subtitle">
-          Tugas, tenggat, dan catatan dalam satu ruang kerja.
+          Kanban, kalender, dan catatan dalam satu tempat.
         </p>
 
         <div class="hero-cta-wrap">
@@ -213,7 +213,6 @@
       <!-- Story 1: Tiga Sudut Pandang -->
       <div class="story-item">
         <div class="story-narrative">
-          <p class="story-kicker">Tiga Sudut Pandang</p>
           <h2 class="story-title">Tiga tampilan untuk tugas Anda.</h2>
           <p class="story-desc">
             Gunakan Kanban untuk alur kerja harian, kalender untuk tenggat, atau tabel untuk melihat banyak tugas sekaligus.
@@ -302,7 +301,6 @@
       <!-- Story 2: Lampiran Dokumen & Media -->
       <div class="story-item reverse">
         <div class="story-narrative">
-          <p class="story-kicker">Lampiran Terstruktur</p>
           <h2 class="story-title">Lampiran tugas dalam satu tempat.</h2>
           <p class="story-desc">
             Simpan tangkapan layar, bukti pengerjaan, atau file pendukung langsung di kartu tugas.
@@ -330,7 +328,6 @@
       <!-- Story 3: Kedaulatan & Keamanan Data -->
       <div id="kedaulatan" class="story-item">
         <div class="story-narrative">
-          <p class="story-kicker">Kedaulatan Data</p>
           <h2 class="story-title">Ekspor data tugas kapan saja.</h2>
           <p class="story-desc">
             Ekspor seluruh riwayat tugas ke CSV atau JSON kapan pun Anda butuhkan.

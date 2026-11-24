@@ -266,9 +266,9 @@ html.light .nav-item:hover {
 }
 
 html.light .nav-item.active {
-  background: #eff6ff;
-  border-color: #bfdbfe;
-  color: #1d4ed8;
+  background: var(--bg-active);
+  border-color: var(--border-color);
+  color: var(--accent-primary);
   font-weight: 600;
 }
 

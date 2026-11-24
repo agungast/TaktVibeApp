@@ -85,7 +85,7 @@ export function useTaskCore(ctx: any) {
       toast.error('Gagal memperbarui status tugas')
       if (targetIdx !== -1 && tasks.value[targetIdx]) tasks.value[targetIdx].status = previousStatus
     } else {
-      if (newStatus === 'DONE') toast.success(`Tugas '${task.title}' selesai! 🎉`)
+      if (newStatus === 'DONE') toast.success(`Tugas '${task.title}' selesai.`)
       else toast.info(`Status '${task.title}' diubah ke Belum Selesai`)
     }
   }

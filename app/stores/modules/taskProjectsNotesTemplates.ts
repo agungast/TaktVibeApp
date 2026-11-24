@@ -73,7 +73,7 @@ export function useTaskProjectsNotesTemplates(ctx: any) {
     try {
       let currentUserId = user.value?.id
       if (!currentUserId) { const { data: userData } = await supabase.auth.getUser(); currentUserId = userData?.user?.id }
-      const insert: any = { name: payload.name.trim(), icon: payload.icon || '📁', color: payload.color || '#38bdf8' }
+      const insert: any = { name: payload.name.trim(), icon: payload.icon || 'PRJ', color: payload.color || '#38bdf8' }
       if (currentUserId) insert.user_id = currentUserId
       const { data, error } = await (supabase as any).from('projects').insert([insert]).select().single()
       if (error) { toast.error('Gagal membuat ruang kerja'); return null }

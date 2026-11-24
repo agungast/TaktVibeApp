@@ -1,7 +1,7 @@
 <template>
   <div class="ldg-card">
     <div class="ldg-header">
-      <h2 class="ldg-title">Daftar akun</h2>
+      <h1 class="ldg-title">Daftar akun</h1>
       <p class="ldg-desc">Buat akun untuk mulai mengelola tugas Anda.</p>
     </div>
 
@@ -279,14 +279,14 @@ const handleRegister = async () => {
 }
 
 .ldg-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   line-height: 1.5;
   color: var(--text-secondary, var(--text-secondary));
 }
 
 .ldg-text-link {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--text-primary, #111316);
   text-decoration: underline;
@@ -405,7 +405,10 @@ const handleRegister = async () => {
 }
 
 .ldg-submit:disabled {
-  opacity: 0.5;
+  background: var(--bg-active);
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+  opacity: 1;
   cursor: not-allowed;
 }
 
@@ -427,7 +430,7 @@ const handleRegister = async () => {
   align-items: center;
   gap: 12px;
   margin: 24px 0 12px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary, var(--text-secondary));
 }
 
@@ -457,7 +460,7 @@ const handleRegister = async () => {
   border-radius: 6px;
   color: var(--text-primary, #111316);
   font-family: inherit;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
 }
@@ -484,7 +487,7 @@ const handleRegister = async () => {
   margin-top: 24px;
   padding-top: 16px;
   border-top: 1px solid var(--border-color, var(--bg-active));
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary, var(--text-secondary));
 }
 

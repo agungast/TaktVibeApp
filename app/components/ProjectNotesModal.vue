@@ -145,7 +145,7 @@ watch(() => taskStore.projectNotes, (list) => {
 .pn-editor { display: flex; flex-direction: column; min-height: 0; }
 .pn-input-title { padding: 12px 16px; border: none; border-bottom: 1px solid var(--border-color); background: transparent; color: var(--text-heading); font-size: 18px; font-weight: 700; font-family: inherit; }
 .pn-input-title:focus { outline: none; }
-.pn-textarea { flex: 1; padding: 14px 16px; border: none; background: transparent; color: var(--text-soft); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.7; resize: none; }
+.pn-textarea { flex: 1; padding: 14px 16px; border: none; background: transparent; color: var(--text-soft); font-family: inherit; font-size: 13px; line-height: 1.7; resize: none; }
 .pn-textarea:focus { outline: none; }
 .pn-editor-footer { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-top: 1px solid var(--border-color); background: var(--bg-subtle); }
 .pn-btn { padding: 6px 12px; border-radius: var(--radius-control); border: 1px solid var(--border-color); background: transparent; color: var(--text-soft); cursor: pointer; font-family: inherit; }

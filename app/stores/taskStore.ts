@@ -810,7 +810,7 @@ export const useTaskStore = defineStore('task', () => {
       }
     } else {
       if (newStatus === 'DONE') {
-        toast.success(`Tugas '${task.title}' selesai! 🎉`)
+        toast.success(`Tugas '${task.title}' selesai.`)
       } else {
         toast.info(`Status '${task.title}' diubah ke Belum Selesai`)
       }
@@ -1251,7 +1251,7 @@ export const useTaskStore = defineStore('task', () => {
     const tempProject: Project = {
       id: tempId,
       name: trimmedName,
-      icon: payload.icon || '📁',
+      icon: payload.icon || 'PRJ',
       color: payload.color || '#38bdf8',
       created_at: new Date().toISOString()
     }
@@ -1261,7 +1261,7 @@ export const useTaskStore = defineStore('task', () => {
     try {
       const insertData: any = {
         name: trimmedName,
-        icon: payload.icon || '📁',
+        icon: payload.icon || 'PRJ',
         color: payload.color || '#38bdf8'
       }
       if (currentUserId) insertData.user_id = currentUserId
