@@ -115,14 +115,9 @@ export const useFocusStore = defineStore('focus', () => {
     if (timerMode.value === 'work') {
       sessionsCompleted.value++
 
-      // Catat waktu kerja aktual ke Supabase via taskStore & update reactive state
-      if (activeTask.value) {
-        const addedHours = Math.round((WORK_MINUTES / 60) * 10) / 10
-        activeTask.value.actual_hours = Math.round(((Number(activeTask.value.actual_hours) || 0) + addedHours) * 10) / 10
-
-        if (typeof (taskStore as any).logFocusTime === 'function') {
-          void (taskStore as any).logFocusTime(activeTask.value.id, WORK_MINUTES)
-        }
+      // Catat waktu kerja aktual ke Supabase via taskStore (satu-satunya penulis state)
+      if (activeTask.value && typeof (taskStore as any).logFocusTime === 'function') {
+        void (taskStore as any).logFocusTime(activeTask.value.id, WORK_MINUTES)
       }
 
       toast.success(

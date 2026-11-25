@@ -6,9 +6,16 @@ serve(async (req) => {
   // Hanya izinkan request yang membawa header Authorization
   // dengan nilai "Bearer <SERVICE_ROLE_KEY>". Ini mencegah
   // pemanggilan anon/anonim ke endpoint backup.
-  const authHeader = req.headers.get('Authorization')
   const expectedKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
-  if (!authHeader || authHeader !== `Bearer ${expectedKey}`) {
+  if (!expectedKey) {
+    return new Response(JSON.stringify({ error: 'SUPABASE_SERVICE_ROLE_KEY belum dikonfigurasi' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    })
+  }
+
+  const authHeader = req.headers.get('Authorization')
+  if (authHeader !== `Bearer ${expectedKey}`) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' }
@@ -17,13 +24,13 @@ serve(async (req) => {
 
   const supabase = createClient(
     Deno.env.get('SUPABASE_URL')!,
-    expectedKey!
+    expectedKey
   )
 
   // 1. Ambil semua data todos
   const { data: todos, error } = await supabase
     .from('todos')
-    .select('id, task, is_completed, image_url, created_at, updated_at')
+    .select('id, task, is_completed, image_url, created_at, completed_at')
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -34,14 +41,14 @@ serve(async (req) => {
   }
 
   // 2. Konversi ke format CSV
-  const header = 'id,task,status,image_url,created_at,updated_at\n'
+  const header = 'id,task,status,image_url,created_at,completed_at\n'
   const rows = (todos ?? []).map(t => {
     const task   = `"${String(t.task ?? '').replace(/"/g, '""')}"`
     const status = t.is_completed ? 'Selesai' : 'Aktif'
     const img    = t.image_url ? `"${t.image_url}"` : ''
     const created = t.created_at ? new Date(t.created_at).toLocaleString('id-ID') : ''
-    const updated = t.updated_at ? new Date(t.updated_at).toLocaleString('id-ID') : ''
-    return `${t.id},${task},${status},${img},${created},${updated}`
+    const completed = t.completed_at ? new Date(t.completed_at).toLocaleString('id-ID') : ''
+    return `${t.id},${task},${status},${img},${created},${completed}`
   }).join('\n')
 
   const csvContent = header + rows

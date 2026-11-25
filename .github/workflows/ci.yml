@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - takt-vibe-app
+      - feat/ui-redesign
   pull_request:
     branches:
       - main
       - takt-vibe-app
+      - feat/ui-redesign
 
 jobs:
   test-and-build:

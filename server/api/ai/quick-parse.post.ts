@@ -1,5 +1,6 @@
 import { serverSupabaseUser } from '#supabase/server'
 import { GoogleGenAI } from '@google/genai'
+import { parseFallbackDurationHours } from '../../utils/quickParseFallback'
 
 /**
  * Sprint 3 — AI Natural Language Quick Add
@@ -43,8 +44,7 @@ export default defineEventHandler(async (event) => {
     else if (/(tinggi|penting|high|prioritas tinggi)/.test(lower)) priority = 'HIGH'
     else if (/(rendah|low|ringan|praktis)/.test(lower)) priority = 'LOW'
 
-    const hoursMatch = prompt.match(/(\d+(?:[.,]\d+)?)\s*(?:jam|hour|hrs?|hr|menit|minute|detik|detik)/i)
-    const estimatedHours = hoursMatch ? Math.max(0.5, parseFloat(hoursMatch[1])) : 0
+    const estimatedHours = parseFallbackDurationHours(prompt)
 
     return {
       success: true,
