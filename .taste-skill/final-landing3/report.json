@@ -1,0 +1,1810 @@
+{
+ "url": "http://127.0.0.1:3100/",
+ "at": "2026-11-24T11:43:37.504Z",
+ "allow": [
+  "font-not-dealt"
+ ],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.29,
+    0.28,
+    0.53
+   ],
+   "motion": {
+    "elements": 5,
+    "css": 4,
+    "transitions": 1,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2427,
+     "screens": 2.7,
+     "words": 223,
+     "img": 2,
+     "video": 0,
+     "canvas": 0,
+     "svg": 11,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "chars": 30,
+     "lines": 1,
+     "size": 61,
+     "vw": 4.2,
+     "font": "Outfit",
+     "weight": 700,
+     "tracking": -0.04,
+     "leading": 1.12,
+     "top": 231,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "lines": 1,
+     "size": 60.8,
+     "font": "Outfit"
+    },
+    "headings": [
+     {
+      "text": "Tugas dan catatan, satu ruang.",
+      "words": 5,
+      "chars": 30,
+      "lines": 1,
+      "size": 60.8,
+      "vw": 4.2,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.035,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.63,
+      "top": 231,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Tiga tampilan untuk tugas Anda.",
+      "words": 5,
+      "chars": 31,
+      "lines": 2,
+      "size": 35.2,
+      "vw": 2.4,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.22,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.34,
+      "top": 1122,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Lampiran tugas dalam satu tempat.",
+      "words": 5,
+      "chars": 33,
+      "lines": 2,
+      "size": 35.2,
+      "vw": 2.4,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.22,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.34,
+      "top": 1404,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ekspor data tugas kapan saja.",
+      "words": 5,
+      "chars": 29,
+      "lines": 1,
+      "size": 35.2,
+      "vw": 2.4,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.22,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.34,
+      "top": 1658,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mulai hari kerja Anda dengan lebih teratur.",
+      "words": 7,
+      "chars": 43,
+      "lines": 2,
+      "size": 38.4,
+      "vw": 2.7,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.42,
+      "top": 1949,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 2,
+     "medianWords": 5,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Outfit",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      35,
+      38,
+      61
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "Outfit",
+      "size": 16,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 9.6
+     },
+     "measureChars": 61,
+     "max": {
+      "size": 60.8,
+      "vw": 4.2,
+      "font": "Outfit",
+      "text": "Tugas dan catatan, satu ruang."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.29,
+     "smallText": 0
+    },
+    "eyebrows": [
+     {
+      "text": "Ruang Kerja Personal",
+      "above": "Tugas dan catatan, satu ruang.",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": true,
+      "size": 13,
+      "top": 185
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#111214",
+     "bodyBgHsl": {
+      "h": 220,
+      "s": 0.08,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#111214",
+       "top": 0,
+       "hsl": {
+        "h": 220,
+        "s": 0.08,
+        "l": 0.07
+       }
+      },
+      {
+       "color": "#191a1d",
+       "top": 1868,
+       "hsl": {
+        "h": 225,
+        "s": 0.07,
+        "l": 0.11
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b6bac1",
+       "share": 0.42
+      },
+      {
+       "color": "#f2f3f5",
+       "share": 0.22
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.2
+      },
+      {
+       "color": "#9aa0a8",
+       "share": 0.11
+      },
+      {
+       "color": "#6cc47a",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#141414",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 9,
+     "inHero": 6,
+     "radius": 8,
+     "height": 45,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Mulai Gratis",
+      "Mulai Sekarang",
+      "Coba Interaktif",
+      "Semua (4)",
+      "Aktif (3)"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 10,
+     "hairlineSamples": [
+      "div.focus-board 812px",
+      "div.board-header 810px",
+      "div.is-done.task-row 810px",
+      "div.task-row 810px",
+      "div.task-row 810px"
+     ],
+     "outlinedBoxes": 4,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 5,
+     "boxRadius": 12,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 75,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "outfit"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2427,
+    "margins": {
+     "left": 180,
+     "right": 223
+    },
+    "sections": [
+     {
+      "sel": "section.hero-section",
+      "tag": "section",
+      "top": 75,
+      "height": 444,
+      "words": 19,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Tugas dan catatan, satu ruang.",
+       "size": 61,
+       "tag": "h1"
+      },
+      "left": 322,
+      "right": 322,
+      "textLeft": 322,
+      "textRight": 322,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#fitur.stories-section",
+      "tag": "section",
+      "top": 1025,
+      "height": 843,
+      "words": 98,
+      "media": 0,
+      "middle": 83,
+      "heading": {
+       "text": "Tiga tampilan untuk tugas Anda.",
+       "size": 35,
+       "tag": "h2"
+      },
+      "left": 204,
+      "right": 229,
+      "textLeft": 204,
+      "textRight": 229,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.invitation-section",
+      "tag": "section",
+      "top": 1868,
+      "height": 386,
+      "words": 27,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Mulai hari kerja Anda dengan lebih teratur.",
+       "size": 38,
+       "tag": "h2"
+      },
+      "left": 432,
+      "right": 432,
+      "textLeft": 432,
+      "textRight": 432,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2254,
+      "height": 173,
+      "words": 22,
+      "media": 0,
+      "middle": 497,
+      "heading": null,
+      "left": 180,
+      "right": 180,
+      "textLeft": 180,
+      "textRight": 180,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Tugas dan catatan, satu ruang.",
+      "size": 61,
+      "top": 231,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 204,
+      "n": 4
+     },
+     {
+      "x": 748,
+      "n": 2
+     }
+    ],
+    "leftBlocks": 6,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.18,
+    "voidBox": {
+     "x": 0,
+     "y": 120,
+     "w": 300,
+     "h": 780
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": true,
+    "ground": "#111214",
+    "sidebar": null,
+    "topbar": {
+     "h": 75
+    },
+    "canvas": {
+     "left": 180,
+     "right": 223
+    },
+    "hero": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "chars": 30,
+     "lines": 1,
+     "size": 61,
+     "vw": 4.2,
+     "font": "Outfit",
+     "weight": 700,
+     "tracking": -0.04,
+     "leading": 1.12,
+     "top": 231,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 4,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 1,
+    "panels": {
+     "count": 6,
+     "radii": [
+      [
+       12,
+       4
+      ],
+      [
+       8,
+       2
+      ]
+     ],
+     "heavyBorders": 1,
+     "borderSamples": [
+      "#f2f3f5 on #191a1d (15.67:1)"
+     ],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      35,
+      38,
+      61
+     ]
+    },
+    "title": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "size": 61,
+     "top": 231
+    },
+    "colourShare": 0
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.39,
+    0.54,
+    0.58
+   ],
+   "motion": {
+    "elements": 5,
+    "css": 4,
+    "transitions": 1,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2610,
+     "screens": 2.5,
+     "words": 216,
+     "img": 2,
+     "video": 0,
+     "canvas": 0,
+     "svg": 11,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "chars": 30,
+     "lines": 1,
+     "size": 42,
+     "vw": 5.5,
+     "font": "Outfit",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 223,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "lines": 1,
+     "size": 42.2,
+     "font": "Outfit"
+    },
+    "headings": [
+     {
+      "text": "Tugas dan catatan, satu ruang.",
+      "words": 5,
+      "chars": 30,
+      "lines": 1,
+      "size": 42.2,
+      "vw": 5.5,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.035,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 223,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Mulai hari kerja Anda dengan lebih teratur.",
+      "words": 7,
+      "chars": 43,
+      "lines": 1,
+      "size": 28.8,
+      "vw": 3.8,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 2190,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 2,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 2,
+     "medianWords": 7,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Outfit",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      26,
+      29,
+      42
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "Outfit",
+      "size": 16,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 9.6
+     },
+     "measureChars": 90,
+     "max": {
+      "size": 42.2,
+      "vw": 5.5,
+      "font": "Outfit",
+      "text": "Tugas dan catatan, satu ruang."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.27,
+     "smallText": 0
+    },
+    "eyebrows": [
+     {
+      "text": "Ruang Kerja Personal",
+      "above": "Tugas dan catatan, satu ruang.",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": true,
+      "size": 13,
+      "top": 177
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#111214",
+     "bodyBgHsl": {
+      "h": 220,
+      "s": 0.08,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#111214",
+       "top": 0,
+       "hsl": {
+        "h": 220,
+        "s": 0.08,
+        "l": 0.07
+       }
+      },
+      {
+       "color": "#191a1d",
+       "top": 526,
+       "hsl": {
+        "h": 225,
+        "s": 0.07,
+        "l": 0.11
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b6bac1",
+       "share": 0.41
+      },
+      {
+       "color": "#f2f3f5",
+       "share": 0.23
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.2
+      },
+      {
+       "color": "#9aa0a8",
+       "share": 0.11
+      },
+      {
+       "color": "#6cc47a",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#141414",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 9,
+     "inHero": 6,
+     "radius": 8,
+     "height": 45,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Mulai Gratis",
+      "Mulai Sekarang",
+      "Coba Interaktif",
+      "Semua (4)",
+      "Aktif (3)"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 10,
+     "hairlineSamples": [
+      "div.focus-board 720px",
+      "div.board-header 718px",
+      "div.is-done.task-row 718px",
+      "div.task-row 718px",
+      "div.task-row 718px"
+     ],
+     "outlinedBoxes": 3,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 4,
+     "boxRadius": 12,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 67,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "outfit"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2610,
+    "margins": {
+     "left": 24,
+     "right": 39
+    },
+    "sections": [
+     {
+      "sel": "section.hero-section",
+      "tag": "section",
+      "top": 67,
+      "height": 423,
+      "words": 19,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Tugas dan catatan, satu ruang.",
+       "size": 42,
+       "tag": "h1"
+      },
+      "left": 107,
+      "right": 107,
+      "textLeft": 107,
+      "textRight": 107,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#demo.canvas-section",
+      "tag": "section",
+      "top": 490,
+      "height": 506,
+      "words": 51,
+      "media": 0,
+      "middle": 6,
+      "heading": null,
+      "left": 45,
+      "right": 45,
+      "textLeft": 45,
+      "textRight": 45,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#fitur.stories-section",
+      "tag": "section",
+      "top": 996,
+      "height": 1113,
+      "words": 98,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Tiga tampilan untuk tugas Anda.",
+       "size": 26,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 49,
+      "textLeft": 24,
+      "textRight": 49,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.invitation-section",
+      "tag": "section",
+      "top": 2109,
+      "height": 328,
+      "words": 27,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Mulai hari kerja Anda dengan lebih teratur.",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 115,
+      "right": 115,
+      "textLeft": 115,
+      "textRight": 115,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2437,
+      "height": 173,
+      "words": 22,
+      "media": 0,
+      "middle": 137,
+      "heading": null,
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Tugas dan catatan, satu ruang.",
+      "size": 42,
+      "top": 223,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 6
+     }
+    ],
+    "leftBlocks": 6,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": true,
+    "ground": "#111214",
+    "sidebar": null,
+    "topbar": {
+     "h": 67
+    },
+    "canvas": {
+     "left": 24,
+     "right": 39
+    },
+    "hero": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "chars": 30,
+     "lines": 1,
+     "size": 42,
+     "vw": 5.5,
+     "font": "Outfit",
+     "weight": 700,
+     "tracking": -0.03,
+     "leading": 1.12,
+     "top": 223,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 4,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 1,
+    "panels": {
+     "count": 6,
+     "radii": [
+      [
+       12,
+       4
+      ],
+      [
+       8,
+       2
+      ]
+     ],
+     "heavyBorders": 1,
+     "borderSamples": [
+      "#f2f3f5 on #191a1d (15.67:1)"
+     ],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      26,
+      29,
+      42
+     ]
+    },
+    "title": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "size": 42,
+     "top": 223
+    },
+    "colourShare": 0.001
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.56,
+    0.6,
+    0.45,
+    0.7
+   ],
+   "motion": {
+    "elements": 5,
+    "css": 4,
+    "transitions": 1,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 3222,
+     "screens": 3.8,
+     "words": 216,
+     "img": 2,
+     "video": 0,
+     "canvas": 0,
+     "svg": 11,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "chars": 30,
+     "lines": 2,
+     "size": 37,
+     "vw": 9.4,
+     "font": "Outfit",
+     "weight": 700,
+     "tracking": -0.04,
+     "leading": 1.12,
+     "top": 185,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "lines": 2,
+     "size": 36.8,
+     "font": "Outfit"
+    },
+    "headings": [
+     {
+      "text": "Tugas dan catatan, satu ruang.",
+      "words": 5,
+      "chars": 30,
+      "lines": 2,
+      "size": 36.8,
+      "vw": 9.4,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.035,
+      "leading": 1.12,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 185,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Tiga tampilan untuk tugas Anda.",
+      "words": 5,
+      "chars": 31,
+      "lines": 2,
+      "size": 25.6,
+      "vw": 6.6,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.22,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 1283,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Lampiran tugas dalam satu tempat.",
+      "words": 5,
+      "chars": 33,
+      "lines": 2,
+      "size": 25.6,
+      "vw": 6.6,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.22,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 1805,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ekspor data tugas kapan saja.",
+      "words": 5,
+      "chars": 29,
+      "lines": 1,
+      "size": 25.6,
+      "vw": 6.6,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.22,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 2183,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Mulai hari kerja Anda dengan lebih teratur.",
+      "words": 7,
+      "chars": 43,
+      "lines": 2,
+      "size": 28.8,
+      "vw": 7.4,
+      "font": "Outfit",
+      "weight": 700,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "center",
+      "position": "center",
+      "widthRatio": 0.88,
+      "top": 2629,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 5,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 2,
+     "medianWords": 5,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Outfit",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      26,
+      29,
+      37
+     ],
+     "sizeCount": 9,
+     "notLoaded": [],
+     "body": {
+      "font": "Outfit",
+      "size": 16,
+      "leading": 1.6,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 9.6
+     },
+     "measureChars": 43,
+     "max": {
+      "size": 36.8,
+      "vw": 9.4,
+      "font": "Outfit",
+      "text": "Tugas dan catatan, satu ruang."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.27,
+     "smallText": 0
+    },
+    "eyebrows": [
+     {
+      "text": "Ruang Kerja Personal",
+      "above": "Tugas dan catatan, satu ruang.",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": true,
+      "size": 13,
+      "top": 139
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#111214",
+     "bodyBgHsl": {
+      "h": 220,
+      "s": 0.08,
+      "l": 0.07
+     },
+     "dark": true,
+     "sectionBgs": [
+      {
+       "color": "#111214",
+       "top": 0,
+       "hsl": {
+        "h": 220,
+        "s": 0.08,
+        "l": 0.07
+       }
+      },
+      {
+       "color": "#191a1d",
+       "top": 559,
+       "hsl": {
+        "h": 225,
+        "s": 0.07,
+        "l": 0.11
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#b6bac1",
+       "share": 0.41
+      },
+      {
+       "color": "#f2f3f5",
+       "share": 0.23
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.2
+      },
+      {
+       "color": "#9aa0a8",
+       "share": 0.11
+      },
+      {
+       "color": "#6cc47a",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#141414",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 0.08
+      },
+      "fg": "#ffffff"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 9,
+     "inHero": 6,
+     "radius": 8,
+     "height": 45,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Mulai Gratis",
+      "Mulai Sekarang",
+      "Coba Interaktif",
+      "Semua (4)",
+      "Aktif (3)"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 10,
+     "hairlineSamples": [
+      "div.focus-board 342px",
+      "div.board-header 340px",
+      "div.is-done.task-row 340px",
+      "div.task-row 340px",
+      "div.task-row 340px"
+     ],
+     "outlinedBoxes": 3,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 4,
+     "boxRadius": 12,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 3,
+     "fixed": true,
+     "height": 73,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "outfit"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 3222,
+    "margins": {
+     "left": 24,
+     "right": 26
+    },
+    "sections": [
+     {
+      "sel": "section.hero-section",
+      "tag": "section",
+      "top": 73,
+      "height": 450,
+      "words": 19,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Tugas dan catatan, satu ruang.",
+       "size": 37,
+       "tag": "h1"
+      },
+      "left": 26,
+      "right": 26,
+      "textLeft": 26,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#demo.canvas-section",
+      "tag": "section",
+      "top": 523,
+      "height": 696,
+      "words": 51,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 45,
+      "right": 45,
+      "textLeft": 45,
+      "textRight": 45,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#fitur.stories-section",
+      "tag": "section",
+      "top": 1219,
+      "height": 1329,
+      "words": 98,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Tiga tampilan untuk tugas Anda.",
+       "size": 26,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 25,
+      "textLeft": 24,
+      "textRight": 25,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.invitation-section",
+      "tag": "section",
+      "top": 2548,
+      "height": 445,
+      "words": 27,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Mulai hari kerja Anda dengan lebih teratur.",
+       "size": 29,
+       "tag": "h2"
+      },
+      "left": 35,
+      "right": 35,
+      "textLeft": 35,
+      "textRight": 35,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.site-footer",
+      "tag": "footer",
+      "top": 2994,
+      "height": 228,
+      "words": 22,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 24,
+      "right": 49,
+      "textLeft": 24,
+      "textRight": 49,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Tugas dan catatan, satu ruang.",
+      "size": 37,
+      "top": 185,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 6
+     }
+    ],
+    "leftBlocks": 6,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": true,
+    "ground": "#111214",
+    "sidebar": null,
+    "topbar": {
+     "h": 73
+    },
+    "canvas": {
+     "left": 24,
+     "right": 26
+    },
+    "hero": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "words": 5,
+     "chars": 30,
+     "lines": 2,
+     "size": 37,
+     "vw": 9.4,
+     "font": "Outfit",
+     "weight": 700,
+     "tracking": -0.04,
+     "leading": 1.12,
+     "top": 185,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 0,
+    "layout": {
+     "panels": 4,
+     "firstScreen": 1,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 1,
+    "panels": {
+     "count": 6,
+     "radii": [
+      [
+       12,
+       4
+      ],
+      [
+       8,
+       2
+      ]
+     ],
+     "heavyBorders": 1,
+     "borderSamples": [
+      "#f2f3f5 on #191a1d (15.67:1)"
+     ],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 0,
+     "tabularShare": null,
+     "kpiMax": null
+    },
+    "rows": null,
+    "chartHues": 0,
+    "placeholders": [],
+    "type": {
+     "under13": 0,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      26,
+      29,
+      37
+     ]
+    },
+    "title": {
+     "text": "Tugas dan catatan, satu ruang.",
+     "size": 37,
+     "top": 185
+    },
+    "colourShare": 0.002
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "below-fold",
+   "width": 1440,
+   "message": "Only 1 of 4 blocks start on the first 1440px screen.",
+   "fix": "Every block the brief names shows its header and first rows on the first desktop screen: size the headline block to its question, cap long lists with \"View all\", and put time-sensitive blocks before long tables."
+  },
+  {
+   "level": "WARN",
+   "id": "app-title-size",
+   "width": 1440,
+   "message": "The h1 is 61px (\"Tugas dan catatan, satu ruang.\").",
+   "fix": "An app screen is not a landing page: the title is 18-32px (20-24px on a phone).",
+   "alsoAt": [
+    768,
+    390
+   ]
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "D:\\Talenavi\\CRUD_Nuxt\\takt-vibe-app\\.taste-skill\\final-landing3\\desktop-fold.jpg",
+   "pages": [
+    "D:\\Talenavi\\CRUD_Nuxt\\takt-vibe-app\\.taste-skill\\final-landing3\\desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "D:\\Talenavi\\CRUD_Nuxt\\takt-vibe-app\\.taste-skill\\final-landing3\\tablet-fold.jpg",
+   "pages": [
+    "D:\\Talenavi\\CRUD_Nuxt\\takt-vibe-app\\.taste-skill\\final-landing3\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "D:\\Talenavi\\CRUD_Nuxt\\takt-vibe-app\\.taste-skill\\final-landing3\\mobile-fold.jpg",
+   "pages": [
+    "D:\\Talenavi\\CRUD_Nuxt\\takt-vibe-app\\.taste-skill\\final-landing3\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
