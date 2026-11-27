@@ -181,17 +181,19 @@ async function handleSubmit(): Promise<void> {
   isSubmitting.value = true
   try {
     if (isEdit.value && taskStore.selectedProjectForEdit) {
-      await taskStore.updateProject(taskStore.selectedProjectForEdit.id, {
+      const updated = await taskStore.updateProject(taskStore.selectedProjectForEdit.id, {
         name: trimmed,
         icon: formIcon.value,
         color: formColor.value
       })
+      if (!updated) return
     } else {
-      await taskStore.createProject({
+      const created = await taskStore.createProject({
         name: trimmed,
         icon: formIcon.value,
         color: formColor.value
       })
+      if (!created) return
     }
     taskStore.closeProjectModal()
   } catch (err) {

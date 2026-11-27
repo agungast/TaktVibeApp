@@ -534,9 +534,6 @@ export const useAuthStore = defineStore('auth', () => {
       // 1. Jika user meminta hapus avatar
       if (payload.removeAvatar) {
         avatarPublicUrl = null
-        localAvatarUrl.value = ''
-        avatarDeleted.value = true
-        try { const email = user.value.email; if (email) sessionStorage.setItem(`profile_avatar_${email}`, '__deleted__') } catch {}
       }
       // 2. Jika user mengunggah file foto avatar baru
       else if (payload.avatarFile) {
@@ -560,9 +557,6 @@ export const useAuthStore = defineStore('auth', () => {
           .getPublicUrl(filePath)
 
         avatarPublicUrl = urlData.publicUrl
-        localAvatarUrl.value = avatarPublicUrl
-        avatarDeleted.value = false
-        try { const email = user.value.email; if (email) sessionStorage.setItem(`profile_avatar_${email}`, avatarPublicUrl ?? '') } catch {}
       } else {
         // 3. Tidak ada perubahan avatar — pertahankan yang sudah ada
         avatarPublicUrl = localAvatarUrl.value || (user.value.user_metadata as any)?.avatar_url || (user.value.user_metadata as any)?.picture || null
@@ -617,13 +611,22 @@ export const useAuthStore = defineStore('auth', () => {
           ;(user as any).value = data.user
         }
 
-        // Sinkronisasi localAvatarUrl agar konsisten dengan data yang baru disimpan
+        // Sinkronisasi lokal HANYA setelah updateUser sukses.
         if (payload.removeAvatar) {
           localAvatarUrl.value = ''
-        } else if (avatarPublicUrl) {
+          avatarDeleted.value = true
+        } else if (payload.avatarFile && avatarPublicUrl) {
           localAvatarUrl.value = avatarPublicUrl
+          avatarDeleted.value = false
         }
-        // Jika tidak ada perubahan avatar, biarkan localAvatarUrl tetap seperti sebelumnya
+        if (payload.removeAvatar || payload.avatarFile) {
+          try {
+            const email = user.value.email
+            if (email) {
+              sessionStorage.setItem(`profile_avatar_${email}`, avatarPublicUrl ?? '__deleted__')
+            }
+          } catch {}
+        }
 
         // Simpan ke tabel profiles agar akun manual & Google konsisten
         try {
@@ -633,15 +636,6 @@ export const useAuthStore = defineStore('auth', () => {
             avatar_url: avatarPublicUrl
           }, { onConflict: 'email' })
           if (upsertError) console.error('[profiles] upsert error:', upsertError.message)
-          if (!upsertError) {
-            try {
-              const email = user.value.email
-              if (email) {
-                if (avatarPublicUrl) sessionStorage.setItem(`profile_avatar_${email}`, avatarPublicUrl)
-                else sessionStorage.setItem(`profile_avatar_${email}`, '__deleted__')
-              }
-            } catch {}
-          }
         } catch (e: any) {
           console.error('[profiles] upsert error:', e.message)
         }

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { useToastStore } from '~/stores/toastStore'
 import { logError, logWarn } from '~/utils/logger'
+import { captureTaskProject, restoreTaskProjects } from '~/utils/projectRollback'
 import type {
   Task,
   TaskPayload,
@@ -580,6 +581,7 @@ export const useTaskStore = defineStore('task', () => {
         payload.user_id = currentUserId
       }
 
+      let usedSchemaFallback = false
       let { data: taskData, error: taskError } = await (supabase
         .from('todos') as any)
         .insert([payload])
@@ -588,6 +590,7 @@ export const useTaskStore = defineStore('task', () => {
 
       // Resilient fallback jika kolom alur kerja SoloFlow (priority, status, dll.) belum dieksekusi di database
       if (taskError && (taskError.message?.includes('column') || taskError.code === 'PGRST204' || taskError.message?.includes('schema cache'))) {
+        usedSchemaFallback = true
         logWarn('Kolom alur kerja SoloFlow belum ada di database Supabase. Menggunakan fallback:', taskError.message)
         const minimalPayload: any = {
           task: taskText,
@@ -647,12 +650,23 @@ export const useTaskStore = defineStore('task', () => {
           .from('task_attachments') as any)
           .insert(attachmentsPayload)
           .select()
+        const insertedAttachments = (attData as TaskAttachment[]) || []
 
-        if (!attError && attData) {
-          newTask.task_attachments = attData as TaskAttachment[]
-        } else if (attError) {
-          logWarn('Gagal menyimpan lampiran metadata:', attError.message)
+        if (attError || insertedAttachments.length === 0) {
+          logWarn('Gagal menyimpan lampiran metadata:', attError?.message ?? 'respons kosong dari database')
+          await removeStoragePaths(uploadedResults.map(r => r.filePath))
+          await (supabase.from('todos') as any).delete().eq('id', newTask.id)
+          toast.error('Gagal menyimpan lampiran: ' + (attError?.message || 'data kosong'))
+          return false
         }
+        newTask.task_attachments = insertedAttachments
+      }
+
+      // Skema lama tidak menyimpan semua field — samakan state lokal dengan DB.
+      if (usedSchemaFallback) {
+        toast.info('Tugas tersimpan, tetapi sebagian field tidak didukung skema database lama.')
+        await fetchTasks()
+        return true
       }
 
       // 5. Update state lokal secara instan
@@ -885,12 +899,14 @@ export const useTaskStore = defineStore('task', () => {
       ...(editData.actual_hours !== undefined ? { actual_hours: editData.actual_hours } : {})
     }
 
+    let usedSchemaFallback = false
     let { error } = await (supabase
       .from('todos') as any)
       .update(updatePayload)
       .eq('id', task.id)
 
     if (error && (error.message?.includes('column') || error.code === 'PGRST204' || error.message?.includes('schema cache'))) {
+      usedSchemaFallback = true
       logWarn('Kolom atribut SoloFlow belum ada di database Supabase. Menggunakan fallback pembaruan kolom task bawaan.')
       const fallback = await (supabase.from('todos') as any)
         .update({ task: newTitle, is_completed: newStatus === 'DONE' })
@@ -903,6 +919,12 @@ export const useTaskStore = defineStore('task', () => {
       toast.error('Gagal mengubah tugas: ' + error.message)
       if (targetIdx !== -1 && tasks.value[targetIdx]) {
         Object.assign(tasks.value[targetIdx], oldTask)
+      }
+    } else if (usedSchemaFallback) {
+      toast.info('Perubahan tersimpan sebagian: skema database lama tidak mendukung semua field.')
+      await fetchTasks()
+      if (selectedTaskForDetail.value && String(selectedTaskForDetail.value.id) === String(task.id)) {
+        selectedTaskForDetail.value = tasks.value.find(t => String(t.id) === String(task.id)) || null
       }
     } else {
       toast.success('Perubahan tugas berhasil disimpan!')
@@ -1117,6 +1139,15 @@ export const useTaskStore = defineStore('task', () => {
     const selectedIsTarget = selected && String(selected.id) === String(taskId)
     const selectedIsSameRef = selectedIsTarget && targetIdx !== -1 && selected === tasks.value[targetIdx]
 
+    const removeTempSubtask = (): void => {
+      if (targetIdx !== -1 && tasks.value[targetIdx]?.subtasks) {
+        tasks.value[targetIdx].subtasks = tasks.value[targetIdx].subtasks!.filter(s => s.id !== tempId)
+      }
+      if (selectedIsTarget && !selectedIsSameRef && selected?.subtasks) {
+        selected.subtasks = selected.subtasks.filter(s => s.id !== tempId)
+      }
+    }
+
     if (targetIdx !== -1 && tasks.value[targetIdx]) {
       if (!tasks.value[targetIdx].subtasks) tasks.value[targetIdx].subtasks = []
       tasks.value[targetIdx].subtasks!.push(tempSubtask)
@@ -1139,7 +1170,9 @@ export const useTaskStore = defineStore('task', () => {
 
       if (error) {
         logWarn('Simpan subtask ke database gagal (migrasi 06 mungkin belum dijalankan):', error.message)
-        return tempSubtask
+        removeTempSubtask()
+        toast.error('Gagal menambahkan subtask: ' + error.message)
+        return null
       }
 
       if (data) {
@@ -1157,45 +1190,79 @@ export const useTaskStore = defineStore('task', () => {
       }
     } catch (err) {
       logWarn('Error adding subtask:', err)
+      removeTempSubtask()
+      toast.error('Gagal menambahkan subtask')
+      return null
     }
-    toast.success('Subtask berhasil ditambahkan!')
-    return tempSubtask
+    removeTempSubtask()
+    toast.error('Gagal menambahkan subtask')
+    return null
   }
 
   async function toggleSubtask(subtask: Subtask): Promise<void> {
     const newCompleted = !subtask.is_completed
     subtask.is_completed = newCompleted
 
+    if (subtask.id.startsWith('temp-')) return
+
     try {
-      if (!subtask.id.startsWith('temp-')) {
-        await (supabase
-          .from('subtasks') as any)
-          .update({ is_completed: newCompleted })
-          .eq('id', subtask.id)
+      const { error } = await (supabase
+        .from('subtasks') as any)
+        .update({ is_completed: newCompleted })
+        .eq('id', subtask.id)
+
+      if (error) {
+        logWarn('Gagal menyimpan subtask:', error.message)
+        subtask.is_completed = !newCompleted
+        toast.error('Gagal mengubah subtask')
       }
     } catch (err) {
       logWarn('Error toggling subtask:', err)
+      subtask.is_completed = !newCompleted
+      toast.error('Gagal mengubah subtask')
     }
   }
 
   async function deleteSubtask(subtaskId: string, taskId: string | number): Promise<void> {
     const targetIdx = tasks.value.findIndex(t => String(t.id) === String(taskId))
-    if (targetIdx !== -1 && tasks.value[targetIdx]?.subtasks) {
-      tasks.value[targetIdx].subtasks = tasks.value[targetIdx].subtasks!.filter(s => s.id !== subtaskId)
+    const targetTask = targetIdx !== -1 ? tasks.value[targetIdx] : null
+    const previousTaskSubtasks = targetTask?.subtasks ? [...targetTask.subtasks] : undefined
+
+    const selected = selectedTaskForDetail.value
+    const selectedMatches = !!selected && String(selected.id) === String(taskId)
+    const previousSelectedSubtasks = selectedMatches && selected?.subtasks ? [...selected.subtasks] : undefined
+
+    if (targetTask?.subtasks) {
+      targetTask.subtasks = targetTask.subtasks.filter(s => s.id !== subtaskId)
     }
-    if (selectedTaskForDetail.value?.subtasks && String(selectedTaskForDetail.value.id) === String(taskId)) {
-      selectedTaskForDetail.value.subtasks = selectedTaskForDetail.value.subtasks.filter(s => s.id !== subtaskId)
+    if (selectedMatches && selected?.subtasks) {
+      selected.subtasks = selected.subtasks.filter(s => s.id !== subtaskId)
+    }
+
+    const restoreSubtasks = (): void => {
+      if (previousTaskSubtasks && targetTask) targetTask.subtasks = previousTaskSubtasks
+      if (previousSelectedSubtasks && selected) selected.subtasks = previousSelectedSubtasks
     }
 
     try {
       if (!subtaskId.startsWith('temp-')) {
-        await (supabase
+        const { error } = await (supabase
           .from('subtasks') as any)
           .delete()
           .eq('id', subtaskId)
+
+        if (error) {
+          logWarn('Gagal menghapus subtask:', error.message)
+          restoreSubtasks()
+          toast.error('Gagal menghapus subtask')
+          return
+        }
       }
     } catch (err) {
       logWarn('Error deleting subtask:', err)
+      restoreSubtasks()
+      toast.error('Gagal menghapus subtask')
+      return
     }
     toast.info('Subtask berhasil dihapus')
   }
@@ -1258,6 +1325,10 @@ export const useTaskStore = defineStore('task', () => {
 
     projects.value.push(tempProject)
 
+    const discardTempProject = (): void => {
+      projects.value = projects.value.filter(p => p.id !== tempId)
+    }
+
     try {
       const insertData: any = {
         name: trimmedName,
@@ -1274,7 +1345,9 @@ export const useTaskStore = defineStore('task', () => {
 
       if (error) {
         logWarn('Gagal menyimpan project ke Supabase (migrasi 07 mungkin belum dijalankan):', error.message)
-        return tempProject
+        discardTempProject()
+        toast.error('Gagal membuat ruang kerja: ' + error.message)
+        return null
       }
 
       if (data) {
@@ -1287,9 +1360,13 @@ export const useTaskStore = defineStore('task', () => {
       }
     } catch (err) {
       logWarn('Error creating project:', err)
+      discardTempProject()
+      toast.error('Gagal membuat ruang kerja')
+      return null
     }
-    toast.success(`Ruang kerja '${trimmedName}' berhasil dibuat!`)
-    return tempProject
+    discardTempProject()
+    toast.error('Gagal membuat ruang kerja: respons kosong dari database')
+    return null
   }
 
   async function updateProject(id: string, payload: ProjectPayload): Promise<boolean> {
@@ -1344,6 +1421,11 @@ export const useTaskStore = defineStore('task', () => {
 
   async function deleteProject(id: string): Promise<boolean> {
     const oldProjects = [...projects.value]
+    const oldActiveProjectId = activeProjectId.value
+    const affectedTasks = tasks.value
+      .filter(t => String(t.project_id) === String(id))
+      .map(captureTaskProject)
+
     projects.value = projects.value.filter(p => p.id !== id)
 
     // Reset task yang terhubung dengan project ini menjadi unassigned (null)
@@ -1358,6 +1440,12 @@ export const useTaskStore = defineStore('task', () => {
       activeProjectId.value = null
     }
 
+    const rollback = (): void => {
+      projects.value = oldProjects
+      restoreTaskProjects(affectedTasks)
+      activeProjectId.value = oldActiveProjectId
+    }
+
     try {
       const { error } = await (supabase
         .from('projects') as any)
@@ -1366,14 +1454,14 @@ export const useTaskStore = defineStore('task', () => {
 
       if (error) {
         logWarn('Gagal menghapus project di database:', error.message)
-        projects.value = oldProjects
+        rollback()
         return false
       }
       toast.success('Ruang kerja berhasil dihapus!')
       return true
     } catch (err) {
       logWarn('Error deleting project:', err)
-      projects.value = oldProjects
+      rollback()
       return false
     }
   }
@@ -1384,16 +1472,25 @@ export const useTaskStore = defineStore('task', () => {
 
   async function updateTaskProject(taskId: string | number, projectId: string | null): Promise<boolean> {
     const targetIdx = tasks.value.findIndex(t => String(t.id) === String(taskId))
+    const target = targetIdx !== -1 ? tasks.value[targetIdx] : null
+    const selected = selectedTaskForDetail.value
+    const selectedMatches = !!selected && String(selected.id) === String(taskId)
+    const snapshots = [
+      ...(target ? [captureTaskProject(target)] : []),
+      ...(selectedMatches && selected && selected !== target ? [captureTaskProject(selected)] : [])
+    ]
     const matchedProject = projectId ? (projects.value.find(p => String(p.id) === String(projectId)) || null) : null
 
-    if (targetIdx !== -1 && tasks.value[targetIdx]) {
-      tasks.value[targetIdx].project_id = projectId
-      tasks.value[targetIdx].project = matchedProject
+    if (target) {
+      target.project_id = projectId
+      target.project = matchedProject
     }
-    if (selectedTaskForDetail.value && String(selectedTaskForDetail.value.id) === String(taskId)) {
-      selectedTaskForDetail.value.project_id = projectId
-      selectedTaskForDetail.value.project = matchedProject
+    if (selectedMatches && selected) {
+      selected.project_id = projectId
+      selected.project = matchedProject
     }
+
+    const rollback = (): void => restoreTaskProjects(snapshots)
 
     try {
       const { error } = await (supabase
@@ -1403,12 +1500,14 @@ export const useTaskStore = defineStore('task', () => {
 
       if (error) {
         logWarn('Update task project gagal (kolom project_id mungkin belum ada):', error.message)
+        rollback()
         return false
       }
       toast.info(matchedProject ? `Tugas dipindahkan ke '${matchedProject.name}'` : 'Tugas dikeluarkan dari ruang kerja')
       return true
     } catch (err) {
       logWarn('Error updating task project:', err)
+      rollback()
       return false
     }
   }

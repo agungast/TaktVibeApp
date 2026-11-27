@@ -1,6 +1,6 @@
 # Sprint Follow-up: Audit Bug, Keamanan & Kesehatan Repo
 
-**Status**: Sprint 0 selesai (25 Nov 2026)  
+**Status**: Sprint 1 selesai (25 Nov 2026)  
 **Sumber**: audit read-only 25 Nov 2026 (4 jalur: backend/security, data/store, UI/a11y, config/lean)  
 **Asumsi beban**: aplikasi tugas personal dengan OAuth, banyak user, sesekali beberapa tab aktif.
 
@@ -28,12 +28,12 @@
 
 ## Sprint 1 — Data correctness di `taskStore`
 
-- [ ] **S1.1 Subtask false-success** — `app/stores/taskStore.ts:1140-1161,1197-1200`. Rollback `temp-*` saat insert gagal; jangan toast sukses saat delete/toggle gagal.
-- [ ] **S1.2 Metadata lampiran false-success** — `taskStore.ts:646-656`. Saat insert `task_attachments` gagal, hapus file yang sudah terupload via `removeStoragePaths`, lalu gagalkan `addTask`.
-- [ ] **S1.3 Fallback skema membuang field** — `taskStore.ts:590-631,893-908`. Setelah fallback sukses, refetch row atau finite-toast “sebagian field tidak tersimpan” agar state lokal cocok DB.
-- [ ] **S1.4 Rollback `deleteProject`** — `taskStore.ts:1345-1378`. Snapshot `project_id`/`project` task terdampak + `activeProjectId`, restore di kedua cabang error.
-- [ ] **S1.5 Rollback `updateTaskProject` & project phantom** — `taskStore.ts:1385-1413,1250-1277`, `app/components/ProjectModal.vue:190-196`. Restore `project_id` lama saat error; hapus `temp-proj-*` dari `projects` saat insert gagal dan jangan tutup modal.
-- [ ] **S1.6 Avatar lokal terhapus duluan** — `app/stores/authStore.ts:534-540,601-604`. Tulis `localAvatarUrl`, `avatarDeleted`, dan `sessionStorage` hanya setelah `updateUser` sukses.
+- [x] **S1.1 Subtask false-success** — `app/stores/taskStore.ts:1140-1161,1197-1200`. Rollback `temp-*` saat insert gagal; jangan toast sukses saat delete/toggle gagal.
+- [x] **S1.2 Metadata lampiran false-success** — `taskStore.ts:646-656`. Saat insert `task_attachments` gagal, hapus file yang sudah terupload via `removeStoragePaths`, lalu gagalkan `addTask`.
+- [x] **S1.3 Fallback skema membuang field** — `taskStore.ts:590-631,893-908`. Setelah fallback sukses, refetch row atau finite-toast “sebagian field tidak tersimpan” agar state lokal cocok DB.
+- [x] **S1.4 Rollback `deleteProject`** — `taskStore.ts:1345-1378`. Snapshot `project_id`/`project` task terdampak + `activeProjectId`, restore di kedua cabang error.
+- [x] **S1.5 Rollback `updateTaskProject` & project phantom** — `taskStore.ts:1385-1413,1250-1277`, `app/components/ProjectModal.vue:190-196`. Restore `project_id` lama saat error; hapus `temp-proj-*` dari `projects` saat insert gagal dan jangan tutup modal.
+- [x] **S1.6 Avatar lokal terhapus duluan** — `app/stores/authStore.ts:534-540,601-604`. Tulis `localAvatarUrl`, `avatarDeleted`, dan `sessionStorage` hanya setelah `updateUser` sukses.
 
 **Cek manual**: simulasi error DB/RLS (mis. cabut izin sementara di tujuan) → toast sukses tidak muncul, state lokal kembali seperti semula.  
 **Gate**: test + build.
@@ -92,7 +92,7 @@
 | Sprint | Status | Commit | Catatan |
 | --- | --- | --- | --- |
 | 0 — Quick wins | Selesai | lihat git log | test + build lulus |
-| 1 — Data correctness | Belum dimulai | — | |
+| 1 — Data correctness | Selesai | commit berikutnya | test 9 file/16 test + build lulus; cek manual error DB/RLS belum dijalankan |
 | 2 — Security/storage/AI | Belum dimulai | — | |
 | 3 — Keyboard/a11y | Belum dimulai | — | |
 | 4 — Tests/lean/deploy | Belum dimulai | — | |
