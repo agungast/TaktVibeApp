@@ -89,27 +89,19 @@ SELECT jobname, schedule, active FROM cron.job WHERE jobname = 'auto-cleanup-tas
 Sebelum `09_storage_rls_hardening.sql`, folder `private/` berada di dalam bucket
 publik. File lama yang ada di sana **tidak** berpindah otomatis dan selama
 masih berada di bucket publik tetap bisa dibaca siapa pun. Untuk menutup celah
-ini, pindahkan datanya memakai service role:
+ini, jalankan sekali Edge Function `migrate-private-attachments` dengan service
+role:
 
-```ts
-// script sekali jalan, jalankan di lingkungan server-side
-import { createClient } from '@supabase/supabase-js'
-
-const admin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
-
-const { data: files } = await admin.storage.from('project-crud').list('private', { limit: 1000 })
-
-for (const folder of files ?? []) {
-  // key lama: private/{fileName}  ->  private/{userId}/{fileName}
-  // userId diambil dari baris task_attachments yang menunjuk file tersebut.
-  // Unggah ulang ke project-crud-private, lalu hapus aslinya.
-}
+```sh
+supabase functions deploy migrate-private-attachments
+curl -i -X POST "$SUPABASE_URL/functions/v1/migrate-private-attachments" \
+  -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY"
 ```
 
-Owner setiap lampiran bisa diambil dari `public.task_attachments.user_id` dengan
-mencocokkan `file_path`. Setelah file berpindah, `file_path` di tabel
-`task_attachments` tidak perlu diubah karena nama bucket ditentukan oleh prefix
-`private/`.
+Fungsi itu menyalin seluruh `private/**` ke bucket `project-crud-private`, lalu
+menghapus sumbernya hanya setelah upload tujuan berhasil. `file_path` di
+`task_attachments` tidak perlu diubah karena prefix `private/` yang menentukan
+bucket tujuan.
 
 ## Struktur
 

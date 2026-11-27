@@ -144,24 +144,16 @@ Dengan urutan ini, foto custom dari `profiles`/upload akan selalu menang atas fo
 
 ### 5.1 Tabel & Kolom
 ```sql
-CREATE TABLE IF NOT EXISTS profiles (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+CREATE TABLE IF NOT EXISTS public.profiles (
+  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   email TEXT UNIQUE NOT NULL,
   full_name TEXT,
   avatar_url TEXT,
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
-ALTER TABLE profiles ADD COLUMN IF NOT EXISTS email TEXT;
-ALTER TABLE profiles ADD COLUMN IF NOT EXISTS full_name TEXT;
-ALTER TABLE profiles ADD COLUMN IF NOT EXISTS avatar_url TEXT;
-
-DO $$
-BEGIN
-  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'profiles_email_key') THEN
-    ALTER TABLE profiles ADD CONSTRAINT profiles_email_key UNIQUE (email);
-  END IF;
-END $$;
+-- Data lama dipetakan lewat supabase/migrations/15_profiles_owner_rls.sql
+-- (backfill id dari email, lalu hapus baris tanpa pemilik).
 
 NOTIFY pgrst, 'reload schema';
 ```
@@ -177,21 +169,21 @@ DROP POLICY IF EXISTS "profiles_read_own" ON profiles;
 DROP POLICY IF EXISTS "profiles_insert_own" ON profiles;
 DROP POLICY IF EXISTS "profiles_update_own" ON profiles;
 
-CREATE POLICY "profiles_read_own" ON profiles
+CREATE POLICY "profiles_read_own" ON public.profiles
   FOR SELECT
   TO authenticated
-  USING (auth.jwt() ->> 'email' = email);
+  USING (auth.uid() = id);
 
-CREATE POLICY "profiles_insert_own" ON profiles
+CREATE POLICY "profiles_insert_own" ON public.profiles
   FOR INSERT
   TO authenticated
-  WITH CHECK (auth.jwt() ->> 'email' = email);
+  WITH CHECK (auth.uid() = id);
 
-CREATE POLICY "profiles_update_own" ON profiles
+CREATE POLICY "profiles_update_own" ON public.profiles
   FOR UPDATE
   TO authenticated
-  USING (auth.jwt() ->> 'email' = email)
-  WITH CHECK (auth.jwt() ->> 'email' = email);
+  USING (auth.uid() = id)
+  WITH CHECK (auth.uid() = id);
 
 NOTIFY pgrst, 'reload schema';
 ```

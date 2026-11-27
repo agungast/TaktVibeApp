@@ -1,14 +1,17 @@
 import { serverSupabaseUser } from '#supabase/server'
 import { GoogleGenAI } from '@google/genai'
+import { requireAiUser } from '../../utils/aiAuth'
+import { consumeAiQuota } from '../../utils/aiQuota'
+import { limitAiText } from '../../utils/aiInput'
 
 export default defineEventHandler(async (event) => {
-  const user = await serverSupabaseUser(event)
-  if (!user) {
-    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+  const user = await requireAiUser(() => serverSupabaseUser(event))
+  if (!consumeAiQuota(user.id)) {
+    throw createError({ statusCode: 429, statusMessage: 'Kuota AI per jam terlampaui. Coba lagi nanti.' })
   }
 
   const body = await readBody(event)
-  const message = (body?.message || '').trim()
+  const message = limitAiText(body?.message)
   const history = Array.isArray(body?.history) ? body.history.slice(-6) : []
   const tasksSummary = Array.isArray(body?.tasks_summary) ? body.tasks_summary.slice(0, 20) : []
 
@@ -33,8 +36,8 @@ export default defineEventHandler(async (event) => {
 
   try {
     const ai = new GoogleGenAI({ apiKey: geminiApiKey })
-    const summaryText = tasksSummary.map((t: any, i: number) => `${i + 1}. [${t.status}] ${t.title} | prio:${t.priority} | due:${t.due_date || '-'} | est:${t.estimated_hours || 0}h`).join('\n')
-    const historyText = history.map((h: any) => `${h.role === 'user' ? 'User' : 'Assistant'}: ${h.content}`).join('\n')
+    const summaryText = tasksSummary.map((t: any, i: number) => `${i + 1}. [${limitAiText(t.status)}] ${limitAiText(t.title)} | prio:${limitAiText(t.priority)} | due:${limitAiText(t.due_date) || '-'} | est:${t.estimated_hours || 0}h`).join('\n')
+    const historyText = history.map((h: any) => `${h.role === 'user' ? 'User' : 'Assistant'}: ${limitAiText(h.content)}`).join('\n')
 
     const promptText = `Anda adalah TaktVibe Copilot, asisten produktivitas untuk pengguna solo.
 Jawab singkat, praktis, bahasa Indonesia.

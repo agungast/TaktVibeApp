@@ -1,14 +1,19 @@
 import { serverSupabaseUser } from '#supabase/server'
 import { GoogleGenAI } from '@google/genai'
+import { requireAiUser } from '../../utils/aiAuth'
+import { consumeAiQuota } from '../../utils/aiQuota'
+import { limitAiText } from '../../utils/aiInput'
 
 export default defineEventHandler(async (event) => {
-  const user = await serverSupabaseUser(event)
-  if (!user) throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+  const user = await requireAiUser(() => serverSupabaseUser(event))
+  if (!consumeAiQuota(user.id)) {
+    throw createError({ statusCode: 429, statusMessage: 'Kuota AI per jam terlampaui. Coba lagi nanti.' })
+  }
 
   const body = await readBody(event)
   const period = body?.period === 'daily' ? 'daily' : 'weekly'
-  const completedTasks = Array.isArray(body?.completed_tasks) ? body.completed_tasks : []
-  const pendingTasks = Array.isArray(body?.pending_tasks) ? body.pending_tasks : []
+  const completedTasks = Array.isArray(body?.completed_tasks) ? body.completed_tasks.slice(0, 20) : []
+  const pendingTasks = Array.isArray(body?.pending_tasks) ? body.pending_tasks.slice(0, 20) : []
 
   const config = useRuntimeConfig()
   const geminiApiKey = config.geminiApiKey || process.env.GEMINI_API_KEY
@@ -36,8 +41,8 @@ export default defineEventHandler(async (event) => {
 
   try {
     const ai = new GoogleGenAI({ apiKey: geminiApiKey })
-    const compText = completedTasks.map((t: any) => `- ${t.title} (${t.estimated_hours || 0}h)`).join('\n')
-    const pendText = pendingTasks.map((t: any) => `- [${t.priority}] ${t.title} due:${t.due_date || '-'} (${t.estimated_hours || 0}h)`).join('\n')
+    const compText = completedTasks.map((t: any) => `- ${limitAiText(t.title)} (${t.estimated_hours || 0}h)`).join('\n')
+    const pendText = pendingTasks.map((t: any) => `- [${limitAiText(t.priority)}] ${limitAiText(t.title)} due:${limitAiText(t.due_date) || '-'} (${t.estimated_hours || 0}h)`).join('\n')
     const promptText = `Buat AI Standup & Weekly Briefing untuk pengguna solo TaktVibe.
 Periode: ${period}
 Selesai:

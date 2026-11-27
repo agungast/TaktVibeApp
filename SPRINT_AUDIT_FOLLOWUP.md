@@ -1,6 +1,6 @@
 # Sprint Follow-up: Audit Bug, Keamanan & Kesehatan Repo
 
-**Status**: Sprint 1 selesai (25 Nov 2026)  
+**Status**: Sprint 2 selesai (25 Nov 2026)  
 **Sumber**: audit read-only 25 Nov 2026 (4 jalur: backend/security, data/store, UI/a11y, config/lean)  
 **Asumsi beban**: aplikasi tugas personal dengan OAuth, banyak user, sesekali beberapa tab aktif.
 
@@ -42,13 +42,13 @@
 
 ## Sprint 2 — Keamanan, storage, dan biaya AI
 
-- [ ] **S2.1 Kuota AI** — `nuxt.config.ts:69`, `server/api/ai/*.post.ts`. Batasi panjang field ~2000 karakter dan tambah kuota per user untuk `/api/ai/**`; tidak perlu mengaktifkan rate limiter global.
-- [ ] **S2.2 Hapus lampiran privat salah bucket** — `app/stores/taskStore.ts:759-761`. Ganti `.from('project-crud').remove(...)` dengan `removeStoragePaths([attachment.file_path])`.
-- [ ] **S2.3 Objek privat legacy** — `supabase/migrations/09_storage_rls_hardening.sql:57-59`. Tambah migration/service script untuk memindahkan `project-crud/private/**` ke `project-crud-private/private/**` lalu hapus yang lama.
-- [ ] **S2.4 Tabel `profiles`** — `app/stores/authStore.ts:61,90,630-634`, `docs/AVATAR_SYNC_PROFILE_PICTURE.md:147-194`. Buat migration `id UUID REFERENCES auth.users(id)` + RLS `auth.uid() = id`; ubah store dari `email` ke `user.value.id`.
-- [ ] **S2.5 RLS `project_notes`** — `supabase/migrations/13_create_project_notes.sql:42-46`. Tambah `EXISTS (SELECT 1 FROM public.projects p WHERE p.id = project_notes.project_id AND p.user_id = auth.uid())` di `USING`/`WITH CHECK`.
-- [ ] **S2.6 Token expired → 500** — handler `server/api/ai/*.post.ts`. Bungkus `serverSupabaseUser` dengan helper yang mengubah error menjadi 401.
-- [ ] **S2.7 Backup per-user & CSV injection** — `supabase/functions/backup-todos/index.ts:37-61`. Group by `user_id`, tulis `backups/{userId}/todos_{date}.csv`, prefix `'` untuk sel diawali `= + - @`.
+- [x] **S2.1 Kuota AI** — `nuxt.config.ts:69`, `server/api/ai/*.post.ts`. Batasi panjang field ~2000 karakter dan tambah kuota per user untuk `/api/ai/**`; tidak perlu mengaktifkan rate limiter global.
+- [x] **S2.2 Hapus lampiran privat salah bucket** — `app/stores/taskStore.ts:759-761`. Ganti `.from('project-crud').remove(...)` dengan `removeStoragePaths([attachment.file_path])`.
+- [x] **S2.3 Objek privat legacy** — `supabase/migrations/09_storage_rls_hardening.sql:57-59`. Tambah migration/service script untuk memindahkan `project-crud/private/**` ke `project-crud-private/private/**` lalu hapus yang lama.
+- [x] **S2.4 Tabel `profiles`** — `app/stores/authStore.ts:61,90,630-634`, `docs/AVATAR_SYNC_PROFILE_PICTURE.md:147-194`. Buat migration `id UUID REFERENCES auth.users(id)` + RLS `auth.uid() = id`; ubah store dari `email` ke `user.value.id`.
+- [x] **S2.5 RLS `project_notes`** — `supabase/migrations/13_create_project_notes.sql:42-46`. Tambah `EXISTS (SELECT 1 FROM public.projects p WHERE p.id = project_notes.project_id AND p.user_id = auth.uid())` di `USING`/`WITH CHECK`.
+- [x] **S2.6 Token expired → 500** — handler `server/api/ai/*.post.ts`. Bungkus `serverSupabaseUser` dengan helper yang mengubah error menjadi 401.
+- [x] **S2.7 Backup per-user & CSV injection** — `supabase/functions/backup-todos/index.ts:37-61`. Group by `user_id`, tulis `backups/{userId}/todos_{date}.csv`, prefix `'` untuk sel diawali `= + - @`.
 
 **Gate**: test + build + verifikasi migration di Supabase staging. Jangan deploy perubahan RLS tanpa backup.
 
@@ -91,8 +91,8 @@
 
 | Sprint | Status | Commit | Catatan |
 | --- | --- | --- | --- |
-| 0 — Quick wins | Selesai | lihat git log | test + build lulus |
-| 1 — Data correctness | Selesai | commit berikutnya | test 9 file/16 test + build lulus; cek manual error DB/RLS belum dijalankan |
-| 2 — Security/storage/AI | Belum dimulai | — | |
+| 0 — Quick wins | Selesai | `4965140` | test + build lulus |
+| 1 — Data correctness | Selesai | `57f5ebc` | test 9 file/16 test + build lulus; cek manual error DB/RLS belum dijalankan |
+| 2 — Security/storage/AI | Selesai | lihat git log | test 13 file/22 test + build lulus; migration 15/16 & Edge Function legacy belum diverifikasi di staging |
 | 3 — Keyboard/a11y | Belum dimulai | — | |
 | 4 — Tests/lean/deploy | Belum dimulai | — | |

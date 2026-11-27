@@ -769,10 +769,8 @@ export const useTaskStore = defineStore('task', () => {
         return
       }
 
-      // 2. Hapus file dari Storage bucket
-      await supabase.storage
-        .from('project-crud')
-        .remove([attachment.file_path])
+      // 2. Hapus file dari bucket yang sesuai (privat/publik)
+      await removeStoragePaths([attachment.file_path])
 
       // 3. Update state lokal
       const targetIdx = tasks.value.findIndex(t => t.id === attachment.task_id)

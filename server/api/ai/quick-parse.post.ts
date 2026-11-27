@@ -1,6 +1,9 @@
 import { serverSupabaseUser } from '#supabase/server'
 import { GoogleGenAI } from '@google/genai'
 import { parseFallbackDurationHours } from '../../utils/quickParseFallback'
+import { requireAiUser } from '../../utils/aiAuth'
+import { consumeAiQuota } from '../../utils/aiQuota'
+import { limitAiText } from '../../utils/aiInput'
 
 /**
  * Sprint 3 — AI Natural Language Quick Add
@@ -12,18 +15,15 @@ import { parseFallbackDurationHours } from '../../utils/quickParseFallback'
  */
 export default defineEventHandler(async (event) => {
   // 1. Verifikasi Autentikasi Pengguna
-  const user = await serverSupabaseUser(event)
-  if (!user) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized: Silakan login terlebih dahulu untuk menggunakan fitur AI.'
-    })
+  const user = await requireAiUser(() => serverSupabaseUser(event))
+  if (!consumeAiQuota(user.id)) {
+    throw createError({ statusCode: 429, statusMessage: 'Kuota AI per jam terlampaui. Coba lagi nanti.' })
   }
 
   // 2. Baca dan validasi payload
   const body = await readBody(event)
-  const prompt = (body?.prompt || '').trim()
-  const currentProjects: string[] = Array.isArray(body?.current_projects) ? body.current_projects.map(String) : []
+  const prompt = limitAiText(body?.prompt)
+  const currentProjects: string[] = Array.isArray(body?.current_projects) ? body.current_projects.slice(0, 20).map(limitAiText) : []
 
   if (!prompt) {
     throw createError({

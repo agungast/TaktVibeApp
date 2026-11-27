@@ -1,20 +1,20 @@
 import { serverSupabaseUser } from '#supabase/server'
 import { GoogleGenAI } from '@google/genai'
+import { requireAiUser } from '../../utils/aiAuth'
+import { consumeAiQuota } from '../../utils/aiQuota'
+import { limitAiText } from '../../utils/aiInput'
 
 export default defineEventHandler(async (event) => {
   // 1. Verifikasi Autentikasi Pengguna
-  const user = await serverSupabaseUser(event)
-  if (!user) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized: Silakan login terlebih dahulu untuk menggunakan fitur AI.'
-    })
+  const user = await requireAiUser(() => serverSupabaseUser(event))
+  if (!consumeAiQuota(user.id)) {
+    throw createError({ statusCode: 429, statusMessage: 'Kuota AI per jam terlampaui. Coba lagi nanti.' })
   }
 
   // 2. Baca dan validasi payload
   const body = await readBody(event)
-  const title = (body?.title || '').trim()
-  const description = (body?.description || '').trim()
+  const title = limitAiText(body?.title)
+  const description = limitAiText(body?.description)
 
   if (!title) {
     throw createError({

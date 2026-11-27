@@ -52,13 +52,12 @@ export const useAuthStore = defineStore('auth', () => {
   watch(user, async (newUser, oldUser) => {
     // Hanya reset saat user benar-benar berganti (bukan saat inisialisasi pertama)
     if (oldUser && newUser?.id !== oldUser?.id) {
-      // User berganti (login/logout) — coba sync dari tabel profiles berdasarkan email
+      // User berganti (login/logout) — sync dari tabel profiles berdasarkan id Auth
       // agar foto konsisten antara manual dan Google
-      const email = newUser?.email
-      if (email) {
+      if (newUser?.id) {
         try {
           await syncFromProfiles()
-          const { data: profileData } = await (supabase.from as any)('profiles').select('full_name').eq('email', email).maybeSingle()
+          const { data: profileData } = await (supabase.from as any)('profiles').select('full_name').eq('id', newUser.id).maybeSingle()
           if (profileData?.full_name) {
             localFullName.value = profileData.full_name
           }
@@ -84,10 +83,11 @@ export const useAuthStore = defineStore('auth', () => {
   })
 
   async function syncFromProfiles(force = false): Promise<void> {
+    const userId = user.value?.id
     const email = user.value?.email
-    if (!email) return
+    if (!userId) return
     try {
-      const { data: profileData } = await (supabase.from as any)('profiles').select('avatar_url').eq('email', email).maybeSingle()
+      const { data: profileData } = await (supabase.from as any)('profiles').select('avatar_url').eq('id', userId).maybeSingle()
       if (profileData?.avatar_url) {
         localAvatarUrl.value = profileData.avatar_url
         avatarDeleted.value = false
@@ -283,12 +283,11 @@ export const useAuthStore = defineStore('auth', () => {
         const { data } = await supabase.auth.getUser()
         if (data?.user) {
           (user as any).value = data.user
-          const email = data.user.email
-          // Prioritaskan data dari tabel profiles berdasarkan email
-          if (email) {
+          // Prioritaskan data dari tabel profiles berdasarkan id Auth
+          if (data.user.id) {
             try {
               await syncFromProfiles()
-              const { data: profileData } = await (supabase.from as any)('profiles').select('full_name').eq('email', email).maybeSingle()
+              const { data: profileData } = await (supabase.from as any)('profiles').select('full_name').eq('id', data.user.id).maybeSingle()
               if (profileData?.full_name) {
                 localFullName.value = profileData.full_name
               }
@@ -631,10 +630,11 @@ export const useAuthStore = defineStore('auth', () => {
         // Simpan ke tabel profiles agar akun manual & Google konsisten
         try {
           const { error: upsertError } = await (supabase.from as any)('profiles').upsert({
+            id: user.value.id,
             email: user.value.email,
             full_name: payload.fullName.trim(),
             avatar_url: avatarPublicUrl
-          }, { onConflict: 'email' })
+          }, { onConflict: 'id' })
           if (upsertError) console.error('[profiles] upsert error:', upsertError.message)
         } catch (e: any) {
           console.error('[profiles] upsert error:', e.message)
