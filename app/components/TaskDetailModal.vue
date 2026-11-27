@@ -3,9 +3,12 @@
     <Transition name="detail-modal">
       <div
         v-if="taskStore.showDetailModal && activeTask"
+        ref="modalRootRef"
         class="modal-backdrop"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Detail Tugas"
         @click.self="handleClose"
-        @keydown.esc="handleClose"
         tabindex="-1"
         id="task-detail-modal-root"
       >
@@ -729,6 +732,13 @@ const openTaskAttachments = () => {
 const handleClose = () => {
   taskStore.closeDetailModal()
 }
+
+const modalRootRef = ref<HTMLElement | null>(null)
+useModalFocus(
+  computed(() => taskStore.showDetailModal && !!activeTask.value),
+  modalRootRef,
+  handleClose
+)
 </script>
 
 <style scoped>

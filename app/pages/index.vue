@@ -120,6 +120,7 @@
               type="button"
               class="filter-pill"
               :class="{ 'active': activeFilter === 'all' }"
+              :aria-pressed="activeFilter === 'all'"
               @click="activeFilter = 'all'"
             >
               Semua ({{ tasks.length }})
@@ -128,6 +129,7 @@
               type="button"
               class="filter-pill"
               :class="{ 'active': activeFilter === 'active' }"
+              :aria-pressed="activeFilter === 'active'"
               @click="activeFilter = 'active'"
             >
               Aktif ({{ activeTasks.length }})
@@ -136,6 +138,7 @@
               type="button"
               class="filter-pill"
               :class="{ 'active': activeFilter === 'done' }"
+              :aria-pressed="activeFilter === 'done'"
               @click="activeFilter = 'done'"
             >
               Selesai ({{ completedTasks.length }})
@@ -227,6 +230,7 @@
               type="button"
               class="view-tab"
               :class="{ 'active': previewView === 'kanban' }"
+              :aria-pressed="previewView === 'kanban'"
               @click="previewView = 'kanban'"
             >
               Papan Kanban
@@ -235,6 +239,7 @@
               type="button"
               class="view-tab"
               :class="{ 'active': previewView === 'calendar' }"
+              :aria-pressed="previewView === 'calendar'"
               @click="previewView = 'calendar'"
             >
               Kalender
@@ -243,6 +248,7 @@
               type="button"
               class="view-tab"
               :class="{ 'active': previewView === 'table' }"
+              :aria-pressed="previewView === 'table'"
               @click="previewView = 'table'"
             >
               Tabel

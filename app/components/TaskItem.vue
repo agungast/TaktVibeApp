@@ -157,9 +157,11 @@
           <Transition name="slide-up">
             <div
               v-if="menuOpen && menuPos"
+              ref="menuRef"
               class="menu-panel-fixed"
               role="menu"
               :style="{ top: menuPos.top + 'px', left: menuPos.left + 'px' }"
+              @keydown="onMenuKeydown"
             >
               <button type="button" role="menuitem" class="menu-item" @click="runAction(() => taskStore.openDetailModal(task))">
                 Buka detail
@@ -183,7 +185,16 @@
   <!-- Modal Konfirmasi Hapus -->
   <Teleport to="body">
     <Transition name="modal">
-      <div v-if="showConfirm" class="modal-backdrop" @click.self="showConfirm = false">
+      <div
+        v-if="showConfirm"
+        ref="confirmRootRef"
+        class="modal-backdrop"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Konfirmasi Hapus Tugas"
+        @click.self="showConfirm = false"
+        tabindex="-1"
+      >
         <div class="modal-box">
           <div class="modal-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -208,7 +219,16 @@
   <!-- Modal Edit Tugas Komprehensif -->
   <Teleport to="body">
     <Transition name="modal">
-      <div v-if="showEdit" class="modal-backdrop" @click.self="showEdit = false">
+      <div
+        v-if="showEdit"
+        ref="editRootRef"
+        class="modal-backdrop"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Edit Atribut Tugas"
+        @click.self="showEdit = false"
+        tabindex="-1"
+      >
         <div class="modal-box modal-box-lg">
           <div class="modal-header-edit">
             <div class="modal-icon edit-icon">
@@ -248,6 +268,7 @@
                   type="button"
                   class="edit-p-btn"
                   :class="[p.dotClass, { active: editPriority === p.value }]"
+                  :aria-pressed="editPriority === p.value"
                   @click="editPriority = p.value"
                 >
                   <span class="p-dot"></span>
@@ -318,7 +339,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 import { useTaskStore } from '~/stores/taskStore'
 import { useFocusStore } from '~/stores/focusStore'
 import type { Task, LightboxMediaItem, TaskPriority, TaskStatus, TaskEditPayload } from '~/types/task'
@@ -491,6 +512,8 @@ const openGallery = async () => {
 
 // ─── Konfirmasi Hapus ─────────────────────────────────────────────────────────
 const showConfirm = ref<boolean>(false)
+const confirmRootRef = ref<HTMLElement | null>(null)
+useModalFocus(showConfirm, confirmRootRef, () => { showConfirm.value = false })
 
 const confirmDelete = (): void => {
   emit('delete', props.task)
@@ -500,7 +523,23 @@ const confirmDelete = (): void => {
 // ─── Menu Aksi Baris ──────────────────────────────────────────────────────────
 const menuOpen = ref<boolean>(false)
 const triggerBtn = ref<HTMLButtonElement | null>(null)
+const menuRef = ref<HTMLElement | null>(null)
 const menuPos = ref<{ top: number; left: number } | null>(null)
+
+const onMenuKeydown = (event: KeyboardEvent): void => {
+  if (event.key === 'Escape') {
+    event.preventDefault()
+    closeMenu()
+    triggerBtn.value?.focus()
+    return
+  }
+  if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+  event.preventDefault()
+  const items = Array.from(menuRef.value?.querySelectorAll<HTMLButtonElement>('[role="menuitem"]') ?? [])
+  const index = items.indexOf(document.activeElement as HTMLButtonElement)
+  const next = event.key === 'ArrowDown' ? index + 1 : index - 1
+  items[(next + items.length) % items.length]?.focus()
+}
 
 const toggleMenu = (): void => {
   if (!menuOpen.value) {
@@ -522,6 +561,7 @@ const toggleMenu = (): void => {
         if (menuPos.value.left < 8) {
           menuPos.value.left = 8
         }
+        menuRef.value?.querySelector<HTMLButtonElement>('[role="menuitem"]')?.focus()
       }
     })
   } else {
@@ -570,6 +610,8 @@ onBeforeUnmount(() => {
 
 // ─── Edit Atribut Tugas ───────────────────────────────────────────────────────
 const showEdit = ref<boolean>(false)
+const editRootRef = ref<HTMLElement | null>(null)
+useModalFocus(showEdit, editRootRef, () => { showEdit.value = false })
 const editText = ref<string>('')
 const editPriority = ref<TaskPriority>('MEDIUM')
 const editStatus = ref<TaskStatus>('TODO')

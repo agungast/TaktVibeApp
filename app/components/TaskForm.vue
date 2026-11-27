@@ -52,6 +52,7 @@
               type="button"
               class="priority-btn"
               :class="[p.dotClass, { active: selectedPriority === p.value }]"
+              :aria-pressed="selectedPriority === p.value"
               @click="selectedPriority = p.value"
               :disabled="uploading"
             >

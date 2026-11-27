@@ -65,7 +65,14 @@
           class="focus-modal-overlay"
           @click.self="focusStore.minimizeWidget"
         >
-          <div class="focus-modal-card" role="dialog" aria-modal="true" aria-labelledby="focus-title">
+          <div
+            ref="modalCardRef"
+            class="focus-modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="focus-title"
+            tabindex="-1"
+          >
             <!-- Modal Header -->
             <div class="modal-top">
               <div class="modal-tag">
@@ -128,6 +135,7 @@
                 role="tab"
                 class="mode-btn"
                 :class="{ active: focusStore.timerMode === 'work' }"
+                :aria-pressed="focusStore.timerMode === 'work'"
                 @click="focusStore.setMode('work')"
               >
                 Fokus (25m)
@@ -137,6 +145,7 @@
                 role="tab"
                 class="mode-btn"
                 :class="{ active: focusStore.timerMode === 'short_break' }"
+                :aria-pressed="focusStore.timerMode === 'short_break'"
                 @click="focusStore.setMode('short_break')"
               >
                 Istirahat (5m)
@@ -146,6 +155,7 @@
                 role="tab"
                 class="mode-btn"
                 :class="{ active: focusStore.timerMode === 'long_break' }"
+                :aria-pressed="focusStore.timerMode === 'long_break'"
                 @click="focusStore.setMode('long_break')"
               >
                 Istirahat Panjang (15m)
@@ -226,9 +236,17 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import { useFocusStore } from '~/stores/focusStore'
 
 const focusStore = useFocusStore()
+const modalCardRef = ref<HTMLElement | null>(null)
+
+useModalFocus(
+  computed(() => focusStore.isOpen && !focusStore.isMinimized),
+  modalCardRef,
+  () => focusStore.minimizeWidget()
+)
 </script>
 
 <style scoped>

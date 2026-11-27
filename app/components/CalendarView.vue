@@ -300,6 +300,14 @@
               <p class="tray-card-title">
                 {{ task.title }}
               </p>
+              <button
+                type="button"
+                class="tray-schedule-btn"
+                :aria-label="`Jadwalkan ${task.title}`"
+                @click.stop="taskStore.openDetailModal(task)"
+              >
+                Jadwalkan
+              </button>
             </div>
           </div>
         </aside>
@@ -1237,6 +1245,26 @@ const openDayTasks = (cell: MonthCell) => {
   color: var(--text-soft);
   margin: 0;
   line-height: 1.35;
+}
+
+.tray-schedule-btn {
+  align-self: flex-start;
+  margin-top: 2px;
+  padding: 2px 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.tray-schedule-btn:hover,
+.tray-schedule-btn:focus-visible {
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
 }
 
 /* ─── Transitions ─────────────────────────────────────────────────────────── */

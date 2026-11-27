@@ -1,31 +1,33 @@
 <template>
   <div ref="rootRef" class="dp" :class="{ 'dp-disabled': disabled }">
-    <button
-      type="button"
-      class="dp-trigger"
-      :disabled="disabled"
-      :aria-expanded="open"
-      aria-haspopup="dialog"
-      @click="toggle"
-    >
-      <span :class="modelValue ? 'dp-value' : 'dp-placeholder'">
-        {{ displayText }}
-      </span>
-      <span class="dp-trigger-actions">
-        <span
-          v-if="modelValue && !disabled"
-          class="dp-clear"
-          role="button"
-          tabindex="0"
-          aria-label="Hapus tanggal"
-          @click.stop="clear"
-          @keydown.enter.prevent.stop="clear"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    <div class="dp-control">
+      <button
+        ref="triggerRef"
+        type="button"
+        class="dp-trigger"
+        :class="{ 'has-clear': modelValue && !disabled }"
+        :disabled="disabled"
+        :aria-expanded="open"
+        aria-haspopup="dialog"
+        @click="toggle"
+      >
+        <span :class="modelValue ? 'dp-value' : 'dp-placeholder'">
+          {{ displayText }}
         </span>
-        <svg class="dp-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-      </span>
-    </button>
+        <span class="dp-trigger-actions">
+          <svg class="dp-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </span>
+      </button>
+      <button
+        v-if="modelValue && !disabled"
+        type="button"
+        class="dp-clear"
+        aria-label="Hapus tanggal"
+        @click="clear"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
 
     <Transition name="dp-pop">
       <div v-if="open" class="dp-popup" role="dialog" aria-label="Pilih tanggal">
@@ -45,7 +47,7 @@
           <div class="dp-weekdays">
             <span v-for="d in weekdays" :key="d" class="dp-weekday">{{ d }}</span>
           </div>
-          <div class="dp-grid">
+          <div ref="gridRef" class="dp-grid" @keydown="onGridKeydown">
             <button
               v-for="cell in cells"
               :key="cell.key"
@@ -56,6 +58,9 @@
                 'is-today': cell.isToday,
                 'is-selected': cell.value === modelValue
               }"
+              :data-value="cell.value"
+              :aria-label="cell.label"
+              :aria-selected="cell.value === modelValue"
               @click="select(cell.value)"
             >
               {{ cell.day }}
@@ -86,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { computed, ref, nextTick, onMounted, onBeforeUnmount, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
   modelValue: string | null
@@ -103,6 +108,8 @@ const emit = defineEmits<{
 }>()
 
 const rootRef = ref<HTMLElement | null>(null)
+const triggerRef = ref<HTMLButtonElement | null>(null)
+const gridRef = ref<HTMLElement | null>(null)
 const open = ref(false)
 const yearMode = ref(false)
 const weekdays = ['S', 'S', 'R', 'K', 'J', 'S', 'M']
@@ -135,7 +142,11 @@ watch(selectedDate, (d) => {
   if (d && open.value) viewDate.value = d
 })
 
-interface Cell { key: string; day: number; value: string; current: boolean; isToday: boolean }
+watch(open, (isOpen, wasOpen) => {
+  if (!isOpen && wasOpen) nextTick(() => triggerRef.value?.focus())
+})
+
+interface Cell { key: string; day: number; value: string; label: string; current: boolean; isToday: boolean }
 
 const cells = computed<Cell[]>(() => {
   const year = viewDate.value.getFullYear()
@@ -151,6 +162,7 @@ const cells = computed<Cell[]>(() => {
       key: value,
       day: d.getDate(),
       value,
+      label: d.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }),
       current: d.getMonth() === month,
       isToday: value === todayISO
     })
@@ -188,6 +200,29 @@ const clear = () => {
 
 const goToday = () => select(todayISO)
 
+const focusCell = async (value: string) => {
+  await nextTick()
+  Array.from(gridRef.value?.querySelectorAll<HTMLButtonElement>('.dp-day') ?? [])
+    .find(el => el.dataset.value === value)?.focus()
+}
+
+const onGridKeydown = async (event: KeyboardEvent) => {
+  const step: Record<string, number> = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[event.key]
+  if (!step) return
+  event.preventDefault()
+  const current = (document.activeElement as HTMLElement | null)?.dataset.value
+  if (!current) return
+  const target = cells.value[cells.value.findIndex(c => c.value === current) + step]
+  if (target) {
+    await focusCell(target.value)
+    return
+  }
+  const base = toDate(current) ?? new Date()
+  const nextDate = new Date(base.getFullYear(), base.getMonth(), base.getDate() + step)
+  viewDate.value = new Date(nextDate.getFullYear(), nextDate.getMonth(), 1)
+  await focusCell(toISO(nextDate))
+}
+
 const toggle = () => {
   if (props.disabled) return
   const willOpen = !open.value
@@ -217,6 +252,10 @@ onBeforeUnmount(() => {
   width: 100%;
 }
 
+.dp-control {
+  position: relative;
+}
+
 .dp-trigger {
   display: flex;
   align-items: center;
@@ -234,6 +273,10 @@ onBeforeUnmount(() => {
   cursor: pointer;
   transition: border-color 0.15s ease;
   text-align: left;
+}
+
+.dp-trigger.has-clear {
+  padding-right: 52px;
 }
 
 .dp-trigger:hover:not(:disabled),
@@ -267,11 +310,18 @@ onBeforeUnmount(() => {
 }
 
 .dp-clear {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 16px;
   height: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   border-radius: 4px;
   color: var(--text-secondary, var(--text-secondary));
   cursor: pointer;
@@ -280,6 +330,11 @@ onBeforeUnmount(() => {
 .dp-clear:hover {
   color: var(--text-primary, var(--text-primary));
   background: var(--bg-hover, var(--bg-hover));
+}
+
+.dp-clear:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 90, 251, 0.15);
 }
 
 .dp-icon {

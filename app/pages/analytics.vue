@@ -36,8 +36,8 @@
     <section class="card">
       <div class="card-header"><h2 class="card-title">AI Briefing {{ period === 'weekly' ? 'Mingguan' : 'Harian' }}</h2>
         <div class="seg">
-          <button type="button" :class="{active: period==='weekly'}" @click="period='weekly'">Mingguan</button>
-          <button type="button" :class="{active: period==='daily'}" @click="period='daily'">Harian</button>
+          <button type="button" :class="{active: period==='weekly'}" :aria-pressed="period==='weekly'" @click="period='weekly'">Mingguan</button>
+          <button type="button" :class="{active: period==='daily'}" :aria-pressed="period==='daily'" @click="period='daily'">Harian</button>
         </div>
       </div>
       <div class="card-body">

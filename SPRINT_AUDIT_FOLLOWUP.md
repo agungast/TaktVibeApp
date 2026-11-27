@@ -1,6 +1,6 @@
 # Sprint Follow-up: Audit Bug, Keamanan & Kesehatan Repo
 
-**Status**: Sprint 2 selesai (25 Nov 2026)  
+**Status**: Sprint 3 selesai (27 Nov 2026)  
 **Sumber**: audit read-only 25 Nov 2026 (4 jalur: backend/security, data/store, UI/a11y, config/lean)  
 **Asumsi beban**: aplikasi tugas personal dengan OAuth, banyak user, sesekali beberapa tab aktif.
 
@@ -56,11 +56,11 @@
 
 ## Sprint 3 — Keyboard & aksesibilitas
 
-- [ ] **S3.1 Modal utama** — `app/components/FocusTimer.vue:68`, `app/components/TaskDetailModal.vue:4-10`, `TaskItem.vue:184-317`, `KanbanCard.vue:169-301`. Fokus root saat buka, Escape via `document`, trap Tab, restore fokus saat tutup, `role="dialog"` + `aria-modal` konsisten.
-- [ ] **S3.2 Menu aksi teleport** — `app/components/TaskItem.vue:156-178,505-569`. Fokus item pertama, arrow up/down, Escape menutup dan mengembalikan fokus ke trigger.
-- [ ] **S3.3 Date picker** — `app/components/DatePicker.vue:3-28,31-83`. Tombol hapus tanggal jadi sibling, bukan nested; tambah arrow-key, `aria-label` tanggal lengkap, `aria-selected`, restore fokus ke trigger.
-- [ ] **S3.4 Drag-only → ada alternatif** — `app/components/CalendarView.vue:143-155`, `app/components/KanbanBoard.vue:22-32`, `app/components/KanbanCard.vue:2-8`. Tambah tombol “Jadwalkan” dan “Pindah ke…” memakai kontrol yang sudah ada.
-- [ ] **S3.5 Password toggle & state** — `app/pages/login.vue:87-93`, `register.vue:85-91`, `reset-password.vue:45-51`. Hapus `tabindex="-1"`, tambah `aria-label`/`aria-pressed`; tambah `:aria-pressed` pada segmented priority/view/mode di `TaskForm.vue`, `TaskItem.vue`, `KanbanCard.vue`, `dashboard.vue`, `analytics.vue`, `index.vue`, `FocusTimer.vue`.
+- [x] **S3.1 Modal utama** — `app/components/FocusTimer.vue:68`, `app/components/TaskDetailModal.vue:4-10`, `TaskItem.vue:184-317`, `KanbanCard.vue:169-301`. Fokus root saat buka, Escape via `document`, trap Tab, restore fokus saat tutup, `role="dialog"` + `aria-modal` konsisten.
+- [x] **S3.2 Menu aksi teleport** — `app/components/TaskItem.vue:156-178,505-569`. Fokus item pertama, arrow up/down, Escape menutup dan mengembalikan fokus ke trigger.
+- [x] **S3.3 Date picker** — `app/components/DatePicker.vue:3-28,31-83`. Tombol hapus tanggal jadi sibling, bukan nested; tambah arrow-key, `aria-label` tanggal lengkap, `aria-selected`, restore fokus ke trigger.
+- [x] **S3.4 Drag-only → ada alternatif** — `app/components/CalendarView.vue:143-155`, `app/components/KanbanBoard.vue:22-32`, `app/components/KanbanCard.vue:2-8`. Tambah tombol “Jadwalkan” dan “Pindah ke…” memakai kontrol yang sudah ada.
+- [x] **S3.5 Password toggle & state** — `app/pages/login.vue:87-93`, `register.vue:85-91`, `reset-password.vue:45-51`. Hapus `tabindex="-1"`, tambah `aria-label`/`aria-pressed`; tambah `:aria-pressed` pada segmented priority/view/mode di `TaskForm.vue`, `TaskItem.vue`, `KanbanCard.vue`, `dashboard.vue`, `analytics.vue`, `index.vue`, `FocusTimer.vue`.
 
 **Gate**: test + build + lint + inspector pada `/login`, `/register`, `/dashboard`. Pakai `--allow font-not-dealt` seperti sebelumnya.
 
@@ -94,5 +94,5 @@
 | 0 — Quick wins | Selesai | `4965140` | test + build lulus |
 | 1 — Data correctness | Selesai | `57f5ebc` | test 9 file/16 test + build lulus; cek manual error DB/RLS belum dijalankan |
 | 2 — Security/storage/AI | Selesai | lihat git log | test 13 file/22 test + build lulus; migration 15/16 & Edge Function legacy belum diverifikasi di staging |
-| 3 — Keyboard/a11y | Belum dimulai | — | |
+| 3 — Keyboard/a11y | Selesai | lihat git log | test 14 file/23 test + build + lint 0 FAIL + inspector 0 FAIL; `/dashboard` redirect ke login saat inspector karena tanpa sesi |
 | 4 — Tests/lean/deploy | Belum dimulai | — | |

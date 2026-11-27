@@ -129,6 +129,14 @@
           <span>{{ formatDueDate(task.due_date) }}</span>
         </span>
         <span v-else class="no-due-text">Tanpa tenggat</span>
+        <button
+          type="button"
+          class="card-move-btn"
+          :aria-label="`Pindah ke status lain: ${task.title}`"
+          @click.stop="taskStore.openDetailModal(task)"
+        >
+          Pindah ke…
+        </button>
         <span v-if="task.actual_hours" class="actual-hours-pill" title="Jam fokus aktual">
           ⏱️ {{ task.actual_hours }}h
         </span>
@@ -169,7 +177,16 @@
     <!-- Modal Konfirmasi Hapus -->
     <Teleport to="body">
       <Transition name="modal">
-        <div v-if="showConfirm" class="modal-backdrop" @click.self="showConfirm = false">
+        <div
+          v-if="showConfirm"
+          ref="confirmRootRef"
+          class="modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Konfirmasi Hapus Tugas"
+          @click.self="showConfirm = false"
+          tabindex="-1"
+        >
           <div class="modal-box">
             <div class="modal-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -192,7 +209,16 @@
     <!-- Modal Edit Tugas Komprehensif -->
     <Teleport to="body">
       <Transition name="modal">
-        <div v-if="showEdit" class="modal-backdrop" @click.self="showEdit = false">
+        <div
+          v-if="showEdit"
+          ref="editRootRef"
+          class="modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Edit Atribut Tugas"
+          @click.self="showEdit = false"
+          tabindex="-1"
+        >
           <div class="modal-box modal-box-lg">
             <div class="modal-header-edit">
               <div class="modal-icon edit-icon">
@@ -232,6 +258,7 @@
                     type="button"
                     class="edit-p-btn"
                     :class="[p.dotClass, { active: editPriority === p.value }]"
+                    :aria-pressed="editPriority === p.value"
                     @click="editPriority = p.value"
                   >
                     <span class="p-dot"></span>
@@ -432,6 +459,9 @@ const hasPrivateAttachments = computed(() => {
 
 // ─── Delete Modal ────────────────────────────────────────────────────────────
 const showConfirm = ref<boolean>(false)
+const confirmRootRef = ref<HTMLElement | null>(null)
+useModalFocus(showConfirm, confirmRootRef, () => { showConfirm.value = false })
+
 const confirmDelete = (): void => {
   emit('delete', props.task)
   showConfirm.value = false
@@ -439,6 +469,8 @@ const confirmDelete = (): void => {
 
 // ─── Edit Modal ──────────────────────────────────────────────────────────────
 const showEdit = ref<boolean>(false)
+const editRootRef = ref<HTMLElement | null>(null)
+useModalFocus(showEdit, editRootRef, () => { showEdit.value = false })
 const editText = ref<string>('')
 const editPriority = ref<TaskPriority>('MEDIUM')
 const editStatus = ref<TaskStatus>('TODO')
@@ -773,6 +805,24 @@ const confirmEdit = (): void => {
 .no-due-text {
   color: var(--text-muted);
   font-size: 11.5px;
+}
+
+.card-move-btn {
+  padding: 2px 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.card-move-btn:hover,
+.card-move-btn:focus-visible {
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
 }
 
 .att-trigger-btn {
