@@ -1,6 +1,6 @@
 # Sprint Follow-up: Audit Bug, Keamanan & Kesehatan Repo
 
-**Status**: Sprint 3 selesai (27 Nov 2026)  
+**Status**: Sprint 4 selesai (27 Nov 2026)  
 **Sumber**: audit read-only 25 Nov 2026 (4 jalur: backend/security, data/store, UI/a11y, config/lean)  
 **Asumsi beban**: aplikasi tugas personal dengan OAuth, banyak user, sesekali beberapa tab aktif.
 
@@ -68,13 +68,13 @@
 
 ## Sprint 4 — Tests, lean, dan deploy hygiene
 
-- [ ] **S4.1 Test nyata** — hapus placeholder di `test/taskCore.spec.ts`, `taskStore.spec.ts`, `taskStatus.spec.ts`, `test/server/ai-*.spec.ts`; ganti dengan minimal satu test yang import kode aplikasi (mis. `useTaskCore` dengan stub ctx).
-- [ ] **S4.2 Modul mati** — hapus `app/stores/modules/taskCore.ts`, `taskAttachments.ts`, `taskProjectsNotesTemplates.ts` (~500 baris, tidak di-import) dan baris checklist lama di `TASK_FIXING_AUDIT.md:9-11`.
-- [ ] **S4.3 CLI state ter-track** — `git rm -r --cached supabase/.temp`, tambah `supabase/.temp/` ke `.gitignore:1-24`.
-- [ ] **S4.4 Dokumen drift** — `README.md:52-56` ubah rentang migrasi ke `14`; `README.md:137-138` ganti catatan hash SHA-256 dengan nonce CSP.
-- [ ] **S4.5 `.env` lokal** — ganti `SUPABASE_URL`/`SUPABASE_KEY` dengan `NUXT_PUBLIC_SUPABASE_URL`/`NUXT_PUBLIC_SUPABASE_KEY` sesuai `.env.example:14,17`.
-- [ ] **S4.6 Gemini key saat build** — `nuxt.config.ts:16` set `geminiApiKey: ''`; pakai env runtime `NUXT_GEMINI_API_KEY`; hapus fallback `|| process.env.GEMINI_API_KEY` di 4 handler AI. Rotasi key jika pernah ada di artifact.
-- [ ] **S4.7 Aset & dependency mati** — hapus `public/images/logo-badge-{light,dark}.png` (~560 KB) dan `jsdom` dari `package.json:25`; hapus `app/types/project.ts`, interface `UserProfile`/`AuthState` di `app/types/auth.ts:15-26`, dan `app/layouts/base.vue`.
+- [x] **S4.1 Test nyata** — hapus placeholder di `test/taskCore.spec.ts`, `taskStore.spec.ts`, `taskStatus.spec.ts`, `test/server/ai-*.spec.ts`; ganti dengan minimal satu test yang import kode aplikasi (mis. `useTaskCore` dengan stub ctx).
+- [x] **S4.2 Modul mati** — hapus `app/stores/modules/taskCore.ts`, `taskAttachments.ts`, `taskProjectsNotesTemplates.ts` (~500 baris, tidak di-import) dan baris checklist lama di `TASK_FIXING_AUDIT.md:9-11`.
+- [x] **S4.3 CLI state ter-track** — `git rm -r --cached supabase/.temp`, tambah `supabase/.temp/` ke `.gitignore:1-24`.
+- [x] **S4.4 Dokumen drift** — `README.md:52-56` ubah rentang migrasi ke `14`; `README.md:137-138` ganti catatan hash SHA-256 dengan nonce CSP.
+- [x] **S4.5 `.env` lokal** — ganti `SUPABASE_URL`/`SUPABASE_KEY` dengan `NUXT_PUBLIC_SUPABASE_URL`/`NUXT_PUBLIC_SUPABASE_KEY` sesuai `.env.example:14,17`.
+- [x] **S4.6 Gemini key saat build** — `nuxt.config.ts:16` set `geminiApiKey: ''`; pakai env runtime `NUXT_GEMINI_API_KEY`; hapus fallback `|| process.env.GEMINI_API_KEY` di 4 handler AI. Rotasi key jika pernah ada di artifact.
+- [x] **S4.7 Aset & dependency mati** — hapus `public/images/logo-badge-{light,dark}.png` (~560 KB) dan `jsdom` dari `package.json:25`; hapus `app/types/project.ts`, interface `UserProfile`/`AuthState` di `app/types/auth.ts:15-26`, dan `app/layouts/base.vue`.
 
 **Gate**: `npm ci` bersih, test + build + lint 0 FAIL.
 
@@ -95,4 +95,4 @@
 | 1 — Data correctness | Selesai | `57f5ebc` | test 9 file/16 test + build lulus; cek manual error DB/RLS belum dijalankan |
 | 2 — Security/storage/AI | Selesai | lihat git log | test 13 file/22 test + build lulus; migration 15/16 & Edge Function legacy belum diverifikasi di staging |
 | 3 — Keyboard/a11y | Selesai | lihat git log | test 14 file/23 test + build + lint 0 FAIL + inspector 0 FAIL; `/dashboard` redirect ke login saat inspector karena tanpa sesi |
-| 4 — Tests/lean/deploy | Belum dimulai | — | |
+| 4 — Tests/lean/deploy | Selesai | lihat git log | test 7 file/10 test + build + lint 0 FAIL + `npm ci` bersih; test jsdom S3.1 dihapus bersama dependency; rotasi Gemini key belum dilakukan |

@@ -1,4 +1,4 @@
-// ─── Tipe Kredensial & State Autentikasi ──────────────────────────────────────
+// ─── Tipe Kredensial Autentikasi ──────────────────────────────────────────────
 
 export interface LoginCredentials {
   email: string
@@ -10,17 +10,4 @@ export interface RegisterCredentials {
   email: string
   password: string
   confirmPassword?: string
-}
-
-export interface UserProfile {
-  id: string
-  email: string
-  displayName?: string
-  avatarUrl?: string
-}
-
-export interface AuthState {
-  loading: boolean
-  authError: string | null
-  successMessage: string | null
 }

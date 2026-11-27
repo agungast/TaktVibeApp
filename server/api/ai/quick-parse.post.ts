@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
 
   // 3. Ambil API Key dari runtime config
   const config = useRuntimeConfig()
-  const geminiApiKey = config.geminiApiKey || process.env.GEMINI_API_KEY
+  const geminiApiKey = config.geminiApiKey
 
   // 4. Fallback cerdas bila API key belum disetel atau saat error
   const fallback = (): any => {
@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
       estimated_hours: estimatedHours,
       tags: extractFallbackTags(prompt),
       isFallback: true,
-      message: 'Mode fallback aktif. Pasang GEMINI_API_KEY di file .env untuk ekstraksi AI yang lebih akurat.'
+      message: 'Mode fallback aktif. Pasang NUXT_GEMINI_API_KEY di file .env untuk ekstraksi AI yang lebih akurat.'
     }
   }
 

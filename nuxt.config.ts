@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt'
   ],
   runtimeConfig: {
-    geminiApiKey: process.env.GEMINI_API_KEY || ''
+    geminiApiKey: ''
   },
   css: [
     '~/assets/css/theme.css'

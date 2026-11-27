@@ -25,16 +25,16 @@ export default defineEventHandler(async (event) => {
 
   // 3. Ambil API Key dari runtime config
   const config = useRuntimeConfig()
-  const geminiApiKey = config.geminiApiKey || process.env.GEMINI_API_KEY
+  const geminiApiKey = config.geminiApiKey
 
   // 4. Jika API Key belum disetel, berikan fallback cerdas berbasis heuristik
   if (!geminiApiKey) {
-    console.warn('[AI Breakdown] GEMINI_API_KEY tidak ditemukan. Menggunakan generator fallback.')
+    console.warn('[AI Breakdown] NUXT_GEMINI_API_KEY tidak ditemukan. Menggunakan generator fallback.')
     return {
       success: true,
       subtasks: generateSmartFallbackSubtasks(title, description),
       isFallback: true,
-      message: 'Mode fallback aktif. Pasang GEMINI_API_KEY di file .env untuk hasil analisis AI penuh.'
+      message: 'Mode fallback aktif. Pasang NUXT_GEMINI_API_KEY di file .env untuk hasil analisis AI penuh.'
     }
   }
 

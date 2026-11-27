@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "@vite-pwa/nuxt": "^0.10.6",
-    "jsdom": "^30.1.3",
     "vitest": "^3.0.0"
   }
 }

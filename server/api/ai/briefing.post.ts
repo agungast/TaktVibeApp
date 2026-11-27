@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   const pendingTasks = Array.isArray(body?.pending_tasks) ? body.pending_tasks.slice(0, 20) : []
 
   const config = useRuntimeConfig()
-  const geminiApiKey = config.geminiApiKey || process.env.GEMINI_API_KEY
+  const geminiApiKey = config.geminiApiKey
 
   const fallback = () => {
     const comp = completedTasks.length

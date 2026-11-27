@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const config = useRuntimeConfig()
-  const geminiApiKey = config.geminiApiKey || process.env.GEMINI_API_KEY
+  const geminiApiKey = config.geminiApiKey
 
   const fallback = () => {
     const lower = message.toLowerCase()

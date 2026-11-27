@@ -51,7 +51,7 @@ supabase db push
 
 Migrasi dijalankan berurutan sesuai nomor file. `00` membuat tabel dasar,
 `01`–`07` menambahkan RLS, lampiran, subtask, dan project space, sedangkan
-`08`–`10` berisi perbaikan keamanan untuk project yang sudah berjalan.
+`08`–`14` berisi perbaikan keamanan untuk project yang sudah berjalan.
 
 > Angka `03` memang dilewati: file tersebut pernah ada namun sudah dihapus.
 > Supabase CLI tidak memerlukan nomor migration berurutan.
@@ -126,5 +126,5 @@ supabase/
   kepemilikan task induk, bukan sekadar `user_id` kolomnya.
 - File privat hanya disajikan lewat Signed URL berumur 1 jam.
 - Header keamanan (CSP, HSTS, `frame-ancestors`, dll.) diatur di `nuxt.config.ts`.
-  Jika skrip anti-FOUC diubah, hash SHA-256 pada `script-src` harus dihitung
-  ulang.
+  CSP memakai nonce (`nonce: true`, `'nonce-{{nonce}}'`, `'strict-dynamic'`),
+  jadi skrip inline baru tidak perlu hash SHA-256 dihitung manual.

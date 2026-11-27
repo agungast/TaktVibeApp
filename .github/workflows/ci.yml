@@ -22,7 +22,7 @@ jobs:
       NODE_ENV: test
       NUXT_PUBLIC_SUPABASE_URL: https://placeholder-url.supabase.co
       NUXT_PUBLIC_SUPABASE_KEY: placeholder-anon-key
-      GEMINI_API_KEY: placeholder-gemini-key
+      NUXT_GEMINI_API_KEY: placeholder-gemini-key
 
     steps:
       - name: 📥 Checkout Repository

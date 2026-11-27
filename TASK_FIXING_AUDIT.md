@@ -6,9 +6,6 @@
 - **File**: `app/stores/taskStore.ts` (57KB / 1588 baris) - MONOLITH
 - **Problem**: Semua CRUD + storage + template + project + notes + lightbox dalam 1 file. Tidak ada tes untuk path kritis.
 - **Fix**:
-  - [ ] Buat `app/stores/modules/taskCore.ts` (fetch/add/update/delete/toggle/status)
-  - [ ] Buat `app/stores/modules/taskAttachments.ts` (upload/delete/attachments/lightbox)
-  - [ ] Buat `app/stores/modules/taskProjectsNotesTemplates.ts` (projects/notes/templates)
   - [ ] Refactor `taskStore.ts` jadi composer (`defineStore` + spread)
   - [ ] Tambah tes `test/taskCore.spec.ts` untuk `addTask` (sukses + gagal)
   - [ ] Tambah tes `test/taskStatus.spec.ts` untuk `updateTaskStatus` (optimistic update + rollback)
